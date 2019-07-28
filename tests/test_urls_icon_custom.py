@@ -2,8 +2,8 @@ import unittest
 
 import context 
 import src
-from src import wrapper
-from src.wrapper import TheNounProject
+from src import core
+from src.core import TheNounProject
 
 class IconCustomURLs(unittest.TestCase):
 

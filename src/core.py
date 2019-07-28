@@ -1,9 +1,11 @@
 
-import requests
+import requests, json
 from requests import Request, Session
 from requests_oauthlib import OAuth1
 from functools import wraps, singledispatch, update_wrapper
 from typing import Union
+
+import exceptions
 
 def methoddispatch(f):
     # Modified version of singledispatch to work with methods
@@ -22,58 +24,124 @@ def get_endpoint(f):
         if self.testing:
             return prepared_request
 
-        self._session = Session()
-        data = self._get(prepared_request)
-        #print("Data returned from this url:", data)
-        return data
+        response = self._get(prepared_request)
+
+        api_response = APIResponse(response)
+        return api_response
     
     return wrapper
+
+class APIResponse:
+
+    def __init__(self, response: requests.Response):
+        self.response = response
+        self.status_code = response.status_code
+        try:
+            self.json = response.json()
+        except json.decoder.JSONDecodeError:
+            self.json = None
+        
+        if self.status_code in exceptions.STATUS_CODE_EXCEPTIONS:
+            raise exceptions.STATUS_CODE_EXCEPTIONS[self.status_code](self)
+    
+    def __str__(self):
+        return f"<APIResponse [{self.status_code}] on url {self.response.url}>"
+    
+    def __repr__(self):
+        return f"<APIResponse [{self.status_code}] on url {self.response.url}>"
+    
+    def __getitem__(self, item):
+        if self.json is None:
+            raise Exception("Response did not contain JSON, likely due to a request error. It's recommended to check the status_code before accessing this field.")
+            
+        return self.json[item]
 
 class TheNounProject:
     """
     TheNounProject is a class allowing convenient access to the TheNounProject API.
     """
 
-    def __init__(self, key:str = None, secret:str = None, testing:bool = False):
+    def __init__(self, key:str = None, secret:str = None, testing:bool = False, timeout:Union[int, tuple, None] = 5):
         """
         Construct a new 'TheNounProject' object.
 
         :param key: The API key from the TheNounProject API. (defaults to None)
         :type key: str
-        :param secret: The Secret key from the TheNounProject API. (defaults to None)
+        :param secret: The secret key from the TheNounProject API. (defaults to None)
         :type secret: str
         :param testing: Whether the 'get_...' methods should return a PreparedRequest, 
                         instead of data from the API. (defaults to False)
         :type testing: bool
+        :param timeout: Integer timeout in seconds, 2-tuples for seperate connect and read timeouts, and None for no timeout. (defaults to 5)
+        :type timeout: Union[int, tuple, None]
         """
         self.api_key = key
         self.secret_key = secret
         self.testing = testing
+        self.timeout = timeout
 
         self._base_url = "http://api.thenounproject.com"
-        self._session = None
+        self._session = Session()
     
     def set_api_key(self, key: str) -> None:
         """
-        Setter for api_key.
+        Sets API key.
 
         :param key: The API key from the TheNounProject API.
         :type key: str
         """
-        assert isinstance(key, str), "The API key must be a string."
         self.api_key = key
+
+    @property
+    def api_key(self) -> str:
+        """
+        Getter for api_key property.
+
+        :returns: The API key from the TheNounProject API.
+        :rtype: str
+        """
+        return self._api_key
+
+    @api_key.setter
+    def api_key(self, key: str) -> None:
+        """
+        Setter for api_key property.
+
+        :param key: The API key from the TheNounProject API.
+        :type key: str
+        """
+        self._api_key = key
     
     def set_secret_key(self, secret: str) -> None:
         """
-        Setter for secret_key.
+        Sets API secret.
+
+        :param secret: The secret key from the TheNounProject API
+        :type secret: str
+        """
+        self.secret_key = secret
+
+    @property
+    def secret_key(self) -> str:
+        """
+        Getter for secret_key property.
+
+        :returns: The secret key from the TheNounProject API.
+        :rtype: str
+        """
+        return self._secret_key
+    
+    @secret_key.setter
+    def secret_key(self, secret: str) -> None:
+        """
+        Setter for secret_key property.
 
         :param secret: The secret key from the TheNounProject API.
         :type secret: str
         """
-        assert isinstance(secret, str), "The API secret must be a string."
-        self.secret_key = secret
+        self._secret_key = secret
 
-    def _get_oauth(self) -> requests.PreparedRequest:
+    def _get_oauth(self) -> OAuth1:
         """
         Returns an OAuth object using this object's API and secret key.
         Asserts that both api and secret keys have been set. 
@@ -84,17 +152,9 @@ class TheNounProject:
         assert isinstance(self.secret_key, str), "Please set your API Secret"
         return OAuth1(self.api_key, self.secret_key)
 
-    def _get(self, url: requests.PreparedRequest):
-        #TODO: 
-        response = self._session.send(url)
-        if response.status_code == 200:
-            json_data = response.json()
-            print(json_data)
-        else:
-            json_data = "empty"
-            print(response.content)
-            print("Failed.")
-        return json_data
+    def _get(self, url: requests.PreparedRequest) -> requests.Response:
+        #TODO
+        return self._session.send(url, timeout=self.timeout)
 
     def _get_url(self, url: str, params:dict = None) -> requests.PreparedRequest:
         """
@@ -107,9 +167,12 @@ class TheNounProject:
         :type params: dict
 
         :returns: A PreparedRequest object.
-        :rtype: requests.PreparedRequest
+        :rtype: requests.PreparedRequest 
         """
-        return Request("GET", url, params=params, auth=self._get_oauth()).prepare()
+        if self._session.auth is None:
+            self._session.auth = self._get_oauth()
+        req = Request("GET", url, params=params)
+        return self._session.prepare_request(req)
 
     def _lop_assert(self, limit, offset, page) -> None:
         """
@@ -488,6 +551,8 @@ class TheNounProject:
         :param page: Number of results of limit length to displace or skip over. (defaults to None)
         :type page: int
 
+        :returns: TODO (Also -> ...)
+        :rtype: TODO
         """
         assert isinstance(username, str), "username argument must be a string."
         self._lop_assert(limit, offset, page)
@@ -498,8 +563,10 @@ def main():
     from pprint import pprint
     import keys
     key, secret = keys.get()
-    tnp = TheNounProject(key, secret, testing=True)
-    print(tnp.get_usage().url)
+    tnp = TheNounProject(key, secret)
+    response = tnp.get_collection_by_id(12)
+    pprint(response)
+    breakpoint()
 
 if __name__ == "__main__":
     main()
