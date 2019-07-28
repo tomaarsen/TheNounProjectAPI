@@ -1,0 +1,40 @@
+import unittest
+
+import context 
+import src
+from src import wrapper
+from src.wrapper import TheNounProject
+
+class UserUploadsURLs(unittest.TestCase):
+
+    def setUp(self):
+        key = "mock api key to satisfy type check in tnp._get_oauth()"
+        secret = "mock secret key to satisfy type check in tnp._get_oauth()"
+        self.tnp = TheNounProject(key, secret, testing=True)
+
+    def _test_get_user_uploads(self, username):
+        """
+        Helper function to call tnp's get_user_uploads in such a way that we only get the URL
+        and don't actually make the request.
+        """
+        return self.tnp.get_user_uploads(username).url
+
+    def test_get_user_uploads_legal(self):
+        """
+        Test URL for get_user_uploads with username "goat"
+        """
+        expected = "http://api.thenounproject.com/user/goat/uploads"
+        username = "goat"
+        result = self._test_get_user_uploads(username)
+        self.assertEqual(expected, result)
+
+    def test_get_user_uploads_illegal_id(self):
+        """
+        Test URL for get_user_uploads with username None
+        """
+        username = None
+        with self.assertRaises(AssertionError):
+            self._test_get_user_uploads(username)
+
+if __name__ == "__main__":
+    unittest.main()
