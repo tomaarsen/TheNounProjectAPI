@@ -1,14 +1,12 @@
 import unittest
 
 import context 
-import src
-from src import core
-from src.core import TheNounProject
+from src.api import API
 
 class ApiKeys(unittest.TestCase):
 
     def setUp(self):
-        self.tnp = TheNounProject(testing=True)
+        self.tnp = API(testing=True)
         self.key = "mock api key to satisfy type check in tnp._get_oauth()"
         self.secret = "mock secret key to satisfy type check in tnp._get_oauth()"
 

@@ -1,0 +1,173 @@
+
+from exceptions import NotFound
+from typing import Any
+
+def sequence_to_dot(val: Any) -> Any:
+    """
+    Returns DotDict of val if val is a dict.
+    Returns DotList of val if val is a list.
+    Otherwise returns val.
+    """
+    if isinstance(val, dict):
+        return DotDict(val)
+    if isinstance(val, list):
+        return DotList(val)
+    return val
+
+class DotList(list):
+    def __getitem__(self, key):
+        """ 
+        Allows dot_dict[0][2].data to be equivalent to dot_dict[0][2]['data']. 
+        """
+        val = list.__getitem__(self, key)
+        return sequence_to_dot(val)
+
+class DotDict(dict):
+    
+    """dot.notation access to dictionary attributes""" 
+    def __getattr__(self, name):
+        """ 
+        Allows dot_dict.data.more_data to be equivalent to dot_dict['data']['more_data']. 
+        """
+        if name not in self:
+            raise AttributeError(f"Object has no attribute \'{name}\'")
+        val = self.get(name)
+        return sequence_to_dot(val)
+    
+    __setattr__ = dict.__setitem__
+    __delattr__ = dict.__delitem__
+
+class OutputKeys:
+    """
+    Class to store key and title value, used for outputting attributes.
+    """ 
+    def __init__(self, key, title=None):
+        """
+        Constructs a 'OutputKeys' object, with a key and a title.
+        """
+        self.key = key
+        self.title = title or key.title()
+
+class Model:
+    """
+    Model is a base class to be used as a superclass for conveniently accessing data.
+    """
+    def __init__(self):
+        """ Constructs a new 'Model' object. """
+        self.output_keys = ()
+
+        """ Main attribute to access data. Can be used both like .json.data.more_data
+            and .json['data']['more_data'] """
+        self.json = DotDict()
+    
+    @classmethod
+    def parse(cls, data: dict):
+        """ Constructs and returns an instance of (sub)class, with the json attribute 
+            set to a conveniently accessible DotDict object with 'data'. """
+        instance = cls()
+        instance.json = DotDict(data)
+        return instance
+
+    def __getattr__(self, name):
+        """ Passes model.data to model.json.data. """
+        return getattr(self.json, name)
+
+    def __getitem__(self, name):
+        """ Passes model['data'] to model.json['data']. """
+        return self.json[name]
+
+    def __repr__(self):
+        """ Returns string with class name, followed by all output_keys and their values. 
+            eg: <Collection: Name: Cue, Slug: cue, Id: 12> """
+        return "<{}: {}>".format(self.__class__.__name__,
+                                ", ".join(f"{output_key.title}: {self.json[output_key.key]}" for output_key in self.output_keys if getattr(self, output_key.key, None) is not None))
+
+class ModelList(list):
+    """
+    ModelList is a base class to be used as a superclass for conveniently accessing lists of Model objects.
+    """
+    @classmethod
+    def parse(cls, data: dict, instance_class: Model, main_keys: list):
+        """
+        Constructs and returns a list of instances of instance_class, a subclass of Model.
+        In addition, this list has some additional attributes based on the data dictionary.
+        """
+        main_dict = [data[key] for key in main_keys if key in data][0]
+        instance = cls()
+        instance.extend([instance_class.parse(item) for item in main_dict])
+        for key, val in data.items():
+            setattr(instance, key, sequence_to_dot(val))
+        return instance
+
+class Collection(Model):
+    """
+    Collection is a subclass of Model, with different attributes displayed.
+    """
+    def __init__(self):
+        super().__init__()
+        self.output_keys = (OutputKeys("name"), 
+                            OutputKeys("slug"), 
+                            OutputKeys("id"))
+    
+    @classmethod
+    def parse(cls, data: dict):
+        if "collection" in data:
+            data = data["collection"]
+        return super().parse(data)
+
+class Collections(ModelList):
+    """
+    Collections is a subclass of ModelList, which focuses on turning Collection objects into a list.
+    """
+    @classmethod
+    def parse(cls, data: dict):
+        return super().parse(data, Collection, main_keys=["collections"])
+
+class Icon(Model):
+    """
+    Icon is a subclass of Model, with different attributes displayed.
+    """
+    def __init__(self):
+        super().__init__()
+        self.output_keys = (OutputKeys("term"), 
+                            OutputKeys("term_slug", "Slug"), 
+                            OutputKeys("id"))
+
+    @classmethod
+    def parse(cls, data: dict):
+        if "icon" in data:
+            data = data["icon"]
+        return super().parse(data)
+
+class Icons(ModelList):
+    """
+    Icons is a subclass of ModelList, which focuses on turning Icon objects into a list.
+    """
+    @classmethod
+    def parse(cls, data: dict):
+        return super().parse(data, Icon, main_keys=["icons", "recent_uploads", "uploads"])
+
+class Usage(Model):
+    """
+    Usage is a subclass of Model, with different attributes displayed.
+    """
+    def __init__(self):
+        super().__init__()
+        self.output_keys = (OutputKeys(("usage", "hourly"), "Hourly"), 
+                            OutputKeys(("usage", "daily"), "Daily"), 
+                            OutputKeys(("usage", "monthly"), "Monthly"),)
+    
+    def __repr__(self):
+        """ Returns string with class name, followed by all output_keys and their values. 
+            eg: <Collection: Name: Cue, Slug: cue, Id: 12> """
+        return "<{}: {}>".format(self.__class__.__name__,
+                                ", ".join(f"{output_key.title}: {self.json[output_key.key[0]][output_key.key[1]]}" for output_key in self.output_keys))
+
+class Publish(Model):
+    """
+    Publish is a subclass of Model, with different attributes displayed.
+    """
+    def __init__(self):
+        super().__init__()
+        self.output_keys = (OutputKeys("licenses_consumed", "Licenses Consumed"),
+                            OutputKeys("result"))

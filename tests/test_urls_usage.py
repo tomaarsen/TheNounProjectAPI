@@ -1,16 +1,16 @@
 import unittest
 
 import context 
-import src
-from src import core
-from src.core import TheNounProject
+
+
+from src.api import API
 
 class GetUsageURLs(unittest.TestCase):
 
     def setUp(self):
         key = "mock api key to satisfy type check in tnp._get_oauth()"
         secret = "mock secret key to satisfy type check in tnp._get_oauth()"
-        self.tnp = TheNounProject(key, secret, testing=True)
+        self.tnp = API(key, secret, testing=True)
 
     def _test_get_usage(self):
         """
