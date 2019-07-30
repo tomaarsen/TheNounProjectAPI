@@ -99,9 +99,9 @@ class ModelList(list):
             setattr(instance, key, sequence_to_dot(val))
         return instance
 
-class Collection(Model):
+class CollectionModel(Model):
     """
-    Collection is a subclass of Model, with different attributes displayed.
+    CollectionModel is a subclass of Model, with different attributes displayed.
     """
     def __init__(self):
         super().__init__()
@@ -115,17 +115,17 @@ class Collection(Model):
             data = data["collection"]
         return super().parse(data)
 
-class Collections(ModelList):
+class CollectionsModel(ModelList):
     """
-    Collections is a subclass of ModelList, which focuses on turning Collection objects into a list.
+    CollectionsModel is a subclass of ModelList, which focuses on turning CollectionModel objects into a list.
     """
     @classmethod
     def parse(cls, data: dict):
-        return super().parse(data, Collection, main_keys=["collections"])
+        return super().parse(data, CollectionModel, main_keys=["collections"])
 
-class Icon(Model):
+class IconModel(Model):
     """
-    Icon is a subclass of Model, with different attributes displayed.
+    IconModel is a subclass of Model, with different attributes displayed.
     """
     def __init__(self):
         super().__init__()
@@ -139,17 +139,17 @@ class Icon(Model):
             data = data["icon"]
         return super().parse(data)
 
-class Icons(ModelList):
+class IconsModel(ModelList):
     """
-    Icons is a subclass of ModelList, which focuses on turning Icon objects into a list.
+    IconsModel is a subclass of ModelList, which focuses on turning IconModel objects into a list.
     """
     @classmethod
     def parse(cls, data: dict):
-        return super().parse(data, Icon, main_keys=["icons", "recent_uploads", "uploads"])
+        return super().parse(data, IconModel, main_keys=["icons", "recent_uploads", "uploads"])
 
-class Usage(Model):
+class UsageModel(Model):
     """
-    Usage is a subclass of Model, with different attributes displayed.
+    UsageModel is a subclass of Model, with different attributes displayed.
     """
     def __init__(self):
         super().__init__()
@@ -163,9 +163,9 @@ class Usage(Model):
         return "<{}: {}>".format(self.__class__.__name__,
                                 ", ".join(f"{output_key.title}: {self.json[output_key.key[0]][output_key.key[1]]}" for output_key in self.output_keys))
 
-class Publish(Model):
+class PublishModel(Model):
     """
-    Publish is a subclass of Model, with different attributes displayed.
+    PublishModel is a subclass of Model, with different attributes displayed.
     """
     def __init__(self):
         super().__init__()
