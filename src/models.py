@@ -1,5 +1,5 @@
 
-from exceptions import NotFound
+from src.exceptions import NotFound
 from typing import Any
 
 def sequence_to_dot(val: Any) -> Any:

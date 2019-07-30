@@ -1,7 +1,7 @@
 
 from functools import wraps, singledispatch, update_wrapper
 
-from exceptions import STATUS_CODE_EXCEPTIONS
+from src.exceptions import STATUS_CODE_EXCEPTIONS
 from models import CollectionModel, CollectionsModel, IconModel, IconsModel, UsageModel, PublishModel
 
 class Call:

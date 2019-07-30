@@ -1,10 +1,19 @@
 
-from collection_handler import Collection
-from collections_handler import Collections
-from icon_handler import Icon
-from icons_handler import Icons
-from enterprise_handler import Enterprise
-from usage_handler import Usage
+import sys, os
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-class API(Collection, Collections, Icon, Icons, Enterprise, Usage):
+from src.collections import Collections
+from src.icons import Icons
+from src.usage import Usage
+from src.enterprise import Enterprise
+
+class API(Collections, Icons, Usage, Enterprise):
     pass
+
+"""
+def main():
+    api = API()
+
+if __name__ == "__main__":
+    main()
+"""

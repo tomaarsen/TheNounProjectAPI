@@ -1,9 +1,9 @@
 
 from typing import Union
 
-from core import Core
-from call import Call
-from models import PublishModel
+from src.core import Core
+from src.call import Call
+from src.models import PublishModel
 
 class Enterprise(Core):
 

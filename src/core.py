@@ -1,11 +1,10 @@
 
 import requests, json
 from requests import Request, Session
-from requests_oauthlib import OAuth1
 from functools import wraps, singledispatch, update_wrapper
 from typing import Union, List
 
-from keys import Keys
+from src.keys import Keys
 
 class Core(Keys):
     """
@@ -34,19 +33,6 @@ class Core(Keys):
         self._method = "GET"
         self._base_url = "http://api.thenounproject.com"
         self._session = Session()
-
-    def _get_oauth(self) -> OAuth1:
-        """
-        Asserts that both api and secret keys have been set. 
-
-        :raise AssertionError: Raises exception when api or secret keys have not been set.
-
-        :returns: Returns an OAuth object using this object's API and secret key.
-        :rtype: OAuth1
-        """
-        assert isinstance(self.api_key, str), "Please set your API Key"
-        assert isinstance(self.secret_key, str), "Please set your API Secret"
-        return OAuth1(self.api_key, self.secret_key)
 
     def _send(self, url: requests.PreparedRequest) -> requests.Response:
         """
