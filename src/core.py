@@ -3,7 +3,6 @@ import context
 
 import requests, json
 from requests import Request, Session
-from requests_oauthlib import OAuth1
 from functools import wraps, singledispatch, update_wrapper
 from typing import Union, List, Any
 
@@ -142,16 +141,3 @@ class Core(Keys):
         """
         if not len(term) > 0:
             raise IllegalTerm(param_name)
-
-    def _get_oauth(self) -> OAuth1:
-        """
-        Asserts that both api and secret keys have been set. 
-
-        :raise AssertionError: Raises exception when api or secret keys have not been set.
-
-        :returns: Returns an OAuth object using this object's API and secret key.
-        :rtype: OAuth1
-        """
-        self._type_assert(self.api_key, "api_key", str)
-        self._type_assert(self.secret_key, "secret_key", str)
-        return OAuth1(self.api_key, self.secret_key)

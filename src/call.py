@@ -5,7 +5,7 @@ from functools import wraps, singledispatch, update_wrapper
 from typing import Union, Callable, Type
 
 from src.exceptions import STATUS_CODE_EXCEPTIONS
-from src.models import CollectionModel, CollectionsModel, IconModel, IconsModel, UsageModel, PublishModel, Model, ModelList
+from src.models import CollectionModel, CollectionsModel, IconModel, IconsModel, UsageModel, EnterpriseModel, Model, ModelList
 
 class Call:
     """
@@ -81,4 +81,4 @@ class Call:
     icon        = lambda f, method="GET", model_class=IconModel: Call._get_endpoint(model_class, method, f)
     icons       = lambda f, method="GET", model_class=IconsModel: Call._get_endpoint(model_class, method, f)
     usage       = lambda f, method="GET", model_class=UsageModel: Call._get_endpoint(model_class, method, f)
-    publish     = lambda f, method="POST", model_class=PublishModel: Call._get_endpoint(model_class, method, f)
+    enterprise  = lambda f, method="POST", model_class=EnterpriseModel: Call._get_endpoint(model_class, method, f)

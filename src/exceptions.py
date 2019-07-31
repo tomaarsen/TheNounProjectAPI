@@ -70,7 +70,7 @@ class IllegalTerm(ParameterException):
 class APIKeyNotSet(ParameterException):
     """ Indicate that the parameter key has not been set properly. """
     def __init__(self, parameter):
-        super().__init__(parameter, description=f"must be set as a string.")
+        super().__init__(parameter, description=f"must be set before making a request.")
 
 STATUS_CODE_SUCCESS = (codes["ok"], codes["created"])
 

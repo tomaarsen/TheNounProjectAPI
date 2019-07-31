@@ -132,7 +132,6 @@ class IconModel(Model):
         self.output_keys = (OutputKeys("term"), 
                             OutputKeys("term_slug", "Slug"), 
                             OutputKeys("id"))
-
     @classmethod
     def parse(cls, data: dict):
         if "icon" in data:
@@ -163,9 +162,9 @@ class UsageModel(Model):
         return "<{}: {}>".format(self.__class__.__name__,
                                 ", ".join(f"{output_key.title}: {self.json[output_key.key[0]][output_key.key[1]]}" for output_key in self.output_keys))
 
-class PublishModel(Model):
+class EnterpriseModel(Model):
     """
-    PublishModel is a subclass of Model, with different attributes displayed.
+    EnterpriseModel is a subclass of Model, with different attributes displayed.
     """
     def __init__(self):
         super().__init__()

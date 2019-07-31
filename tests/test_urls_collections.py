@@ -2,7 +2,6 @@ import unittest
 
 import context 
 
-
 from src.api import API
 
 class CollectionsURLs(unittest.TestCase):

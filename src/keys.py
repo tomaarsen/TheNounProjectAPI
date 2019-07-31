@@ -1,3 +1,8 @@
+import context
+
+from requests_oauthlib import OAuth1
+
+from src.exceptions import APIKeyNotSet
 
 class Keys:
     
@@ -58,3 +63,18 @@ class Keys:
         :type secret: str
         """
         self._secret_key = secret
+
+    def _get_oauth(self) -> OAuth1:
+        """
+        Asserts that both api and secret keys have been set. 
+
+        :raise AssertionError: Raises exception when api or secret keys have not been set.
+
+        :returns: Returns an OAuth object using this object's API and secret key.
+        :rtype: OAuth1
+        """
+        if not isinstance(self.api_key, str):
+            raise APIKeyNotSet("api_key")
+        if not isinstance(self.secret_key, str):
+            raise APIKeyNotSet("secret_key")
+        return OAuth1(self.api_key, self.secret_key)
