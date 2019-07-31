@@ -4,7 +4,7 @@ import context
 import requests, json
 from requests import Request, Session
 from functools import wraps, singledispatch, update_wrapper
-from typing import Union, List, Any
+from typing import Union, List, Any, Type, Tuple
 
 from src.keys import Keys
 from src.exceptions import IncorrectType, NonPositive, IllegalSlug, IllegalTerm
@@ -67,7 +67,7 @@ class Core(Keys):
         req = Request(self._method, url, **{"params" if self._method == "GET" else "json": params})
         return self._session.prepare_request(req)
 
-    def _type_assert(self, param: Any, param_name: str, types) -> None:
+    def _type_assert(self, param: Any, param_name: str, types: Union[Type[Any], Tuple[Type[Any], ...]]) -> None:
         """
         Asserts that param is an instance of any type in types.
 
@@ -76,14 +76,14 @@ class Core(Keys):
         :param param_name: Name of this parameter, for use in error message.
         :type str:
         :param types: Types to check param against. Either a single type or a tuple of types.
-        :type types: Union[type, Tuple[type]]
+        :type types: Union[Type[Any], Tuple[Type[Any], ...]]
 
         :raise IncorrectType: Raises exception if param is not an instance of any type in types.
         """
         if not isinstance(param, types):
             raise IncorrectType(param_name, types)
 
-    def _lop_assert(self, limit, offset, page) -> None:
+    def _lop_assert(self, limit: Any, offset: Any, page: Any) -> None:
         """
         Asserts that limit, offset and page parameters are all integers.
 

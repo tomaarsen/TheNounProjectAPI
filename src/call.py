@@ -2,9 +2,9 @@
 import context
 
 from functools import wraps, singledispatch, update_wrapper
-from typing import Union, Callable, Type
+from typing import Union, Callable, Type, List
 
-from src.exceptions import STATUS_CODE_EXCEPTIONS
+from src.exceptions import STATUS_CODE_EXCEPTIONS, STATUS_CODE_SUCCESS, UnknownStatusCode
 from src.models import CollectionModel, CollectionsModel, IconModel, IconsModel, UsageModel, EnterpriseModel, Model, ModelList
 
 class Call:
@@ -49,25 +49,35 @@ class Call:
         :rtype: Callable
         """
         @wraps(f)
-        def wrapper(self, *args, **kwargs):
+        def wrapper(self, *args, **kwargs) -> Union[Model, List[Model]]:
+            # Set method for API instance.
             self._method = method
 
+            # Call the decorated function with the args and kwargs.
+            # All of the decorated functions return a PreparedRequest which we will use.
             prepared_request = f(self, *args, **kwargs)
+            # If testing is true, then we want to simply return this PreparedRequest. This is useful for testing only.
             if self._testing:
                 return prepared_request
 
+            # Send the PreparedRequest, and get the response
             response = self._send(prepared_request)
 
-            if response.status_code in STATUS_CODE_EXCEPTIONS:
+            # If status_code indicates success
+            if response.status_code in STATUS_CODE_SUCCESS:
+                # Parse as JSON, get model, parse json in terms of the model
+                json_data = response.json()
+                model = model_class()
+                return model.parse(json_data)
+            # If status_code indicates an error we know
+            elif response.status_code in STATUS_CODE_EXCEPTIONS:
                 print(response.text)
                 print(response.url)
                 breakpoint()
                 raise STATUS_CODE_EXCEPTIONS[response.status_code](response)
-
-            json_data = response.json()
-
-            model = model_class()
-            return model.parse(json_data)
+            # If status_code is a code we don't have a proper exception/response for.
+            else:
+                raise UnknownStatusCode(response)
         
         return wrapper
     

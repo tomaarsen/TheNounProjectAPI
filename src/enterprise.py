@@ -1,4 +1,6 @@
 
+import context
+
 from typing import Union
 
 from src.core import Core
@@ -28,3 +30,4 @@ class Enterprise(Core):
         else:
             raise IncorrectType("icons", (list, set, str, int))
         return self._prepare_url(f"{self._base_url}/notify/publish" + ("?test=1" if test else ""), icons=icons)
+

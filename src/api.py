@@ -15,7 +15,6 @@ class API(Collections, Icons, Usage, Enterprise):
 def main():
     from api_keys import get
     api = API(*get())
-    #out = api.report_usage({12, 5, 4}, test=True)
     breakpoint()
 
 if __name__ == "__main__":

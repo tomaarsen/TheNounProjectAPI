@@ -40,6 +40,11 @@ class LegalReasons(APIException):
     def __init__(self, response):
         super().__init__(response, "Not available for legal reasons.")
 
+class UnknownStatusCode(APIException):
+    """ Indicate that the encountered status code is not a code we have a proper response/exception to. """
+    def __init__(self, response):
+        super().__init__(response, f"Unknown status code encountered.")
+
 class ParameterException(Exception):
     """ Base exception for all exceptions related to incorrect parameters within this package. """
     def __init__(self, parameter, description):
