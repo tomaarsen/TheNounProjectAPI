@@ -2,8 +2,8 @@ import unittest
 
 import context 
 
-
 from src.api import API
+from src.exceptions import IncorrectType
 
 class IconCustomURLs(unittest.TestCase):
 
@@ -42,7 +42,7 @@ class IconCustomURLs(unittest.TestCase):
         Test URL for get_icon with id 12.0
         """
         identifier = 12.0
-        with self.assertRaises(AssertionError):
+        with self.assertRaises(IncorrectType):
             self._test_get_icon(identifier)
 
     def test_get_icon_illegal_identifier_none(self):
@@ -50,7 +50,7 @@ class IconCustomURLs(unittest.TestCase):
         Test URL for get_icon with id None
         """
         identifier = None
-        with self.assertRaises(AssertionError):
+        with self.assertRaises(IncorrectType):
             self._test_get_icon(identifier)
 
 if __name__ == "__main__":

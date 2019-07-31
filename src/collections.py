@@ -1,8 +1,11 @@
+import context
+
 from typing import Union, List
 
 from src.core import Core
 from src.call import Call
 from src.models import CollectionModel
+from src.exceptions import IncorrectType
 
 class Collections(Core):
 
@@ -19,8 +22,8 @@ class Collections(Core):
         :returns: Collection object identified by the _id.
         :rtype: Collection
         """
-        assert isinstance(_id, int), "id argument must be an integer."
-        self._id_assert(_id)
+        self._type_assert(_id, "id", int)
+        self._id_assert(_id, "id")
         return self._prepare_url(f"{self._base_url}/collection/{_id}")
     
     @Call.collection
@@ -36,8 +39,8 @@ class Collections(Core):
         :returns: Collection object identified by the slug.
         :rtype: Collection
         """
-        assert isinstance(slug, str), "slug argument must be a string."
-        self._slug_assert(slug)
+        self._type_assert(slug, "slug", str)
+        self._slug_assert(slug, "slug")
         return self._prepare_url(f"{self._base_url}/collection/{slug}")
 
     @Call.dispatch
@@ -53,7 +56,7 @@ class Collections(Core):
         :returns: Collection object identified by the identifier.
         :rtype: Collection
         """
-        raise AssertionError("Argument must be an integer id, or a string slug.")
+        raise IncorrectType("identifier", (int, str))
 
     @get_collection.register(int)
     def _(self, _id: int) -> CollectionModel:
@@ -100,8 +103,8 @@ class Collections(Core):
         :returns: List of Collection objects associated with a user identified by the user_id.
         :rtype: List[Collection]
         """
-        assert isinstance(user_id, int), "user_id argument must be an integer."
-        self._id_assert(user_id)
+        self._type_assert(user_id, "user_id", int)
+        self._id_assert(user_id, "user_id")
         return self._prepare_url(f"{self._base_url}/user/{user_id}/collections")
 
     @Call.collection
@@ -119,9 +122,9 @@ class Collections(Core):
         :returns: Collection object identified by the slug, from the user identified by the user_id.
         :rtype: Collection
         """
-        assert isinstance(user_id, int), "user_id argument must be an integer."
-        assert isinstance(slug, str), "slug argument must be a string."
-        self._id_assert(user_id)
-        self._slug_assert(slug)
+        self._type_assert(user_id, "user_id", int)
+        self._type_assert(slug, "slug", str)
+        self._id_assert(user_id, "user_id")
+        self._slug_assert(slug, "slug")
         return self._prepare_url(f"{self._base_url}/user/{user_id}/collections/{slug}")
     

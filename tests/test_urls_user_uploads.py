@@ -2,8 +2,8 @@ import unittest
 
 import context 
 
-
 from src.api import API
+from src.exceptions import IncorrectType, IllegalTerm
 
 class UserUploadsURLs(unittest.TestCase):
 
@@ -28,12 +28,20 @@ class UserUploadsURLs(unittest.TestCase):
         result = self._test_get_user_uploads(username)
         self.assertEqual(expected, result)
 
-    def test_get_user_uploads_illegal_id(self):
+    def test_get_user_uploads_illegal_user_none(self):
         """
         Test URL for get_user_uploads with username None
         """
         username = None
-        with self.assertRaises(AssertionError):
+        with self.assertRaises(IncorrectType):
+            self._test_get_user_uploads(username)
+
+    def test_get_user_uploads_illegal_user_empty(self):
+        """
+        Test URL for get_user_uploads with username ""
+        """
+        username = ""
+        with self.assertRaises(IllegalTerm):
             self._test_get_user_uploads(username)
 
 if __name__ == "__main__":

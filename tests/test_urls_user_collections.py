@@ -2,8 +2,8 @@ import unittest
 
 import context 
 
-
 from src.api import API
+from src.exceptions import IncorrectType
 
 class UserCollectionsURLs(unittest.TestCase):
 
@@ -33,7 +33,7 @@ class UserCollectionsURLs(unittest.TestCase):
         Test URL for get_user_collections with user_id None
         """
         user_id = None
-        with self.assertRaises(AssertionError):
+        with self.assertRaises(IncorrectType):
             self._test_get_user_collections(user_id)
 
 if __name__ == "__main__":

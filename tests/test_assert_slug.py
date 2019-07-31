@@ -2,8 +2,8 @@ import unittest
 
 import context 
 
-
 from src.api import API
+from src.exceptions import IllegalSlug
 
 class SlugAssert(unittest.TestCase):
 
@@ -17,31 +17,31 @@ class SlugAssert(unittest.TestCase):
         Test _slug_assert with slug "goat"
         """
         slug = "goat"
-        self.tnp._slug_assert(slug)
+        self.tnp._slug_assert(slug, "slug")
     
     def test_str_empty(self):
         """
         Test _slug_assert with illegal slug ""
         """
         slug = ""
-        with self.assertRaises(AssertionError):
-            self.tnp._slug_assert(slug)
+        with self.assertRaises(IllegalSlug):
+            self.tnp._slug_assert(slug, "slug")
  
     def test_str_non_ascii(self):
         """
         Test _slug_assert with illegal slug "¤"
         """
         slug = "¤"
-        with self.assertRaises(AssertionError):
-            self.tnp._slug_assert(slug)
+        with self.assertRaises(IllegalSlug):
+            self.tnp._slug_assert(slug, "slug")
  
     def test_str_multiple_words(self):
         """
         Test _slug_assert with illegal slug "goat horn"
         """
         slug = "goat horn"
-        with self.assertRaises(AssertionError):
-            self.tnp._slug_assert(slug)
+        with self.assertRaises(IllegalSlug):
+            self.tnp._slug_assert(slug, "slug")
 
 if __name__ == "__main__":
     unittest.main()

@@ -1,8 +1,11 @@
+import context
+
 from typing import Union, List
 
 from src.core import Core
 from src.call import Call
 from src.models import IconModel
+from src.exceptions import IncorrectType
 
 class Icons(Core):
     @Call.icons
@@ -24,7 +27,8 @@ class Icons(Core):
         :returns: List of Icon objects from the collection identified by the _id. 
         :rtype: List[Icon]
         """
-        assert isinstance(_id, int), "id argument must be an integer."
+        self._type_assert(_id, "id", int)
+        self._id_assert(_id, "id")
         self._lop_assert(limit, offset, page)
         return self._prepare_url(f"{self._base_url}/collection/{_id}/icons", limit=limit, offset=offset, page=page)
     
@@ -47,9 +51,9 @@ class Icons(Core):
         :returns: List of Icon objects from the collection identified by the slug. 
         :rtype: List[Icon]
         """
-        assert isinstance(slug, str), "slug argument must be a string."
+        self._type_assert(slug, "slug", str)
+        self._slug_assert(slug, "slug")
         self._lop_assert(limit, offset, page)
-        self._slug_assert(slug)
         return self._prepare_url(f"{self._base_url}/collection/{slug}/icons", limit=limit, offset=offset, page=page)
 
     @Call.dispatch
@@ -71,7 +75,7 @@ class Icons(Core):
         :returns: List of Icon objects from the collection identified by the identifier. 
         :rtype: List[Icon]
         """
-        raise AssertionError("Argument must be an integer id, or a string slug.")
+        raise IncorrectType("identifier", (int, str))
 
     @get_collection_icons.register(int)
     def _(self, _id: int, limit:int = None, offset:int = None, page:int = None) -> List[IconModel]:
@@ -100,8 +104,8 @@ class Icons(Core):
         :returns: Icon object identified by the _id.
         :rtype: Icon
         """
-        assert isinstance(_id, int), "id argument must be an integer."
-        self._id_assert(_id)
+        self._type_assert(_id, "id", int)
+        self._id_assert(_id, "id")
         return self._prepare_url(f"{self._base_url}/icon/{_id}")
     
     @Call.icon
@@ -117,8 +121,8 @@ class Icons(Core):
         :returns: Icon object identified by the term.
         :rtype: Icon
         """
-        assert isinstance(term, str), "term argument must be a string."
-        self._term_assert(term)
+        self._type_assert(term, "term", str)
+        self._term_assert(term, "term")
         return self._prepare_url(f"{self._base_url}/icon/{term}")
 
     @Call.dispatch
@@ -134,7 +138,7 @@ class Icons(Core):
         :returns: Icon object identified by the identifier.
         :rtype: Icon
         """
-        raise AssertionError("Argument must be an integer id, or a string term.")
+        raise IncorrectType("identifier", (int, str))
 
     @get_icon.register(int)
     def _(self, _id: int) -> IconModel:
@@ -189,10 +193,10 @@ class Icons(Core):
         :returns: List of Icon objects identified by the term.
         :rtype: List[Icon]
         """
-        assert isinstance(term, str), "term argument must be a string."
-        assert isinstance(public_domain_only, (bool, int)), "public_domain_only argument must be boolean or integer (0 for false, other for true)."
+        self._type_assert(term, "term", str)
+        self._type_assert(public_domain_only, "public_domain_only", (bool, int))
+        self._term_assert(term, "term")
         self._lop_assert(limit, offset, page)
-        self._term_assert(term)
         return self._prepare_url(f"{self._base_url}/icons/{term}", limit_to_public_domain=int(public_domain_only), limit=limit, offset=offset, page=page)
 
     @Call.icons
@@ -214,6 +218,7 @@ class Icons(Core):
         :returns: List of Icon objects uploaded by user identified with the user_id.
         :rtype: List[Icon]
         """
-        assert isinstance(username, str), "username argument must be a string."
+        self._type_assert(username, "username", str)
+        self._term_assert(username, "username")
         self._lop_assert(limit, offset, page)
         return self._prepare_url(f"{self._base_url}/user/{username}/uploads", limit=limit, offset=offset, page=page)

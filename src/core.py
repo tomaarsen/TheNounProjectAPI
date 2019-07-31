@@ -1,19 +1,23 @@
 
+import context
+
 import requests, json
 from requests import Request, Session
+from requests_oauthlib import OAuth1
 from functools import wraps, singledispatch, update_wrapper
-from typing import Union, List
+from typing import Union, List, Any
 
 from src.keys import Keys
+from src.exceptions import IncorrectType, NonPositive, IllegalSlug, IllegalTerm
 
 class Core(Keys):
     """
-    API is a class allowing convenient access to the TheNounProject API.
+    Core is a class providing helper functions useful for accessing the TheNounProject API.
     """
 
     def __init__(self, key:str = None, secret:str = None, testing:bool = False, timeout:Union[int, tuple, None] = 5):
         """
-        Construct a new 'API' object.
+        Construct a new 'Core' object.
 
         :param key: The API key from the TheNounProject API. (defaults to None)
         :type key: str
@@ -30,7 +34,7 @@ class Core(Keys):
         self._testing = testing
         self._timeout = timeout
         
-        self._method = "GET"
+        self._method: str
         self._base_url = "http://api.thenounproject.com"
         self._session = Session()
 
@@ -63,7 +67,23 @@ class Core(Keys):
             self._session.auth = self._get_oauth()
         req = Request(self._method, url, **{"params" if self._method == "GET" else "json": params})
         return self._session.prepare_request(req)
-    
+
+    def _type_assert(self, param: Any, param_name: str, types) -> None:
+        """
+        Asserts that param is an instance of any type in types.
+
+        :param param: Parameter to check type of.
+        :type param: Any
+        :param param_name: Name of this parameter, for use in error message.
+        :type str:
+        :param types: Types to check param against. Either a single type or a tuple of types.
+        :type types: Union[type, Tuple[type]]
+
+        :raise IncorrectType: Raises exception if param is not an instance of any type in types.
+        """
+        if not isinstance(param, types):
+            raise IncorrectType(param_name, types)
+
     def _lop_assert(self, limit, offset, page) -> None:
         """
         Asserts that limit, offset and page parameters are all integers.
@@ -72,45 +92,66 @@ class Core(Keys):
         :param offset: Offset parameter to be used as a parameter in the URL request.
         :param page: Page parameter to be used as a parameter in the URL request.
 
-        :raise AssertionError: Raises exception when limit, offset or page are not of NoneType or integer type.
+        :raise IncorrectType: Raises exception when limit, offset or page are not of NoneType or integer type.
         """
         NoneType = type(None)
 
-        assert isinstance(limit, (NoneType, int)), "limit argument must be an integer"
-        assert isinstance(offset, (NoneType, int)), "offset argument must be an integer"
-        assert isinstance(page, (NoneType, int)), "page argument must be an integer"
+        self._type_assert(limit, "limit", (NoneType, int))
+        self._type_assert(offset, "offset", (NoneType, int))
+        self._type_assert(page, "page", (NoneType, int))
 
-    def _id_assert(self, _id: int) -> None:
+    def _id_assert(self, _id: int, param_name: str) -> None:
         """
         Asserts that the _id parameter is positive.
 
         :param _id: Id of which we want to make sure it is positive.
         :type _id: int
+        :param param_name: Name of this parameter, for use in error message.
+        :type str:
 
-        :raise AssertionError: Raises exception when _id is not positive.
+        :raise NonPositive: Raises exception when _id is not positive.
         """
-        assert _id > 0, "id argument must be positive"
+        if _id <= 0: 
+            raise NonPositive(param_name)
 
-    def _slug_assert(self, slug: str) -> None:
+    def _slug_assert(self, slug: str, param_name: str) -> None:
         """
         Asserts that slug is nonempty, ascii, and does not contain spaces.
 
         :param slug: String slug parameter to be used as a parameter in the URL request.
         :type slug: str
+        :param param_name: Name of this parameter, for use in error message.
+        :type str:
 
-        :raise AssertionError: Raises exception when slug is empty, contains non-ascii characters, or contains spaces.
+        :raise IllegalSlug: Raises exception when slug is empty, contains non-ascii characters, or contains spaces.
         """
-        assert len(slug) > 0, "slug argument may not be empty"
-        assert slug.isascii(), "slug argument must contain ascii characters only"
-        assert slug.find(" ") == -1, "slug argument may not be multiple words"
+        if slug.find(" ") == -1 and slug.isascii() and len(slug) > 0:
+            return
+        raise IllegalSlug(param_name)
 
-    def _term_assert(self, term:str) -> None:
+    def _term_assert(self, term: str, param_name: str) -> None:
         """
         Asserts that term is nonempty.
 
         :param term: String term parameter to be used as a parameter in the URL request.
         :type term: str
+        :param param_name: Name of this parameter, for use in error message.
+        :type str:
 
-        :raise AssertionError: Raises exception when term has a length of 0.
+        :raise IllegalTerm: Raises exception when term has a length of 0.
         """
-        assert len(term) > 0, "term argument may not be empty"
+        if not len(term) > 0:
+            raise IllegalTerm(param_name)
+
+    def _get_oauth(self) -> OAuth1:
+        """
+        Asserts that both api and secret keys have been set. 
+
+        :raise AssertionError: Raises exception when api or secret keys have not been set.
+
+        :returns: Returns an OAuth object using this object's API and secret key.
+        :rtype: OAuth1
+        """
+        self._type_assert(self.api_key, "api_key", str)
+        self._type_assert(self.secret_key, "secret_key", str)
+        return OAuth1(self.api_key, self.secret_key)

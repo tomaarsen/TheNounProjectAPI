@@ -2,8 +2,8 @@ import unittest
 
 import context 
 
-
 from src.api import API
+from src.exceptions import IncorrectType
 
 class CollectionIconsCustomURLs(unittest.TestCase):
 
@@ -63,7 +63,7 @@ class CollectionIconsCustomURLs(unittest.TestCase):
         Test URL for get_collection_icons with ilegal identifier None
         """
         identifier = None
-        with self.assertRaises(AssertionError):
+        with self.assertRaises(IncorrectType):
             self._test_get_collection_icons(identifier)
 
     def test_get_collection_icons_illegal_identifier_float(self):
@@ -71,7 +71,7 @@ class CollectionIconsCustomURLs(unittest.TestCase):
         Test URL for get_collection_icons with illegal identifier 12.0
         """
         identifier = 12.0
-        with self.assertRaises(AssertionError):
+        with self.assertRaises(IncorrectType):
             self._test_get_collection_icons(identifier)
 
     def test_get_collection_icons_illegal_identifier_limit_page(self):
@@ -81,7 +81,7 @@ class CollectionIconsCustomURLs(unittest.TestCase):
         identifier = [12, 4, 5]
         limit = 12
         page = 3
-        with self.assertRaises(AssertionError):
+        with self.assertRaises(IncorrectType):
             self._test_get_collection_icons(identifier, limit=limit, page=page)
 
 if __name__ == "__main__":

@@ -1,7 +1,9 @@
 import unittest
 
 import context 
+
 from src.api import API
+from src.exceptions import IncorrectType
 
 class ApiKeys(unittest.TestCase):
 
@@ -14,7 +16,7 @@ class ApiKeys(unittest.TestCase):
         """
         Attempt a request with no api key and no secret key
         """
-        with self.assertRaises(AssertionError):
+        with self.assertRaises(IncorrectType):
             self.tnp.get_usage()
 
     def test_no_api_key(self):
@@ -22,7 +24,7 @@ class ApiKeys(unittest.TestCase):
         Attempt a request with no api key
         """
         self.tnp.set_secret_key(self.secret)
-        with self.assertRaises(AssertionError):
+        with self.assertRaises(IncorrectType):
             self.tnp.get_usage()
     
     def test_no_secret(self):
@@ -30,7 +32,7 @@ class ApiKeys(unittest.TestCase):
         Attempt a request with no secret key
         """
         self.tnp.set_api_key(self.key)
-        with self.assertRaises(AssertionError):
+        with self.assertRaises(IncorrectType):
             self.tnp.get_usage()
     
     def test_both(self):

@@ -2,8 +2,8 @@ import unittest
 
 import context 
 
-
 from src.api import API
+from src.exceptions import NonPositive
 
 class IdAssert(unittest.TestCase):
 
@@ -17,23 +17,23 @@ class IdAssert(unittest.TestCase):
         Test _id_assert with id 12
         """
         id = 12
-        self.tnp._id_assert(id)
+        self.tnp._id_assert(id, "id")
     
     def test_id_neg_12(self):
         """
         Test _id_assert with illegal id -12
         """
         id = -12
-        with self.assertRaises(AssertionError):
-            self.tnp._id_assert(id)
+        with self.assertRaises(NonPositive):
+            self.tnp._id_assert(id, "id")
  
     def test_id_0(self):
         """
         Test _id_assert with illegal id 0
         """
         id = 0
-        with self.assertRaises(AssertionError):
-            self.tnp._id_assert(id)
+        with self.assertRaises(NonPositive):
+            self.tnp._id_assert(id, "id")
 
 if __name__ == "__main__":
     unittest.main()

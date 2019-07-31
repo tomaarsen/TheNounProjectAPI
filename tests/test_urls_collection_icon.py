@@ -2,8 +2,8 @@ import unittest
 
 import context 
 
-
 from src.api import API
+from src.exceptions import IncorrectType
 
 class CollectionIconsURLs(unittest.TestCase):
 
@@ -54,7 +54,7 @@ class CollectionIconsURLs(unittest.TestCase):
         Test URL for get_collection_icons with illegal id 12.0
         """
         _id = 12.0
-        with self.assertRaises(AssertionError):
+        with self.assertRaises(IncorrectType):
             self._test_get_collection_icons_by_id(_id)
 
 
@@ -103,7 +103,7 @@ class CollectionIconsURLs(unittest.TestCase):
         Test URL for get_collection_icons with illegal slug 12
         """
         slug = 12
-        with self.assertRaises(AssertionError):
+        with self.assertRaises(IncorrectType):
             self._test_get_collection_icons_by_slug(slug)
 
 if __name__ == "__main__":

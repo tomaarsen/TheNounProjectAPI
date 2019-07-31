@@ -2,8 +2,8 @@ import unittest
 
 import context 
 
-
 from src.api import API
+from src.exceptions import IncorrectType
 
 class SlugAssert(unittest.TestCase):
 
@@ -37,7 +37,7 @@ class SlugAssert(unittest.TestCase):
         Test to see that limit as "goat" throws an exception
         """
         limit = "goat"
-        with self.assertRaises(AssertionError):
+        with self.assertRaises(IncorrectType):
             self._test_lop(limit=limit)
 
     def test_lop_offset_none(self):
@@ -59,7 +59,7 @@ class SlugAssert(unittest.TestCase):
         Test to see that offset as "goat" throws an exception
         """
         offset = "goat"
-        with self.assertRaises(AssertionError):
+        with self.assertRaises(IncorrectType):
             self._test_lop(offset=offset)
 
     def test_lop_page_none(self):
@@ -81,7 +81,7 @@ class SlugAssert(unittest.TestCase):
         Test to see that page as "goat" throws an exception
         """
         page = "goat"
-        with self.assertRaises(AssertionError):
+        with self.assertRaises(IncorrectType):
             self._test_lop(page=page)
 
 if __name__ == "__main__":

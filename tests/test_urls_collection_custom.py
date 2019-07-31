@@ -2,8 +2,8 @@ import unittest
 
 import context 
 
-
 from src.api import API
+from src.exceptions import IncorrectType
 
 class CollectionCustomURLs(unittest.TestCase):
 
@@ -42,7 +42,7 @@ class CollectionCustomURLs(unittest.TestCase):
         Test URL for get_collection with illegal identifier None
         """
         identifier = None
-        with self.assertRaises(AssertionError):
+        with self.assertRaises(IncorrectType):
             self._test_get_collection(identifier)
 
     def test_get_collection_bytes(self):
@@ -50,7 +50,7 @@ class CollectionCustomURLs(unittest.TestCase):
         Test URL for get_collection with identifier b"goat"
         """
         identifier = b"goat"
-        with self.assertRaises(AssertionError):
+        with self.assertRaises(IncorrectType):
             self._test_get_collection(identifier)
 
 if __name__ == "__main__":

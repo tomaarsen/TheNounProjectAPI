@@ -2,8 +2,8 @@ import unittest
 
 import context 
 
-
 from src.api import API
+from src.exceptions import IncorrectType
 
 class UserCollectionURLs(unittest.TestCase):
 
@@ -35,7 +35,7 @@ class UserCollectionURLs(unittest.TestCase):
         """
         user_id = None
         slug = "goat"
-        with self.assertRaises(AssertionError):
+        with self.assertRaises(IncorrectType):
             self._test_get_user_collection(user_id, slug)
 
     def test_get_user_collection_illegal_slug(self):
@@ -44,7 +44,7 @@ class UserCollectionURLs(unittest.TestCase):
         """
         user_id = 12
         slug = None
-        with self.assertRaises(AssertionError):
+        with self.assertRaises(IncorrectType):
             self._test_get_user_collection(user_id, slug)
 
     def test_get_user_collection_illegal_id_illegal_slug(self):
@@ -53,7 +53,7 @@ class UserCollectionURLs(unittest.TestCase):
         """
         user_id = None
         slug = None
-        with self.assertRaises(AssertionError):
+        with self.assertRaises(IncorrectType):
             self._test_get_user_collection(user_id, slug)
 
 if __name__ == "__main__":
