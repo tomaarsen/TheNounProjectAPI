@@ -22,10 +22,10 @@ class Icons(Core):
         :param page: Number of results of limit length to displace or skip over. (defaults to None)
         :type page: int
 
-        :raise AssertionError: Raises exception when id is nonpositive.
+        :raise NonPositive: Raises exception when _id is nonpositive.
 
-        :returns: List of Icon objects from the collection identified by the _id. 
-        :rtype: List[Icon]
+        :returns: List of IconModel objects from the collection identified by the _id. 
+        :rtype: List[IconModel]
         """
         self._type_assert(_id, "id", int)
         self._id_assert(_id, "id")
@@ -46,10 +46,10 @@ class Icons(Core):
         :param page: Number of results of limit length to displace or skip over. (defaults to None)
         :type page: int
 
-        :raise AssertionError: Raises exception when slug is an empty string, contains non ascii characters or contains multiple words.
+        :raise IllegalSlug: Raises exception when slug is an empty string, contains non ascii characters or contains multiple words.
 
-        :returns: List of Icon objects from the collection identified by the slug. 
-        :rtype: List[Icon]
+        :returns: List of IconModel objects from the collection identified by the slug. 
+        :rtype: List[IconModel]
         """
         self._type_assert(slug, "slug", str)
         self._slug_assert(slug, "slug")
@@ -70,7 +70,8 @@ class Icons(Core):
         :param page: Number of results of limit length to displace or skip over. (defaults to None)
         :type page: int
 
-        :raise AssertionError: Raises exception when identifier is a nonpositive integer or a string that's empty, non-ascii or with multiple words.
+        :raise NonPositive: Raises exception when identifier is a nonpositive integer.
+        :raise IllegalSlug: Raises exception when identifier is a string that's empty, non-ascii or with multiple words.
 
         :returns: List of Icon objects from the collection identified by the identifier. 
         :rtype: List[Icon]
@@ -99,10 +100,10 @@ class Icons(Core):
         :param _id: Icon id.
         :type _id: int
 
-        :raise AssertionError: Raises exception when id is nonpositive.
+        :raise NonNegative: Raises exception when id is nonpositive.
 
-        :returns: Icon object identified by the _id.
-        :rtype: Icon
+        :returns: IconModel object identified by the _id.
+        :rtype: IconModel
         """
         self._type_assert(_id, "id", int)
         self._id_assert(_id, "id")
@@ -116,10 +117,10 @@ class Icons(Core):
         :param term: Icon term.
         :type term: str
 
-        :raise AssertionError: Raises exception when term is an empty string.
+        :raise IllegalTerm: Raises exception when term is an empty string.
 
-        :returns: Icon object identified by the term.
-        :rtype: Icon
+        :returns: IconModel object identified by the term.
+        :rtype: IconModel
         """
         self._type_assert(term, "term", str)
         self._term_assert(term, "term")
@@ -133,10 +134,11 @@ class Icons(Core):
         :param identifier: Collection identifier (id or term).
         :type identifier: Union[int, str]
 
-        :raise AssertionError: Raises exception when identifier is a nonpositive integer or an empty string.
+        :raise NonPositive: Raises exception when identifier is a nonpositive integer.
+        :raise IllegalTerm: Raises exception when identifier is an empty string.
 
-        :returns: Icon object identified by the identifier.
-        :rtype: Icon
+        :returns: IconModel object identified by the identifier.
+        :rtype: IconModel
         """
         raise IncorrectType("identifier", (int, str))
 
@@ -166,8 +168,8 @@ class Icons(Core):
         :param page: Number of results of limit length to displace or skip over. (defaults to None)
         :type page: int
 
-        :returns: List of Icon objects.
-        :rtype: List[Icon]
+        :returns: List of IconModel objects.
+        :rtype: List[IconModel]
         """
         self._lop_assert(limit, offset, page)
         return self._prepare_url(f"{self._base_url}/icons/recent_uploads", limit=limit, offset=offset, page=page)
@@ -188,10 +190,10 @@ class Icons(Core):
         :param page: Number of results of limit length to displace or skip over. (defaults to None)
         :type page: int
 
-        :raise AssertionError: Raises exception when term is an empty string.
+        :raise IllegalTerm: Raises exception when term is an empty string.
 
-        :returns: List of Icon objects identified by the term.
-        :rtype: List[Icon]
+        :returns: List of IconModel objects identified by the term.
+        :rtype: List[IconModel]
         """
         self._type_assert(term, "term", str)
         self._type_assert(public_domain_only, "public_domain_only", (bool, int))
@@ -215,8 +217,10 @@ class Icons(Core):
         :param page: Number of results of limit length to displace or skip over. (defaults to None)
         :type page: int
 
-        :returns: List of Icon objects uploaded by user identified with the user_id.
-        :rtype: List[Icon]
+        :raise IllegalTerm: Raises exception when username is an empty string.
+
+        :returns: List of IconModel objects uploaded by user identified with the user_id.
+        :rtype: List[IconModel]
         """
         self._type_assert(username, "username", str)
         self._term_assert(username, "username")

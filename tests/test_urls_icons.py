@@ -8,16 +8,16 @@ from src.exceptions import IncorrectType
 class IconsURLs(unittest.TestCase):
 
     def setUp(self):
-        key = "mock api key to satisfy type check in tnp._get_oauth()"
-        secret = "mock secret key to satisfy type check in tnp._get_oauth()"
-        self.tnp = API(key, secret, testing=True)
+        key = "mock api key to satisfy type check in api._get_oauth()"
+        secret = "mock secret key to satisfy type check in api._get_oauth()"
+        self.api = API(key, secret, testing=True)
 
     def _test_get_icons_by_term(self, term, public_domain_only=False, limit=None, offset=None, page=None):
         """
-        Helper function to call tnp's get_icons_by_term in such a way that we only get the URL
+        Helper function to call api's get_icons_by_term in such a way that we only get the URL
         and don't actually make the request.
         """
-        return self.tnp.get_icons_by_term(term, public_domain_only, limit, offset, page).url
+        return self.api.get_icons_by_term(term, public_domain_only, limit, offset, page).url
 
     def test_get_icons_by_term_legal_goat(self):
         """

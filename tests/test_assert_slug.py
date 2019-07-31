@@ -8,16 +8,16 @@ from src.exceptions import IllegalSlug
 class SlugAssert(unittest.TestCase):
 
     def setUp(self):
-        key = "mock api key to satisfy type check in tnp._get_oauth()"
-        secret = "mock secret key to satisfy type check in tnp._get_oauth()"
-        self.tnp = API(key, secret, testing=True)
+        key = "mock api key to satisfy type check in api._get_oauth()"
+        secret = "mock secret key to satisfy type check in api._get_oauth()"
+        self.api = API(key, secret, testing=True)
 
     def test_str(self):
         """
         Test _slug_assert with slug "goat"
         """
         slug = "goat"
-        self.tnp._slug_assert(slug, "slug")
+        self.api._slug_assert(slug, "slug")
     
     def test_str_empty(self):
         """
@@ -25,7 +25,7 @@ class SlugAssert(unittest.TestCase):
         """
         slug = ""
         with self.assertRaises(IllegalSlug):
-            self.tnp._slug_assert(slug, "slug")
+            self.api._slug_assert(slug, "slug")
  
     def test_str_non_ascii(self):
         """
@@ -33,7 +33,7 @@ class SlugAssert(unittest.TestCase):
         """
         slug = "¤"
         with self.assertRaises(IllegalSlug):
-            self.tnp._slug_assert(slug, "slug")
+            self.api._slug_assert(slug, "slug")
  
     def test_str_multiple_words(self):
         """
@@ -41,7 +41,7 @@ class SlugAssert(unittest.TestCase):
         """
         slug = "goat horn"
         with self.assertRaises(IllegalSlug):
-            self.tnp._slug_assert(slug, "slug")
+            self.api._slug_assert(slug, "slug")
 
 if __name__ == "__main__":
     unittest.main()

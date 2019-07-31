@@ -15,6 +15,7 @@ class API(Collections, Icons, Usage, Enterprise):
 def main():
     from api_keys import get
     api = API(*get())
+    #help(api)
     breakpoint()
 
 if __name__ == "__main__":

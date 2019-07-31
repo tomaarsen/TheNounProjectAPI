@@ -8,16 +8,16 @@ from src.exceptions import IncorrectType
 class CollectionURLs(unittest.TestCase):
 
     def setUp(self):
-        key = "mock api key to satisfy type check in tnp._get_oauth()"
-        secret = "mock secret key to satisfy type check in tnp._get_oauth()"
-        self.tnp = API(key, secret, testing=True)
+        key = "mock api key to satisfy type check in api._get_oauth()"
+        secret = "mock secret key to satisfy type check in api._get_oauth()"
+        self.api = API(key, secret, testing=True)
 
     def _test_get_collection_by_id(self, _id):
         """
-        Helper function to call tnp's get_collection_by_id in such a way that we only get the URL
+        Helper function to call api's get_collection_by_id in such a way that we only get the URL
         and don't actually make the request.
         """
-        return self.tnp.get_collection_by_id(_id).url
+        return self.api.get_collection_by_id(_id).url
 
     def test_get_collection_by_id_legal_12(self):
         """
@@ -49,10 +49,10 @@ class CollectionURLs(unittest.TestCase):
 
     def _test_get_collection_by_slug(self, slug):
         """
-        Helper function to call tnp's get_collection_by_slug in such a way that we only get the URL
+        Helper function to call api's get_collection_by_slug in such a way that we only get the URL
         and don't actually make the request.
         """
-        return self.tnp.get_collection_by_slug(slug).url
+        return self.api.get_collection_by_slug(slug).url
 
     def test_get_collection_by_slug_legal_goat(self):
         """

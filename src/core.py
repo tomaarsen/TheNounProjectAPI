@@ -1,10 +1,9 @@
 
 import context
 
-import requests, json
-from requests import Request, Session
+import requests
 from functools import wraps, singledispatch, update_wrapper
-from typing import Union, List, Any, Type, Tuple
+from typing import Union, List, Any, Type, Tuple, Optional
 
 from src.keys import Keys
 from src.exceptions import IncorrectType, NonPositive, IllegalSlug, IllegalTerm
@@ -14,7 +13,7 @@ class Core(Keys):
     Core is a class providing helper functions useful for accessing the TheNounProject API.
     """
 
-    def __init__(self, key:str = None, secret:str = None, testing:bool = False, timeout:Union[int, tuple, None] = 5):
+    def __init__(self, key:str = None, secret:str = None, testing:bool = False, timeout:Union[float, Tuple[float, float], None] = 5):
         """
         Construct a new 'Core' object.
 
@@ -25,8 +24,8 @@ class Core(Keys):
         :param testing: Whether the 'get_...' methods should return a PreparedRequest, 
                         instead of data from the API. (defaults to False)
         :type testing: bool
-        :param timeout: Integer timeout in seconds, 2-tuples for seperate connect and read timeouts, and None for no timeout. (defaults to 5)
-        :type timeout: Union[int, tuple, None]
+        :param timeout: Float timeout in seconds, 2-tuples for seperate connect and read timeouts, and None for no timeout. (defaults to 5)
+        :type timeout: Union[float, Tuple[float, float], None]
         """
         self.api_key = key
         self.secret_key = secret
@@ -35,7 +34,7 @@ class Core(Keys):
         
         self._method: str
         self._base_url = "http://api.thenounproject.com"
-        self._session = Session()
+        self._session = requests.Session()
 
     def _send(self, url: requests.PreparedRequest) -> requests.Response:
         """
@@ -49,22 +48,20 @@ class Core(Keys):
 
     def _prepare_url(self, url: str, **params: dict) -> requests.PreparedRequest:
         """
-        Returns a PreparedRequest object for a GET request, for the given URL, 
-        with the given parameters, with authentication.
+        Returns a requests.PreparedRequest object for a request self._method as method, 
+        for the given URL, with the given parameters/json, with authentication.
 
         :param url: The URL of the requested endpoint.
         :type url: str
-        :param method: The request method. Eg: GET, POST.
-        :type method: str
         :param params: The parameters to be added onto the string.
         :type params: dict
 
-        :returns: A PreparedRequest object.
+        :returns: A requests.PreparedRequest object.
         :rtype: requests.PreparedRequest 
         """
         if self._session.auth is None:
             self._session.auth = self._get_oauth()
-        req = Request(self._method, url, **{"params" if self._method == "GET" else "json": params})
+        req = requests.Request(self._method, url, **{"params" if self._method == "GET" else "json": params})
         return self._session.prepare_request(req)
 
     def _type_assert(self, param: Any, param_name: str, types: Union[Type[Any], Tuple[Type[Any], ...]]) -> None:
@@ -88,8 +85,11 @@ class Core(Keys):
         Asserts that limit, offset and page parameters are all integers.
 
         :param limit: Limit parameter to be used as a parameter in the URL request.
+        :type limit: Any
         :param offset: Offset parameter to be used as a parameter in the URL request.
+        :type offset: Any
         :param page: Page parameter to be used as a parameter in the URL request.
+        :type page: Any
 
         :raise IncorrectType: Raises exception when limit, offset or page are not of NoneType or integer type.
         """
@@ -141,3 +141,9 @@ class Core(Keys):
         """
         if not len(term) > 0:
             raise IllegalTerm(param_name)
+
+    def _close_session(self):
+        """
+        TODO
+        """
+        self._session.close()

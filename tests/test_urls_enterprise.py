@@ -9,15 +9,15 @@ from src.exceptions import IncorrectType
 class SlugAssert(unittest.TestCase):
 
     def setUp(self):
-        key = "mock api key to satisfy type check in tnp._get_oauth()"
-        secret = "mock secret key to satisfy type check in tnp._get_oauth()"
-        self.tnp = API(key, secret, testing=True)
+        key = "mock api key to satisfy type check in api._get_oauth()"
+        secret = "mock secret key to satisfy type check in api._get_oauth()"
+        self.api = API(key, secret, testing=True)
 
     def _test_report_usage(self, icons, test=False):
         """
-        Helper method to call tnp's report_usage
+        Helper method to call api's report_usage
         """
-        return self.tnp.report_usage(icons, test)
+        return self.api.report_usage(icons, test)
 
     def _check_set(self, body, input_set):
         """

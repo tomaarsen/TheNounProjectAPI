@@ -15,7 +15,10 @@ def sequence_to_dot(val: Any) -> Any:
     return val
 
 class DotList(list):
-    def __getitem__(self, key):
+    """
+    Subclass of list allowing dot notation for dicts that might be in the list.
+    """ 
+    def __getitem__(self, key: int):
         """ 
         Allows dot_dict[0][2].data to be equivalent to dot_dict[0][2]['data']. 
         """
@@ -23,9 +26,10 @@ class DotList(list):
         return sequence_to_dot(val)
 
 class DotDict(dict):
-    
-    """dot.notation access to dictionary attributes""" 
-    def __getattr__(self, name):
+    """
+    Subclass of dict allowing dot notation for items in the dict.
+    """ 
+    def __getattr__(self, name: str):
         """ 
         Allows dot_dict.data.more_data to be equivalent to dot_dict['data']['more_data']. 
         """
@@ -68,13 +72,17 @@ class Model:
         instance.json = DotDict(data)
         return instance
 
-    def __getattr__(self, name):
+    def __getattr__(self, name: str):
         """ Passes model.data to model.json.data. """
         return getattr(self.json, name)
 
-    def __getitem__(self, name):
+    def __getitem__(self, name: str):
         """ Passes model['data'] to model.json['data']. """
         return self.json[name]
+
+    def __eq__(self, other: object):
+        """ Checks whether all attributes of self match with other. """
+        return self.json.__dict__ == other.json.__dict__
 
     def __repr__(self):
         """ Returns string with class name, followed by all output_keys and their values. 

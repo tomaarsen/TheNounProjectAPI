@@ -17,10 +17,10 @@ class Collections(Core):
         :param _id: Collection ID.
         :type _id: int
 
-        :raise AssertionError: Raises exception when id is nonpositive.
+        :raise NonPositive: Raises exception when id is nonpositive.
 
-        :returns: Collection object identified by the _id.
-        :rtype: Collection
+        :returns: CollectionModel object identified by the _id.
+        :rtype: CollectionModel
         """
         self._type_assert(_id, "id", int)
         self._id_assert(_id, "id")
@@ -34,10 +34,10 @@ class Collections(Core):
         :param slug: Collection slug.
         :type slug: str
 
-        :raise AssertionError: Raises exception when slug is an empty string, contains non ascii characters or contains multiple words.
+        :raise IllegalSlug: Raises exception when slug is an empty string, contains non ascii characters or contains multiple words.
 
-        :returns: Collection object identified by the slug.
-        :rtype: Collection
+        :returns: CollectionModel object identified by the slug.
+        :rtype: CollectionModel
         """
         self._type_assert(slug, "slug", str)
         self._slug_assert(slug, "slug")
@@ -51,10 +51,11 @@ class Collections(Core):
         :param identifier: Collection identifier (id or slug).
         :type identifier: Union[int, str]
 
-        :raise AssertionError: Raises exception when identifier is a nonpositive integer or a string that's empty, non-ascii or with multiple words.
+        :raise NonPositive: Raises exception when identifier is a nonpositive integer.
+        :raise IllegalSlug: Raises exception when identifier is a string that's empty, non-ascii or with multiple words.
 
-        :returns: Collection object identified by the identifier.
-        :rtype: Collection
+        :returns: CollectionModel object identified by the identifier.
+        :rtype: CollectionModel
         """
         raise IncorrectType("identifier", (int, str))
 
@@ -84,8 +85,8 @@ class Collections(Core):
         :param page: Number of results of limit length to displace or skip over. (defaults to None)
         :type page: int
 
-        :returns: List of Collection objects.
-        :rtype: List[Collection]
+        :returns: List of CollectionModel objects.
+        :rtype: List[CollectionModel]
         """
         self._lop_assert(limit, offset, page)
         return self._prepare_url(f"{self._base_url}/collections", limit=limit, offset=offset, page=page)
@@ -98,10 +99,10 @@ class Collections(Core):
         :param user_id: User id.
         :type user_id: int
 
-        :raise AssertionError: Raises exception when user_id is not positive.
+        :raise NonNegative: Raises exception when user_id is not positive.
 
-        :returns: List of Collection objects associated with a user identified by the user_id.
-        :rtype: List[Collection]
+        :returns: List of CollectionModel objects associated with a user identified by the user_id.
+        :rtype: List[CollectionModel]
         """
         self._type_assert(user_id, "user_id", int)
         self._id_assert(user_id, "user_id")
@@ -117,10 +118,11 @@ class Collections(Core):
         :param slug: Collection slug.
         :type slug: str
 
-        :raise AssertionError: Raises exception when user_id is not positive, or when slug is an empty string, contains non ascii characters or contains multiple words.
+        :raise NonNegative: Raises exception when user_id is not positive.
+        :raise IllegalSlug: Raises exception when slug is an empty string, contains non ascii characters or contains multiple words.
 
-        :returns: Collection object identified by the slug, from the user identified by the user_id.
-        :rtype: Collection
+        :returns: CollectionModel object identified by the slug, from the user identified by the user_id.
+        :rtype: CollectionModel
         """
         self._type_assert(user_id, "user_id", int)
         self._type_assert(slug, "slug", str)

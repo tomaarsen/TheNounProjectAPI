@@ -45,6 +45,24 @@ class UnknownStatusCode(APIException):
     def __init__(self, response):
         super().__init__(response, f"Unknown status code encountered.")
 
+STATUS_CODE_SUCCESS = (codes["ok"], codes["created"])
+
+STATUS_CODE_EXCEPTIONS = {
+    codes["bad_gateway"]: ServerException,
+    codes["bad_request"]: BadRequest,
+    codes["found"]: Redirect,
+    codes["forbidden"]: Forbidden,
+    codes["gateway_timeout"]: ServerException,
+    codes["internal_server_error"]: ServerException,
+    codes["not_found"]: NotFound,
+    codes["service_unavailable"]: ServerException,
+    codes["unauthorized"]: Unauthorized,
+    codes["unavailable_for_legal_reasons"]: LegalReasons,
+    # Cloudflare status (not named in requests)
+    520: ServerException,
+    522: ServerException,
+}
+
 class ParameterException(Exception):
     """ Base exception for all exceptions related to incorrect parameters within this package. """
     def __init__(self, parameter, description):
@@ -76,21 +94,3 @@ class APIKeyNotSet(ParameterException):
     """ Indicate that the parameter key has not been set properly. """
     def __init__(self, parameter):
         super().__init__(parameter, description=f"must be set before making a request.")
-
-STATUS_CODE_SUCCESS = (codes["ok"], codes["created"])
-
-STATUS_CODE_EXCEPTIONS = {
-    codes["bad_gateway"]: ServerException,
-    codes["bad_request"]: BadRequest,
-    codes["found"]: Redirect,
-    codes["forbidden"]: Forbidden,
-    codes["gateway_timeout"]: ServerException,
-    codes["internal_server_error"]: ServerException,
-    codes["not_found"]: NotFound,
-    codes["service_unavailable"]: ServerException,
-    codes["unauthorized"]: Unauthorized,
-    codes["unavailable_for_legal_reasons"]: LegalReasons,
-    # Cloudflare status (not named in requests)
-    520: ServerException,
-    522: ServerException,
-}

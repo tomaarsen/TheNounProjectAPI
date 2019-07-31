@@ -11,7 +11,7 @@ class Usage(Core):
         """
         Fetches current oauth usage and limits.
 
-        :returns: Usage object.
-        :rtype: Usage
+        :returns: UsageModel object.
+        :rtype: UsageModel
         """
         return self._prepare_url(f"{self._base_url}/oauth/usage")
