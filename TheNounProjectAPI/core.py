@@ -1,6 +1,4 @@
 
-import context
-
 import requests
 from functools import wraps, singledispatch, update_wrapper
 from typing import Union, List, Any, Type, Tuple, Optional
@@ -15,13 +13,13 @@ class Core(Keys):
 
     def __init__(self, key:str = None, secret:str = None, testing:bool = False, timeout:Union[float, Tuple[float, float], None] = 5):
         """
-        Construct a new 'Core' object.
+        Construct a new object for making API requests.
 
         :param key: The API key from the TheNounProject API. (defaults to None)
         :type key: str
         :param secret: The secret key from the TheNounProject API. (defaults to None)
         :type secret: str
-        :param testing: Whether the 'get_...' methods should return a PreparedRequest, 
+        :param testing: Whether the methods should return a PreparedRequest, 
                         instead of data from the API. (defaults to False)
         :type testing: bool
         :param timeout: Float timeout in seconds, 2-tuples for seperate connect and read timeouts, and None for no timeout. (defaults to 5)

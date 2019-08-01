@@ -1,77 +1,28 @@
 
-import context
-
 import requests
 
 from TheNounProjectAPI.exceptions import NotFound
 from typing import Any, TypeVar, Type, Union, Tuple
-
-def sequence_to_dot(val: Any) -> Any:
-    """
-    Returns DotDict of val if val is a dict.
-    Returns DotList of val if val is a list.
-    Otherwise returns val.
-    """
-    if isinstance(val, dict):
-        return DotDict(val)
-    if isinstance(val, list):
-        return DotList(val)
-    return val
-
-class DotList(list):
-    """
-    Subclass of list allowing dot notation for dicts that might be in the list.
-    """ 
-    def __getitem__(self, key: int):
-        """ 
-        Allows dot_dict[0][2].data to be equivalent to dot_dict[0][2]['data']. 
-        """
-        val = list.__getitem__(self, key)
-        return sequence_to_dot(val)
-
-class DotDict(dict):
-    """
-    Subclass of dict allowing dot notation for items in the dict.
-    """ 
-    def __getattr__(self, name: str):
-        """ 
-        Allows dot_dict.data.more_data to be equivalent to dot_dict['data']['more_data']. 
-        """
-        if name not in self:
-            raise AttributeError(f"Object has no attribute \'{name}\'")
-        val = self.get(name)
-        return sequence_to_dot(val)
-    
-    __setattr__ = dict.__setitem__
-    __delattr__ = dict.__delitem__
-
-class OutputKeys:
-    """
-    Class to store key and title value, used for outputting attributes.
-    """ 
-    def __init__(self, key: Union[str, Tuple[str, ...]], title:str = None):
-        """
-        Constructs a 'OutputKeys' object, with a key and a title.
-        """
-        self.key = key
-        self.title = title or key.title()
-
+   
 class Model:
     """
     Model is a base class to be used as a superclass for conveniently accessing data.
+    All of the json returned by the API is parsed through this model, and stored under the json attribute
     """
     def __init__(self):
         """ Constructs a new 'Model' object. """
         self.output_keys = ()
-
-        """ Main attribute to access data. Can be used both like .json.data.more_data
-            and .json['data']['more_data'] """
-        self.json = DotDict()
+        self.json: DotDict = DotDict()
+        """ The json data returned by the API, as a :class:`DotDict` instance. """
+        self.response: requests.Response = None
+        """ requests.Response object used to fill this Model. """
     
     @classmethod
     def parse(cls, data: dict, response:requests.Response = None):
-        """ Constructs and returns an instance of (sub)class, with the json attribute 
-            set to a conveniently accessible DotDict object with 'data'. """
+        """ 
+        Constructs and returns an instance of (sub)class, with the json attribute 
+        set to a conveniently accessible `DotDict` object, filled with `data`. 
+        """
         instance = cls()
         instance.json = DotDict(data)
         instance.response = response
@@ -115,7 +66,7 @@ class ModelList(list):
 
 class CollectionModel(Model):
     """
-    CollectionModel is a subclass of Model, with different attributes displayed.
+    CollectionModel is a subclass of Model, with different attributes displayed when printed.
     """
     def __init__(self):
         super().__init__()
@@ -135,11 +86,15 @@ class CollectionsModel(ModelList):
     """
     @classmethod
     def parse(cls, data: dict, response:requests.Response = None):
+        """
+        Constructs and returns a list of CollectionModel objects.
+        In addition, this list may have some additional attributes like `generated_at` based on the data dictionary.
+        """
         return super().parse(data, CollectionModel, main_keys=["collections"], response=response)
 
 class IconModel(Model):
     """
-    IconModel is a subclass of Model, with different attributes displayed.
+    IconModel is a subclass of Model, with different attributes displayed when printed.
     """
     def __init__(self):
         super().__init__()
@@ -158,11 +113,15 @@ class IconsModel(ModelList):
     """
     @classmethod
     def parse(cls, data: dict, response:requests.Response = None):
+        """
+        Constructs and returns a list of IconModel objects.
+        In addition, this list may have some additional attributes like `generated_at` based on the data dictionary.
+        """
         return super().parse(data, IconModel, main_keys=["icons", "recent_uploads", "uploads"], response=response)
 
 class UsageModel(Model):
     """
-    UsageModel is a subclass of Model, with different attributes displayed.
+    UsageModel is a subclass of Model, with different attributes displayed when printed.
     """
     def __init__(self):
         super().__init__()
@@ -178,9 +137,59 @@ class UsageModel(Model):
 
 class EnterpriseModel(Model):
     """
-    EnterpriseModel is a subclass of Model, with different attributes displayed.
+    EnterpriseModel is a subclass of Model, with different attributes displayed when printed.
     """
     def __init__(self):
         super().__init__()
         self.output_keys = (OutputKeys("licenses_consumed", "Licenses Consumed"),
                             OutputKeys("result"))
+
+class OutputKeys:
+    """
+    Class to store key and title value, used for outputting attributes.
+    """ 
+    def __init__(self, key: Union[str, Tuple[str, ...]], title:str = None):
+        """
+        Constructs a 'OutputKeys' object, with a key and a title.
+        """
+        self.key = key
+        self.title = title or key.title()
+
+class DotDict(dict):
+    """
+    Subclass of dict allowing dot notation for items in the dict.
+    """ 
+    def __getattr__(self, name: str):
+        """ 
+        Allows dot_dict.data.more_data to be equivalent to dot_dict['data']['more_data']. 
+        """
+        if name not in self:
+            raise AttributeError(f"Object has no attribute \'{name}\'")
+        val = self.get(name)
+        return sequence_to_dot(val)
+    
+    __setattr__ = dict.__setitem__
+    __delattr__ = dict.__delitem__
+
+class DotList(list):
+    """
+    Subclass of list allowing dot notation for dicts that might be in the list.
+    """ 
+    def __getitem__(self, key: int):
+        """ 
+        Allows dot_dict[0][2].data to be equivalent to dot_dict[0][2]['data']. 
+        """
+        val = list.__getitem__(self, key)
+        return sequence_to_dot(val)
+
+def sequence_to_dot(val: Any) -> Any:
+    """
+    Returns DotDict of val if val is a dict.
+    Returns DotList of val if val is a list.
+    Otherwise returns val.
+    """
+    if isinstance(val, dict):
+        return DotDict(val)
+    if isinstance(val, list):
+        return DotList(val)
+    return val

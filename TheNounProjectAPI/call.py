@@ -1,6 +1,4 @@
 
-import context
-
 from functools import wraps, singledispatch, update_wrapper
 from typing import Union, Callable, Type, List
 

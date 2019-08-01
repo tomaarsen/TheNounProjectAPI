@@ -1,6 +1,4 @@
 
-import context
-
 from typing import Union
 
 from TheNounProjectAPI.core import Core

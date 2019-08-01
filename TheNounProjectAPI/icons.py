@@ -1,4 +1,3 @@
-import context
 
 from typing import Union, List
 
@@ -73,8 +72,8 @@ class Icons(Core):
         :raise NonPositive: Raises exception when identifier is a nonpositive integer.
         :raise IllegalSlug: Raises exception when identifier is a string that's empty, non-ascii or with multiple words.
 
-        :returns: List of Icon objects from the collection identified by the identifier. 
-        :rtype: List[Icon]
+        :returns: List of IconModel objects from the collection identified by the identifier. 
+        :rtype: List[IconModel]
         """
         raise IncorrectType("identifier", (int, str))
 
@@ -182,7 +181,7 @@ class Icons(Core):
         :param term: Collection term.
         :type term: str
         :param public_domain_only: Limit results to public domain icons only (defaults to False)
-        :type term: Union[bool, int]
+        :type public_domain_only: Union[bool, int]
         :param limit: Maximum number of results. (defaults to None)
         :type limit: int
         :param offset: Number of results to displace or skip over. (defaults to None)

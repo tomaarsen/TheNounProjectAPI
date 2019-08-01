@@ -1,5 +1,7 @@
 
-import context
+import os, sys
+""" Expand the context so we can easily access TheNounProjectAPI """
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from TheNounProjectAPI.collections import Collections
 from TheNounProjectAPI.icons import Icons
@@ -11,12 +13,3 @@ class API(Collections, Icons, Usage, Enterprise):
     API is a class allowing convenient access to the TheNounProject API.
     """
     pass
-
-def main():
-    from api_keys import get
-    api = API(*get())
-    #help(api)
-    breakpoint()
-
-if __name__ == "__main__":
-    main()

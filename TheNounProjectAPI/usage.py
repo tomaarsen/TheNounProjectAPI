@@ -1,6 +1,4 @@
 
-import context
-
 from TheNounProjectAPI.core import Core
 from TheNounProjectAPI.call import Call
 from TheNounProjectAPI.models import UsageModel

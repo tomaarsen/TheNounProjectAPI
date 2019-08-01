@@ -1,4 +1,3 @@
-import context
 
 from requests_oauthlib import OAuth1
 
