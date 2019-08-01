@@ -3,7 +3,7 @@ import context
 
 import requests
 
-from src.exceptions import NotFound
+from TheNounProjectAPI.exceptions import NotFound
 from typing import Any, TypeVar, Type, Union, Tuple
 
 def sequence_to_dot(val: Any) -> Any:

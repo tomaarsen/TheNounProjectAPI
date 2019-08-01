@@ -2,7 +2,7 @@ import unittest
 
 import context 
 
-from src.api import API
+from TheNounProjectAPI.api import API
 
 class CollectionsURLs(unittest.TestCase):
 

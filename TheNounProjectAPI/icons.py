@@ -2,10 +2,10 @@ import context
 
 from typing import Union, List
 
-from src.core import Core
-from src.call import Call
-from src.models import IconModel
-from src.exceptions import IncorrectType
+from TheNounProjectAPI.core import Core
+from TheNounProjectAPI.call import Call
+from TheNounProjectAPI.models import IconModel
+from TheNounProjectAPI.exceptions import IncorrectType
 
 class Icons(Core):
     @Call.icons

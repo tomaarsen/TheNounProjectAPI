@@ -2,8 +2,8 @@ import unittest
 
 import context 
 
-from src.api import API
-from src.exceptions import NonPositive
+from TheNounProjectAPI.api import API
+from TheNounProjectAPI.exceptions import NonPositive
 
 class IdAssert(unittest.TestCase):
 

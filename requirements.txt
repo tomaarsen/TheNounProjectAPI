@@ -1,0 +1,2 @@
+requests==2.20.0
+requests_oauthlib==1.2.0

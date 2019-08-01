@@ -2,8 +2,8 @@ import unittest
 
 import context 
 
-from src.api import API
-from src.exceptions import IncorrectType, IllegalTerm
+from TheNounProjectAPI.api import API
+from TheNounProjectAPI.exceptions import IncorrectType, IllegalTerm
 
 class UserUploadsURLs(unittest.TestCase):
 

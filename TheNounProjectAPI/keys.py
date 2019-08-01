@@ -2,7 +2,7 @@ import context
 
 from requests_oauthlib import OAuth1
 
-from src.exceptions import APIKeyNotSet
+from TheNounProjectAPI.exceptions import APIKeyNotSet
 
 class Keys:
     

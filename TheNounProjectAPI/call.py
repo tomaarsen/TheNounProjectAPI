@@ -4,8 +4,8 @@ import context
 from functools import wraps, singledispatch, update_wrapper
 from typing import Union, Callable, Type, List
 
-from src.exceptions import STATUS_CODE_EXCEPTIONS, STATUS_CODE_SUCCESS, UnknownStatusCode
-from src.models import CollectionModel, CollectionsModel, IconModel, IconsModel, UsageModel, EnterpriseModel, Model, ModelList
+from TheNounProjectAPI.exceptions import STATUS_CODE_EXCEPTIONS, STATUS_CODE_SUCCESS, UnknownStatusCode
+from TheNounProjectAPI.models import CollectionModel, CollectionsModel, IconModel, IconsModel, UsageModel, EnterpriseModel, Model, ModelList
 
 class Call:
     """

@@ -5,8 +5,8 @@ import requests
 from functools import wraps, singledispatch, update_wrapper
 from typing import Union, List, Any, Type, Tuple, Optional
 
-from src.keys import Keys
-from src.exceptions import IncorrectType, NonPositive, IllegalSlug, IllegalTerm
+from TheNounProjectAPI.keys import Keys
+from TheNounProjectAPI.exceptions import IncorrectType, NonPositive, IllegalSlug, IllegalTerm
 
 class Core(Keys):
     """

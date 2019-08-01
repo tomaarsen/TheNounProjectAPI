@@ -1,9 +1,9 @@
 
 import context
 
-from src.core import Core
-from src.call import Call
-from src.models import UsageModel
+from TheNounProjectAPI.core import Core
+from TheNounProjectAPI.call import Call
+from TheNounProjectAPI.models import UsageModel
 
 class Usage(Core):
     @Call.usage

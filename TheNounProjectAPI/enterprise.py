@@ -3,10 +3,10 @@ import context
 
 from typing import Union
 
-from src.core import Core
-from src.call import Call
-from src.models import EnterpriseModel
-from src.exceptions import IncorrectType
+from TheNounProjectAPI.core import Core
+from TheNounProjectAPI.call import Call
+from TheNounProjectAPI.models import EnterpriseModel
+from TheNounProjectAPI.exceptions import IncorrectType
 
 class Enterprise(Core):
 

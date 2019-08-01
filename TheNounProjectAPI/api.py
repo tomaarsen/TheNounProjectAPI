@@ -1,10 +1,10 @@
 
 import context
 
-from src.collections import Collections
-from src.icons import Icons
-from src.usage import Usage
-from src.enterprise import Enterprise
+from TheNounProjectAPI.collections import Collections
+from TheNounProjectAPI.icons import Icons
+from TheNounProjectAPI.usage import Usage
+from TheNounProjectAPI.enterprise import Enterprise
 
 class API(Collections, Icons, Usage, Enterprise):
     """

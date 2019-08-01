@@ -2,8 +2,8 @@ import unittest
 
 import context 
 
-from src.api import API
-from src.exceptions import IllegalTerm
+from TheNounProjectAPI.api import API
+from TheNounProjectAPI.exceptions import IllegalTerm
 
 class TermAssert(unittest.TestCase):
 

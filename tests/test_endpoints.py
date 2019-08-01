@@ -1,10 +1,9 @@
 import unittest, os
-from pprint import pprint
 
 import context 
 
-from src.api import API
-from src.models import CollectionModel
+from TheNounProjectAPI.api import API
+from TheNounProjectAPI.models import CollectionModel
 
 class Endpoints(unittest.TestCase):
 

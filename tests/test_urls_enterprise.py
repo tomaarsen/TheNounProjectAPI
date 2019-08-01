@@ -3,8 +3,8 @@ import unittest
 import context
 import json
 
-from src.api import API
-from src.exceptions import IncorrectType
+from TheNounProjectAPI.api import API
+from TheNounProjectAPI.exceptions import IncorrectType
 
 class SlugAssert(unittest.TestCase):
 
