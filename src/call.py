@@ -68,12 +68,9 @@ class Call:
                 # Parse as JSON, get model, parse json in terms of the model
                 json_data = response.json()
                 model = model_class()
-                return model.parse(json_data)
+                return model.parse(json_data, response)
             # If status_code indicates an error we know
             elif response.status_code in STATUS_CODE_EXCEPTIONS:
-                print(response.text)
-                print(response.url)
-                breakpoint()
                 raise STATUS_CODE_EXCEPTIONS[response.status_code](response)
             # If status_code is a code we don't have a proper exception/response for.
             else:

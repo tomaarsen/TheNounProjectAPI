@@ -28,7 +28,7 @@ class Forbidden(APIException):
 class NotFound(APIException):
     """ Indicate that the requested URL cannot be found. """
     def __init__(self, response):
-        super().__init__(response, "URL cannot be found.")
+        super().__init__(response, "URL with given parameters cannot be found.")
 
 class Redirect(APIException):
     """ Indicate that the request resulted in a redirect. """

@@ -1,6 +1,10 @@
 
+import context
+
+import requests
+
 from src.exceptions import NotFound
-from typing import Any
+from typing import Any, TypeVar, Type, Union, Tuple
 
 def sequence_to_dot(val: Any) -> Any:
     """
@@ -45,7 +49,7 @@ class OutputKeys:
     """
     Class to store key and title value, used for outputting attributes.
     """ 
-    def __init__(self, key, title=None):
+    def __init__(self, key: Union[str, Tuple[str, ...]], title:str = None):
         """
         Constructs a 'OutputKeys' object, with a key and a title.
         """
@@ -65,11 +69,12 @@ class Model:
         self.json = DotDict()
     
     @classmethod
-    def parse(cls, data: dict):
+    def parse(cls, data: dict, response:requests.Response = None):
         """ Constructs and returns an instance of (sub)class, with the json attribute 
             set to a conveniently accessible DotDict object with 'data'. """
         instance = cls()
         instance.json = DotDict(data)
+        instance.response = response
         return instance
 
     def __getattr__(self, name: str):
@@ -95,7 +100,7 @@ class ModelList(list):
     ModelList is a base class to be used as a superclass for conveniently accessing lists of Model objects.
     """
     @classmethod
-    def parse(cls, data: dict, instance_class: Model, main_keys: list):
+    def parse(cls, data: dict, instance_class: Model, main_keys: list, response:requests.Response = None):
         """
         Constructs and returns a list of instances of instance_class, a subclass of Model.
         In addition, this list has some additional attributes based on the data dictionary.
@@ -103,6 +108,7 @@ class ModelList(list):
         main_dict = [data[key] for key in main_keys if key in data][0]
         instance = cls()
         instance.extend([instance_class.parse(item) for item in main_dict])
+        instance.response = response
         for key, val in data.items():
             setattr(instance, key, sequence_to_dot(val))
         return instance
@@ -118,18 +124,18 @@ class CollectionModel(Model):
                             OutputKeys("id"))
     
     @classmethod
-    def parse(cls, data: dict):
+    def parse(cls, data: dict, response:requests.Response = None):
         if "collection" in data:
             data = data["collection"]
-        return super().parse(data)
+        return super().parse(data, response)
 
 class CollectionsModel(ModelList):
     """
     CollectionsModel is a subclass of ModelList, which focuses on turning CollectionModel objects into a list.
     """
     @classmethod
-    def parse(cls, data: dict):
-        return super().parse(data, CollectionModel, main_keys=["collections"])
+    def parse(cls, data: dict, response:requests.Response = None):
+        return super().parse(data, CollectionModel, main_keys=["collections"], response=response)
 
 class IconModel(Model):
     """
@@ -141,18 +147,18 @@ class IconModel(Model):
                             OutputKeys("term_slug", "Slug"), 
                             OutputKeys("id"))
     @classmethod
-    def parse(cls, data: dict):
+    def parse(cls, data: dict, response:requests.Response = None):
         if "icon" in data:
             data = data["icon"]
-        return super().parse(data)
+        return super().parse(data, response)
 
 class IconsModel(ModelList):
     """
     IconsModel is a subclass of ModelList, which focuses on turning IconModel objects into a list.
     """
     @classmethod
-    def parse(cls, data: dict):
-        return super().parse(data, IconModel, main_keys=["icons", "recent_uploads", "uploads"])
+    def parse(cls, data: dict, response:requests.Response = None):
+        return super().parse(data, IconModel, main_keys=["icons", "recent_uploads", "uploads"], response=response)
 
 class UsageModel(Model):
     """
