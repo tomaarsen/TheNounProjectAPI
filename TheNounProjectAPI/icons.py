@@ -10,7 +10,7 @@ class Icons(Core):
     @Call.icons
     def get_collection_icons_by_id(self, _id: int, limit:int = None, offset:int = None, page:int = None) -> List[IconModel]:
         """
-        Fetches collection icons by id from the API.
+        Fetches collection :ref:`icons-label` by id from the API.
 
         :param _id: Collection id.
         :type _id: int
@@ -34,7 +34,7 @@ class Icons(Core):
     @Call.icons
     def get_collection_icons_by_slug(self, slug: str, limit:int = None, offset:int = None, page:int = None) -> List[IconModel]:
         """
-        Fetches collection icons by slug from the API.
+        Fetches collection :ref:`icons-label` by slug from the API.
 
         :param slug: Collection slug.
         :type slug: str
@@ -58,7 +58,7 @@ class Icons(Core):
     @Call.dispatch
     def get_collection_icons(self, identifier: Union[int, str], limit:int = None, offset:int = None, page:int = None) -> List[IconModel]:
         """
-        Fetches collection icons, either by id or by slug.
+        Fetches collection :ref:`icons-label`, either by id or by slug.
 
         :param identifier: Collection identifier (id or slug).
         :type identifier: Union[int, str]
@@ -94,7 +94,7 @@ class Icons(Core):
     @Call.icon
     def get_icon_by_id(self, _id: int) -> IconModel:
         """
-        Fetches a single icon by id.
+        Fetches a single :ref:`icon-label` by id.
 
         :param _id: Icon id.
         :type _id: int
@@ -111,7 +111,7 @@ class Icons(Core):
     @Call.icon
     def get_icon_by_term(self, term: str) -> IconModel:
         """
-        Fetches a single icon by term.
+        Fetches a single :ref:`icon-label` by term.
 
         :param term: Icon term.
         :type term: str
@@ -128,7 +128,7 @@ class Icons(Core):
     @Call.dispatch
     def get_icon(self, identifier: Union[int, str]) -> IconModel:
         """
-        Fetches single icon, either by id or by term.
+        Fetches single :ref:`icon-label`, either by id or by term.
 
         :param identifier: Collection identifier (id or term).
         :type identifier: Union[int, str]
@@ -158,7 +158,7 @@ class Icons(Core):
     @Call.icons
     def get_recent_icons(self, limit:int = None, offset:int = None, page:int = None) -> List[IconModel]:
         """
-        Fetches recent icons.
+        Fetches recent :ref:`icons-label`.
 
         :param limit: Maximum number of results. (defaults to None)
         :type limit: int
@@ -176,7 +176,7 @@ class Icons(Core):
     @Call.icons
     def get_icons_by_term(self, term: str, public_domain_only: Union[bool, int] = False, limit:int = None, offset:int = None, page:int = None) -> List[IconModel]:
         """
-        Fetches a list of icons by term.
+        Fetches a list of :ref:`icons-label` by term.
 
         :param term: Collection term.
         :type term: str
@@ -203,7 +203,7 @@ class Icons(Core):
     @Call.icons
     def get_user_uploads(self, username: str, limit:int = None, offset:int = None, page:int = None) -> List[IconModel]:
         """
-        Fetches a list of uploads associated with a user.
+        Fetches a list of uploads (:ref:`icons-label`) associated with a user.
 
         :param username: Username.
         :type username: str

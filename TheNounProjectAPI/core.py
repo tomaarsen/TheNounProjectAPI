@@ -69,7 +69,7 @@ class Core(Keys):
         :param param: Parameter to check type of.
         :type param: Any
         :param param_name: Name of this parameter, for use in error message.
-        :type str:
+        :type param_name: str
         :param types: Types to check param against. Either a single type or a tuple of types.
         :type types: Union[Type[Any], Tuple[Type[Any], ...]]
 
@@ -104,7 +104,7 @@ class Core(Keys):
         :param _id: Id of which we want to make sure it is positive.
         :type _id: int
         :param param_name: Name of this parameter, for use in error message.
-        :type str:
+        :type param_name: str
 
         :raise NonPositive: Raises exception when _id is not positive.
         """
@@ -118,7 +118,7 @@ class Core(Keys):
         :param slug: String slug parameter to be used as a parameter in the URL request.
         :type slug: str
         :param param_name: Name of this parameter, for use in error message.
-        :type str:
+        :type param_name: str
 
         :raise IllegalSlug: Raises exception when slug is empty, contains non-ascii characters, or contains spaces.
         """
@@ -133,7 +133,7 @@ class Core(Keys):
         :param term: String term parameter to be used as a parameter in the URL request.
         :type term: str
         :param param_name: Name of this parameter, for use in error message.
-        :type str:
+        :type param_name: str
 
         :raise IllegalTerm: Raises exception when term has a length of 0.
         """
@@ -142,6 +142,6 @@ class Core(Keys):
 
     def _close_session(self):
         """
-        TODO
+        Closes the requests.Session used for making requests.
         """
         self._session.close()

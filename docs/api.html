@@ -64,7 +64,7 @@ instead of data from the API. Should not be used except for testing this wrapper
 <dl class="method">
 <dt id="TheNounProjectAPI.api.API.get_collection">
 <code class="sig-name descname">get_collection</code><span class="sig-paren">(</span><em class="sig-param">identifier</em><span class="sig-paren">)</span><a class="headerlink" href="#TheNounProjectAPI.api.API.get_collection" title="Permalink to this definition">¶</a></dt>
-<dd><p>Fetches single collections, either by id or by slug.</p>
+<dd><p>Fetches a single <a class="reference internal" href="output_json.html#collection-label"><span class="std std-ref">Collection</span></a>, either by id or by slug.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>identifier</strong> (<em>Union</em><em>[</em><em>int</em><em>, </em><em>str</em><em>]</em>) – Collection identifier (id or slug).</p>
@@ -87,7 +87,7 @@ instead of data from the API. Should not be used except for testing this wrapper
 <dl class="method">
 <dt id="TheNounProjectAPI.api.API.get_collection_by_id">
 <code class="sig-name descname">get_collection_by_id</code><span class="sig-paren">(</span><em class="sig-param">_id</em><span class="sig-paren">)</span><a class="headerlink" href="#TheNounProjectAPI.api.API.get_collection_by_id" title="Permalink to this definition">¶</a></dt>
-<dd><p>Fetches a single collection by id.</p>
+<dd><p>Fetches a single <a class="reference internal" href="output_json.html#collection-label"><span class="std std-ref">Collection</span></a> by id.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>_id</strong> (<em>int</em>) – Collection ID.</p>
@@ -107,7 +107,7 @@ instead of data from the API. Should not be used except for testing this wrapper
 <dl class="method">
 <dt id="TheNounProjectAPI.api.API.get_collection_by_slug">
 <code class="sig-name descname">get_collection_by_slug</code><span class="sig-paren">(</span><em class="sig-param">slug</em><span class="sig-paren">)</span><a class="headerlink" href="#TheNounProjectAPI.api.API.get_collection_by_slug" title="Permalink to this definition">¶</a></dt>
-<dd><p>Fetches a single collection by slug.</p>
+<dd><p>Fetches a single <a class="reference internal" href="output_json.html#collection-label"><span class="std std-ref">Collection</span></a> by slug.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>slug</strong> (<em>str</em>) – Collection slug.</p>
@@ -127,7 +127,7 @@ instead of data from the API. Should not be used except for testing this wrapper
 <dl class="method">
 <dt id="TheNounProjectAPI.api.API.get_collection_icons">
 <code class="sig-name descname">get_collection_icons</code><span class="sig-paren">(</span><em class="sig-param">identifier</em>, <em class="sig-param">limit=None</em>, <em class="sig-param">offset=None</em>, <em class="sig-param">page=None</em><span class="sig-paren">)</span><a class="headerlink" href="#TheNounProjectAPI.api.API.get_collection_icons" title="Permalink to this definition">¶</a></dt>
-<dd><p>Fetches collection icons, either by id or by slug.</p>
+<dd><p>Fetches collection <a class="reference internal" href="output_json.html#icons-label"><span class="std std-ref">Icons</span></a>, either by id or by slug.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -155,7 +155,7 @@ instead of data from the API. Should not be used except for testing this wrapper
 <dl class="method">
 <dt id="TheNounProjectAPI.api.API.get_collection_icons_by_id">
 <code class="sig-name descname">get_collection_icons_by_id</code><span class="sig-paren">(</span><em class="sig-param">_id</em>, <em class="sig-param">limit=None</em>, <em class="sig-param">offset=None</em>, <em class="sig-param">page=None</em><span class="sig-paren">)</span><a class="headerlink" href="#TheNounProjectAPI.api.API.get_collection_icons_by_id" title="Permalink to this definition">¶</a></dt>
-<dd><p>Fetches collection icons by id from the API.</p>
+<dd><p>Fetches collection <a class="reference internal" href="output_json.html#icons-label"><span class="std std-ref">Icons</span></a> by id from the API.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -180,7 +180,7 @@ instead of data from the API. Should not be used except for testing this wrapper
 <dl class="method">
 <dt id="TheNounProjectAPI.api.API.get_collection_icons_by_slug">
 <code class="sig-name descname">get_collection_icons_by_slug</code><span class="sig-paren">(</span><em class="sig-param">slug</em>, <em class="sig-param">limit=None</em>, <em class="sig-param">offset=None</em>, <em class="sig-param">page=None</em><span class="sig-paren">)</span><a class="headerlink" href="#TheNounProjectAPI.api.API.get_collection_icons_by_slug" title="Permalink to this definition">¶</a></dt>
-<dd><p>Fetches collection icons by slug from the API.</p>
+<dd><p>Fetches collection <a class="reference internal" href="output_json.html#icons-label"><span class="std std-ref">Icons</span></a> by slug from the API.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -205,7 +205,7 @@ instead of data from the API. Should not be used except for testing this wrapper
 <dl class="method">
 <dt id="TheNounProjectAPI.api.API.get_collections">
 <code class="sig-name descname">get_collections</code><span class="sig-paren">(</span><em class="sig-param">limit=None</em>, <em class="sig-param">offset=None</em>, <em class="sig-param">page=None</em><span class="sig-paren">)</span><a class="headerlink" href="#TheNounProjectAPI.api.API.get_collections" title="Permalink to this definition">¶</a></dt>
-<dd><p>Fetches a list of all collections.</p>
+<dd><p>Fetches a list of all <a class="reference internal" href="output_json.html#collections-label"><span class="std std-ref">Collections</span></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -226,7 +226,7 @@ instead of data from the API. Should not be used except for testing this wrapper
 <dl class="method">
 <dt id="TheNounProjectAPI.api.API.get_icon">
 <code class="sig-name descname">get_icon</code><span class="sig-paren">(</span><em class="sig-param">identifier</em><span class="sig-paren">)</span><a class="headerlink" href="#TheNounProjectAPI.api.API.get_icon" title="Permalink to this definition">¶</a></dt>
-<dd><p>Fetches single icon, either by id or by term.</p>
+<dd><p>Fetches single <a class="reference internal" href="output_json.html#icon-label"><span class="std std-ref">Icon</span></a>, either by id or by term.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>identifier</strong> (<em>Union</em><em>[</em><em>int</em><em>, </em><em>str</em><em>]</em>) – Collection identifier (id or term).</p>
@@ -249,7 +249,7 @@ instead of data from the API. Should not be used except for testing this wrapper
 <dl class="method">
 <dt id="TheNounProjectAPI.api.API.get_icon_by_id">
 <code class="sig-name descname">get_icon_by_id</code><span class="sig-paren">(</span><em class="sig-param">_id</em><span class="sig-paren">)</span><a class="headerlink" href="#TheNounProjectAPI.api.API.get_icon_by_id" title="Permalink to this definition">¶</a></dt>
-<dd><p>Fetches a single icon by id.</p>
+<dd><p>Fetches a single <a class="reference internal" href="output_json.html#icon-label"><span class="std std-ref">Icon</span></a> by id.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>_id</strong> (<em>int</em>) – Icon id.</p>
@@ -269,7 +269,7 @@ instead of data from the API. Should not be used except for testing this wrapper
 <dl class="method">
 <dt id="TheNounProjectAPI.api.API.get_icon_by_term">
 <code class="sig-name descname">get_icon_by_term</code><span class="sig-paren">(</span><em class="sig-param">term</em><span class="sig-paren">)</span><a class="headerlink" href="#TheNounProjectAPI.api.API.get_icon_by_term" title="Permalink to this definition">¶</a></dt>
-<dd><p>Fetches a single icon by term.</p>
+<dd><p>Fetches a single <a class="reference internal" href="output_json.html#icon-label"><span class="std std-ref">Icon</span></a> by term.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>term</strong> (<em>str</em>) – Icon term.</p>
@@ -289,7 +289,7 @@ instead of data from the API. Should not be used except for testing this wrapper
 <dl class="method">
 <dt id="TheNounProjectAPI.api.API.get_icons_by_term">
 <code class="sig-name descname">get_icons_by_term</code><span class="sig-paren">(</span><em class="sig-param">term</em>, <em class="sig-param">public_domain_only=False</em>, <em class="sig-param">limit=None</em>, <em class="sig-param">offset=None</em>, <em class="sig-param">page=None</em><span class="sig-paren">)</span><a class="headerlink" href="#TheNounProjectAPI.api.API.get_icons_by_term" title="Permalink to this definition">¶</a></dt>
-<dd><p>Fetches a list of icons by term.</p>
+<dd><p>Fetches a list of <a class="reference internal" href="output_json.html#icons-label"><span class="std std-ref">Icons</span></a> by term.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -315,7 +315,7 @@ instead of data from the API. Should not be used except for testing this wrapper
 <dl class="method">
 <dt id="TheNounProjectAPI.api.API.get_recent_icons">
 <code class="sig-name descname">get_recent_icons</code><span class="sig-paren">(</span><em class="sig-param">limit=None</em>, <em class="sig-param">offset=None</em>, <em class="sig-param">page=None</em><span class="sig-paren">)</span><a class="headerlink" href="#TheNounProjectAPI.api.API.get_recent_icons" title="Permalink to this definition">¶</a></dt>
-<dd><p>Fetches recent icons.</p>
+<dd><p>Fetches recent <a class="reference internal" href="output_json.html#icons-label"><span class="std std-ref">Icons</span></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -336,7 +336,7 @@ instead of data from the API. Should not be used except for testing this wrapper
 <dl class="method">
 <dt id="TheNounProjectAPI.api.API.get_usage">
 <code class="sig-name descname">get_usage</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#TheNounProjectAPI.api.API.get_usage" title="Permalink to this definition">¶</a></dt>
-<dd><p>Fetches current oauth usage and limits.</p>
+<dd><p>Fetches current oauth <a class="reference internal" href="output_json.html#usage-label"><span class="std std-ref">Usage</span></a> and limits.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>UsageModel object.</p>
@@ -350,7 +350,7 @@ instead of data from the API. Should not be used except for testing this wrapper
 <dl class="method">
 <dt id="TheNounProjectAPI.api.API.get_user_collection">
 <code class="sig-name descname">get_user_collection</code><span class="sig-paren">(</span><em class="sig-param">user_id</em>, <em class="sig-param">slug</em><span class="sig-paren">)</span><a class="headerlink" href="#TheNounProjectAPI.api.API.get_user_collection" title="Permalink to this definition">¶</a></dt>
-<dd><p>Fetches a single collection associated with a user.</p>
+<dd><p>Fetches a single <a class="reference internal" href="output_json.html#collection-label"><span class="std std-ref">Collection</span></a> associated with a user.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -376,7 +376,7 @@ instead of data from the API. Should not be used except for testing this wrapper
 <dl class="method">
 <dt id="TheNounProjectAPI.api.API.get_user_collections">
 <code class="sig-name descname">get_user_collections</code><span class="sig-paren">(</span><em class="sig-param">user_id</em><span class="sig-paren">)</span><a class="headerlink" href="#TheNounProjectAPI.api.API.get_user_collections" title="Permalink to this definition">¶</a></dt>
-<dd><p>Fetches a list of collections associated with a user.</p>
+<dd><p>Fetches a list of <a class="reference internal" href="output_json.html#collections-label"><span class="std std-ref">Collections</span></a> associated with a user.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>user_id</strong> (<em>int</em>) – User id.</p>
@@ -396,7 +396,7 @@ instead of data from the API. Should not be used except for testing this wrapper
 <dl class="method">
 <dt id="TheNounProjectAPI.api.API.get_user_uploads">
 <code class="sig-name descname">get_user_uploads</code><span class="sig-paren">(</span><em class="sig-param">username</em>, <em class="sig-param">limit=None</em>, <em class="sig-param">offset=None</em>, <em class="sig-param">page=None</em><span class="sig-paren">)</span><a class="headerlink" href="#TheNounProjectAPI.api.API.get_user_uploads" title="Permalink to this definition">¶</a></dt>
-<dd><p>Fetches a list of uploads associated with a user.</p>
+<dd><p>Fetches a list of uploads (<a class="reference internal" href="output_json.html#icons-label"><span class="std std-ref">Icons</span></a>) associated with a user.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">

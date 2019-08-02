@@ -7,7 +7,7 @@ class Usage(Core):
     @Call.usage
     def get_usage(self) -> UsageModel:
         """
-        Fetches current oauth usage and limits.
+        Fetches current oauth :ref:`usage-label` and limits.
 
         :returns: UsageModel object.
         :rtype: UsageModel

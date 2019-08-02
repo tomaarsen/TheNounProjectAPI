@@ -11,4 +11,3 @@ Behind the scenes
     call
     core
     keys
-    output_json

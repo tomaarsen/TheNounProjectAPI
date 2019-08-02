@@ -11,7 +11,7 @@ class Collections(Core):
     @Call.collection
     def get_collection_by_id(self, _id: int) -> CollectionModel:
         """
-        Fetches a single collection by id.
+        Fetches a single :ref:`collection-label` by id.
 
         :param _id: Collection ID.
         :type _id: int
@@ -28,7 +28,7 @@ class Collections(Core):
     @Call.collection
     def get_collection_by_slug(self, slug: str) -> CollectionModel:
         """
-        Fetches a single collection by slug.
+        Fetches a single :ref:`collection-label` by slug.
 
         :param slug: Collection slug.
         :type slug: str
@@ -45,7 +45,7 @@ class Collections(Core):
     @Call.dispatch
     def get_collection(self, identifier: Union[int, str]) -> CollectionModel:
         """
-        Fetches single collections, either by id or by slug.
+        Fetches a single :ref:`collection-label`, either by id or by slug.
 
         :param identifier: Collection identifier (id or slug).
         :type identifier: Union[int, str]
@@ -75,7 +75,7 @@ class Collections(Core):
     @Call.collections
     def get_collections(self, limit:int = None, offset:int = None, page:int = None) -> List[CollectionModel]:
         """
-        Fetches a list of all collections.
+        Fetches a list of all :ref:`collections-label`.
 
         :param limit: Maximum number of results. (defaults to None)
         :type limit: int
@@ -93,7 +93,7 @@ class Collections(Core):
     @Call.collections
     def get_user_collections(self, user_id: int) -> List[CollectionModel]:
         """
-        Fetches a list of collections associated with a user.
+        Fetches a list of :ref:`collections-label` associated with a user.
 
         :param user_id: User id.
         :type user_id: int
@@ -110,7 +110,7 @@ class Collections(Core):
     @Call.collection
     def get_user_collection(self, user_id: int, slug: str) -> CollectionModel:
         """
-        Fetches a single collection associated with a user.
+        Fetches a single :ref:`collection-label` associated with a user.
 
         :param user_id: User id.
         :type user_id: int

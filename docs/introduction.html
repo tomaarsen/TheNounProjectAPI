@@ -86,19 +86,6 @@ For each of these ways, assume that this section of code is present at the top:<
 <h2>Making requests<a class="headerlink" href="#making-requests" title="Permalink to this headline">¶</a></h2>
 <p>Now that we have an API object with the keys set properly, we can start making requests.
 Let’s take a look at some of the most useful methods:</p>
-<ul class="simple">
-<li><p><a class="reference internal" href="api.html#TheNounProjectAPI.api.API.get_collection" title="TheNounProjectAPI.api.API.get_collection"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_collection()</span></code></a></p></li>
-<li><p><a class="reference internal" href="api.html#TheNounProjectAPI.api.API.get_collection_icons" title="TheNounProjectAPI.api.API.get_collection_icons"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_collection_icons()</span></code></a></p></li>
-<li><p><a class="reference internal" href="api.html#TheNounProjectAPI.api.API.get_collections" title="TheNounProjectAPI.api.API.get_collections"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_collections()</span></code></a></p></li>
-<li><p><a class="reference internal" href="api.html#TheNounProjectAPI.api.API.get_icon" title="TheNounProjectAPI.api.API.get_icon"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_icon()</span></code></a></p></li>
-<li><p><a class="reference internal" href="api.html#TheNounProjectAPI.api.API.get_icons_by_term" title="TheNounProjectAPI.api.API.get_icons_by_term"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_icons_by_term()</span></code></a></p></li>
-<li><p><a class="reference internal" href="api.html#TheNounProjectAPI.api.API.get_recent_icons" title="TheNounProjectAPI.api.API.get_recent_icons"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_recent_icons()</span></code></a></p></li>
-<li><p><a class="reference internal" href="api.html#TheNounProjectAPI.api.API.get_usage" title="TheNounProjectAPI.api.API.get_usage"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_usage()</span></code></a></p></li>
-<li><p><a class="reference internal" href="api.html#TheNounProjectAPI.api.API.get_user_collection" title="TheNounProjectAPI.api.API.get_user_collection"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_user_collection()</span></code></a></p></li>
-<li><p><a class="reference internal" href="api.html#TheNounProjectAPI.api.API.get_user_collections" title="TheNounProjectAPI.api.API.get_user_collections"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_user_collections()</span></code></a></p></li>
-<li><p><a class="reference internal" href="api.html#TheNounProjectAPI.api.API.get_user_uploads" title="TheNounProjectAPI.api.API.get_user_uploads"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_user_uploads()</span></code></a></p></li>
-<li><p><a class="reference internal" href="api.html#TheNounProjectAPI.api.API.report_usage" title="TheNounProjectAPI.api.API.report_usage"><code class="xref py py-meth docutils literal notranslate"><span class="pre">report_usage()</span></code></a></p></li>
-</ul>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 71%" />
@@ -114,38 +101,39 @@ Let’s take a look at some of the most useful methods:</p>
 <td><p><a class="reference internal" href="output_json.html#collection-label"><span class="std std-ref">Collection</span></a></p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="api.html#TheNounProjectAPI.api.API.get_collection_icons" title="TheNounProjectAPI.api.API.get_collection_icons"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_collection_icons()</span></code></a></p></td>
-<td></td>
+<td><p><a class="reference internal" href="output_json.html#icons-label"><span class="std std-ref">Icons</span></a></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="api.html#TheNounProjectAPI.api.API.get_collections" title="TheNounProjectAPI.api.API.get_collections"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_collections()</span></code></a></p></td>
 <td><p><a class="reference internal" href="output_json.html#collections-label"><span class="std std-ref">Collections</span></a></p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="api.html#TheNounProjectAPI.api.API.get_icon" title="TheNounProjectAPI.api.API.get_icon"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_icon()</span></code></a></p></td>
-<td></td>
+<td><p><a class="reference internal" href="output_json.html#icon-label"><span class="std std-ref">Icon</span></a></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="api.html#TheNounProjectAPI.api.API.get_icons_by_term" title="TheNounProjectAPI.api.API.get_icons_by_term"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_icons_by_term()</span></code></a></p></td>
-<td></td>
+<td><p><a class="reference internal" href="output_json.html#icons-label"><span class="std std-ref">Icons</span></a></p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="api.html#TheNounProjectAPI.api.API.get_recent_icons" title="TheNounProjectAPI.api.API.get_recent_icons"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_recent_icons()</span></code></a></p></td>
-<td></td>
+<td><p><a class="reference internal" href="output_json.html#icons-label"><span class="std std-ref">Icons</span></a></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="api.html#TheNounProjectAPI.api.API.get_usage" title="TheNounProjectAPI.api.API.get_usage"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_usage()</span></code></a></p></td>
-<td></td>
+<td><p><a class="reference internal" href="output_json.html#usage-label"><span class="std std-ref">Usage</span></a></p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="api.html#TheNounProjectAPI.api.API.get_user_collection" title="TheNounProjectAPI.api.API.get_user_collection"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_user_collection()</span></code></a></p></td>
-<td></td>
+<td><p><a class="reference internal" href="output_json.html#collection-label"><span class="std std-ref">Collection</span></a></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="api.html#TheNounProjectAPI.api.API.get_user_collections" title="TheNounProjectAPI.api.API.get_user_collections"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_user_collections()</span></code></a></p></td>
-<td></td>
+<td><p><a class="reference internal" href="output_json.html#collections-label"><span class="std std-ref">Collections</span></a></p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="api.html#TheNounProjectAPI.api.API.get_user_uploads" title="TheNounProjectAPI.api.API.get_user_uploads"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_user_uploads()</span></code></a></p></td>
-<td></td>
+<td><p><a class="reference internal" href="output_json.html#icons-label"><span class="std std-ref">Icons</span></a></p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="api.html#TheNounProjectAPI.api.API.report_usage" title="TheNounProjectAPI.api.API.report_usage"><code class="xref py py-meth docutils literal notranslate"><span class="pre">report_usage()</span></code></a></p></td>
-<td></td>
+<td><p><a class="reference internal" href="output_json.html#enterprise-label"><span class="std std-ref">Enterprise</span></a></p></td>
 </tr>
 </tbody>
 </table>
 <p>See <a class="reference internal" href="api.html#TheNounProjectAPI.api.API" title="TheNounProjectAPI.api.API"><code class="xref py py-class docutils literal notranslate"><span class="pre">API</span></code></a> for the other methods not listed here.</p>
+<p>See <a class="reference external" href="https://api.thenounproject.com/documentation.html">the Noun Project documentation</a> for more information.</p>
 </div>
 <div class="section" id="handling-outputs">
 <h2>Handling outputs<a class="headerlink" href="#handling-outputs" title="Permalink to this headline">¶</a></h2>

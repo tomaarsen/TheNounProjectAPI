@@ -54,36 +54,25 @@ Making requests
 Now that we have an API object with the keys set properly, we can start making requests. 
 Let's take a look at some of the most useful methods:
 
-* :py:meth:`~TheNounProjectAPI.api.API.get_collection`
-* :py:meth:`~TheNounProjectAPI.api.API.get_collection_icons`
-* :py:meth:`~TheNounProjectAPI.api.API.get_collections`
-* :py:meth:`~TheNounProjectAPI.api.API.get_icon`
-* :py:meth:`~TheNounProjectAPI.api.API.get_icons_by_term`
-* :py:meth:`~TheNounProjectAPI.api.API.get_recent_icons`
-* :py:meth:`~TheNounProjectAPI.api.API.get_usage`
-* :py:meth:`~TheNounProjectAPI.api.API.get_user_collection`
-* :py:meth:`~TheNounProjectAPI.api.API.get_user_collections`
-* :py:meth:`~TheNounProjectAPI.api.API.get_user_uploads`
-* :py:meth:`~TheNounProjectAPI.api.API.report_usage`
-
 ========================================================== =======================
 Methods                                                    Example output
 ========================================================== =======================
 :py:meth:`~TheNounProjectAPI.api.API.get_collection`       :ref:`collection-label`
-:py:meth:`~TheNounProjectAPI.api.API.get_collection_icons`
+:py:meth:`~TheNounProjectAPI.api.API.get_collection_icons` :ref:`icons-label`
 :py:meth:`~TheNounProjectAPI.api.API.get_collections`      :ref:`collections-label`
-:py:meth:`~TheNounProjectAPI.api.API.get_icon`
-:py:meth:`~TheNounProjectAPI.api.API.get_icons_by_term`
-:py:meth:`~TheNounProjectAPI.api.API.get_recent_icons`
-:py:meth:`~TheNounProjectAPI.api.API.get_usage`
-:py:meth:`~TheNounProjectAPI.api.API.get_user_collection`
-:py:meth:`~TheNounProjectAPI.api.API.get_user_collections`
-:py:meth:`~TheNounProjectAPI.api.API.get_user_uploads`
-:py:meth:`~TheNounProjectAPI.api.API.report_usage`
+:py:meth:`~TheNounProjectAPI.api.API.get_icon`             :ref:`icon-label`
+:py:meth:`~TheNounProjectAPI.api.API.get_icons_by_term`    :ref:`icons-label`
+:py:meth:`~TheNounProjectAPI.api.API.get_recent_icons`     :ref:`icons-label`
+:py:meth:`~TheNounProjectAPI.api.API.get_usage`            :ref:`usage-label`
+:py:meth:`~TheNounProjectAPI.api.API.get_user_collection`  :ref:`collection-label`
+:py:meth:`~TheNounProjectAPI.api.API.get_user_collections` :ref:`collections-label`
+:py:meth:`~TheNounProjectAPI.api.API.get_user_uploads`     :ref:`icons-label`
+:py:meth:`~TheNounProjectAPI.api.API.report_usage`         :ref:`enterprise-label`
 ========================================================== =======================
 
-
 See :py:class:`~TheNounProjectAPI.api.API` for the other methods not listed here.
+
+See `the Noun Project documentation <https://api.thenounproject.com/documentation.html>`_ for more information.
 
 Handling outputs
 ^^^^^^^^^^^^^^^^

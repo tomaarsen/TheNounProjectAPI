@@ -11,7 +11,7 @@ class Model:
     """
     def __init__(self):
         """ Constructs a new 'Model' object. """
-        self.output_keys = ()
+        self._output_keys = ()
         self.json: DotDict = DotDict()
         """ The json data returned by the API, as a :class:`DotDict` instance. """
         self.response: requests.Response = None
@@ -44,7 +44,7 @@ class Model:
         """ Returns string with class name, followed by all output_keys and their values. 
             eg: <Collection: Name: Cue, Slug: cue, Id: 12> """
         return "<{}: {}>".format(self.__class__.__name__,
-                                ", ".join(f"{output_key.title}: {self.json[output_key.key]}" for output_key in self.output_keys if getattr(self, output_key.key, None) is not None))
+                                ", ".join(f"{output_key.title}: {self.json[output_key.key]}" for output_key in self._output_keys if getattr(self, output_key.key, None) is not None))
 
 class ModelList(list):
     """
@@ -61,16 +61,17 @@ class ModelList(list):
         instance.extend([instance_class.parse(item) for item in main_dict])
         instance.response = response
         for key, val in data.items():
-            setattr(instance, key, sequence_to_dot(val))
+            setattr(instance, key if key not in main_keys else main_keys[0], sequence_to_dot(val))
         return instance
 
 class CollectionModel(Model):
     """
     CollectionModel is a subclass of Model, with different attributes displayed when printed.
+    See :ref:`collection-label` for more information regarding what attributes comes with this object.
     """
     def __init__(self):
         super().__init__()
-        self.output_keys = (OutputKeys("name"), 
+        self._output_keys = (OutputKeys("name"), 
                             OutputKeys("slug"), 
                             OutputKeys("id"))
     
@@ -83,6 +84,7 @@ class CollectionModel(Model):
 class CollectionsModel(ModelList):
     """
     CollectionsModel is a subclass of ModelList, which focuses on turning CollectionModel objects into a list.
+    See :ref:`collections-label` for more information regarding what attributes comes with this object.
     """
     @classmethod
     def parse(cls, data: dict, response:requests.Response = None):
@@ -95,10 +97,11 @@ class CollectionsModel(ModelList):
 class IconModel(Model):
     """
     IconModel is a subclass of Model, with different attributes displayed when printed.
+    See :ref:`icon-label` for more information regarding what attributes comes with this object.
     """
     def __init__(self):
         super().__init__()
-        self.output_keys = (OutputKeys("term"), 
+        self._output_keys = (OutputKeys("term"), 
                             OutputKeys("term_slug", "Slug"), 
                             OutputKeys("id"))
     @classmethod
@@ -110,6 +113,7 @@ class IconModel(Model):
 class IconsModel(ModelList):
     """
     IconsModel is a subclass of ModelList, which focuses on turning IconModel objects into a list.
+    See :ref:`icons-label` for more information regarding what attributes comes with this object.
     """
     @classmethod
     def parse(cls, data: dict, response:requests.Response = None):
@@ -122,10 +126,11 @@ class IconsModel(ModelList):
 class UsageModel(Model):
     """
     UsageModel is a subclass of Model, with different attributes displayed when printed.
+    See :ref:`usage-label` for more information regarding what attributes comes with this object.
     """
     def __init__(self):
         super().__init__()
-        self.output_keys = (OutputKeys(("usage", "hourly"), "Hourly"), 
+        self._output_keys = (OutputKeys(("usage", "hourly"), "Hourly"), 
                             OutputKeys(("usage", "daily"), "Daily"), 
                             OutputKeys(("usage", "monthly"), "Monthly"),)
     
@@ -133,15 +138,16 @@ class UsageModel(Model):
         """ Returns string with class name, followed by all output_keys and their values. 
             eg: <Collection: Name: Cue, Slug: cue, Id: 12> """
         return "<{}: {}>".format(self.__class__.__name__,
-                                ", ".join(f"{output_key.title}: {self.json[output_key.key[0]][output_key.key[1]]}" for output_key in self.output_keys))
+                                ", ".join(f"{output_key.title}: {self.json[output_key.key[0]][output_key.key[1]]}" for output_key in self._output_keys))
 
 class EnterpriseModel(Model):
     """
     EnterpriseModel is a subclass of Model, with different attributes displayed when printed.
+    See :ref:`enterprise-label` for more information regarding what attributes comes with this object.
     """
     def __init__(self):
         super().__init__()
-        self.output_keys = (OutputKeys("licenses_consumed", "Licenses Consumed"),
+        self._output_keys = (OutputKeys("licenses_consumed", "Licenses Consumed"),
                             OutputKeys("result"))
 
 class OutputKeys:

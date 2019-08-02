@@ -64,7 +64,7 @@ instead of data from the API. Should not be used except for testing this wrapper
 <dl class="method">
 <dt id="TheNounProjectAPI.core.Core._close_session">
 <code class="sig-name descname">_close_session</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#TheNounProjectAPI.core.Core._close_session" title="Permalink to this definition">¶</a></dt>
-<dd><p>TODO</p>
+<dd><p>Closes the requests.Session used for making requests.</p>
 </dd></dl>
 
 <dl class="method">
@@ -75,7 +75,7 @@ instead of data from the API. Should not be used except for testing this wrapper
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>_id</strong> (<em>int</em>) – Id of which we want to make sure it is positive.</p></li>
-<li><p><strong>param_name</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – Name of this parameter, for use in error message.</p></li>
+<li><p><strong>param_name</strong> (<em>str</em>) – Name of this parameter, for use in error message.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Raises</dt>
@@ -153,7 +153,7 @@ for the given URL, with the given parameters/json, with authentication.</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>slug</strong> (<em>str</em>) – String slug parameter to be used as a parameter in the URL request.</p></li>
-<li><p><strong>param_name</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – Name of this parameter, for use in error message.</p></li>
+<li><p><strong>param_name</strong> (<em>str</em>) – Name of this parameter, for use in error message.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Raises</dt>
@@ -173,7 +173,7 @@ for the given URL, with the given parameters/json, with authentication.</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>term</strong> (<em>str</em>) – String term parameter to be used as a parameter in the URL request.</p></li>
-<li><p><strong>param_name</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – Name of this parameter, for use in error message.</p></li>
+<li><p><strong>param_name</strong> (<em>str</em>) – Name of this parameter, for use in error message.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Raises</dt>
@@ -193,7 +193,7 @@ for the given URL, with the given parameters/json, with authentication.</p>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>param</strong> (<em>Any</em>) – Parameter to check type of.</p></li>
-<li><p><strong>param_name</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – Name of this parameter, for use in error message.</p></li>
+<li><p><strong>param_name</strong> (<em>str</em>) – Name of this parameter, for use in error message.</p></li>
 <li><p><strong>types</strong> (<em>Union</em><em>[</em><em>Type</em><em>[</em><em>Any</em><em>]</em><em>, </em><em>Tuple</em><em>[</em><em>Type</em><em>[</em><em>Any</em><em>]</em><em>, </em><em>..</em><em>]</em><em>]</em>) – Types to check param against. Either a single type or a tuple of types.</p></li>
 </ul>
 </dd>
