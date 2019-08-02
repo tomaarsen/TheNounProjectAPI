@@ -48,14 +48,14 @@
 <dt id="TheNounProjectAPI.models.Model">
 <em class="property">class </em><code class="sig-prename descclassname">TheNounProjectAPI.models.</code><code class="sig-name descname">Model</code><a class="headerlink" href="#TheNounProjectAPI.models.Model" title="Permalink to this definition">¶</a></dt>
 <dd><p>Model is a base class to be used as a superclass for conveniently accessing data.
-All of the json returned by the API is parsed through this model, and stored under the <a class="reference internal" href="#TheNounProjectAPI.models.Model.json" title="TheNounProjectAPI.models.Model.json"><code class="xref py py-attr docutils literal notranslate"><span class="pre">json</span></code></a> attribute
-Given that the json is as follows:</p>
+All of the json returned by the API is parsed through this model, and stored under the <a class="reference internal" href="#TheNounProjectAPI.models.Model.json" title="TheNounProjectAPI.models.Model.json"><code class="xref py py-attr docutils literal notranslate"><span class="pre">json</span></code></a> attribute.</p>
+<p>Let’s assume the json looks like this:</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
     <span class="nt">&quot;author&quot;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="nt">&quot;location&quot;</span><span class="p">:</span> <span class="s2">&quot;US&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;mnmly&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;permalink&quot;</span><span class="p">:</span> <span class="s2">&quot;/mnmly&quot;</span><span class="p">,</span>
-    <span class="nt">&quot;username&quot;</span><span class="p">:</span> <span class="s2">&quot;mnmly&quot;</span>
+        <span class="nt">&quot;location&quot;</span><span class="p">:</span> <span class="s2">&quot;US&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;mnmly&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;permalink&quot;</span><span class="p">:</span> <span class="s2">&quot;/mnmly&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;username&quot;</span><span class="p">:</span> <span class="s2">&quot;mnmly&quot;</span>
     <span class="p">},</span>
     <span class="nt">&quot;author_id&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
     <span class="nt">&quot;date_created&quot;</span><span class="p">:</span> <span class="s2">&quot;2012-02-22 13:32:49&quot;</span><span class="p">,</span>
@@ -78,7 +78,7 @@ Given that the json is as follows:</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>then this data may be accessed in any of the following ways:</p>
+<p>This data may then be accessed in any of the following ways:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># (A) Standard way for accessing a dict</span>
 <span class="n">model</span><span class="o">.</span><span class="n">json</span><span class="p">[</span><span class="s2">&quot;author&quot;</span><span class="p">][</span><span class="s2">&quot;username&quot;</span><span class="p">]</span>
 
@@ -207,7 +207,14 @@ In addition, this list may have some additional attributes like <cite>generated_
 <dt id="TheNounProjectAPI.models.DotDict">
 <em class="property">class </em><code class="sig-prename descclassname">TheNounProjectAPI.models.</code><code class="sig-name descname">DotDict</code><a class="headerlink" href="#TheNounProjectAPI.models.DotDict" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></p>
-<p>Subclass of dict allowing dot notation for items in the dict.</p>
+<p>Subclass of dict allowing dot notation for items in the dict:</p>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">dot_dict</span><span class="o">.</span><span class="n">author</span><span class="o">.</span><span class="n">username</span> 
+<span class="c1"># is equivalent to:</span>
+<span class="n">dot_dict</span><span class="p">[</span><span class="s2">&quot;author&quot;</span><span class="p">][</span><span class="s2">&quot;username&quot;</span><span class="p">]</span>
+</pre></div>
+</td></tr></table></div>
 </dd></dl>
 
 <dl class="class">

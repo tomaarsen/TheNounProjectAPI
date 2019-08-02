@@ -157,7 +157,14 @@ class OutputKeys:
 
 class DotDict(dict):
     """
-    Subclass of dict allowing dot notation for items in the dict.
+    Subclass of dict allowing dot notation for items in the dict:
+
+    .. code-block :: python
+        :linenos:
+
+        dot_dict.author.username 
+        # is equivalent to:
+        dot_dict["author"]["username"]
     """ 
     def __getattr__(self, name: str):
         """ 

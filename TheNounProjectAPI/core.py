@@ -20,7 +20,7 @@ class Core(Keys):
         :param secret: The secret key from the TheNounProject API. (defaults to None)
         :type secret: str
         :param testing: Whether the methods should return a PreparedRequest, 
-                        instead of data from the API. (defaults to False)
+                        instead of data from the API. Should not be used except for testing this wrapper. (defaults to False)
         :type testing: bool
         :param timeout: Float timeout in seconds, 2-tuples for seperate connect and read timeouts, and None for no timeout. (defaults to 5.0)
         :type timeout: Union[float, Tuple[float, float], None]
