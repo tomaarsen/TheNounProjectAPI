@@ -99,7 +99,7 @@ class Icons(Core):
         :param _id: Icon id.
         :type _id: int
 
-        :raise NonNegative: Raises exception when id is nonpositive.
+        :raise NonPositive: Raises exception when id is nonpositive.
 
         :returns: IconModel object identified by the _id.
         :rtype: IconModel

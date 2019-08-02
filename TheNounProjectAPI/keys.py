@@ -67,7 +67,7 @@ class Keys:
         """
         Asserts that both api and secret keys have been set. 
 
-        :raise AssertionError: Raises exception when api or secret keys have not been set.
+        :raise APIKeyNotSet: Raises exception when api or secret keys have not been set.
 
         :returns: Returns an OAuth object using this object's API and secret key.
         :rtype: OAuth1

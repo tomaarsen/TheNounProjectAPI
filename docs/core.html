@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Core &#8212; TheNounProjectAPI 1.0.1 documentation</title>
+    <link rel="stylesheet" href="_static/pydoctheme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/sidebar.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Keys" href="keys.html" />
+    <link rel="prev" title="Call" href="call.html" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <!--<link rel="shortcut icon" type="image/png" href="_static/favicon.png" />-->
+    <meta name="viewport" content="width=device-width,initial-scale=0.8">
+    
+    
+
+  </head><body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="responsive-menu"><a href="#sidebar-anchor" title="Navigation">&#9776;</a></li>
+        <li><a href="index.html">TheNounProjectAPI 1.0.1 documentation</a> &#187;</li>
+          <li><a href="behind.html" accesskey="U">Behind the scenes</a> &#187;</li> 
+      </ul>
+    </div>
+    <!---->
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-TheNounProjectAPI.core">
+<span id="core"></span><h1>Core<a class="headerlink" href="#module-TheNounProjectAPI.core" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="TheNounProjectAPI.core.Core">
+<em class="property">class </em><code class="sig-prename descclassname">TheNounProjectAPI.core.</code><code class="sig-name descname">Core</code><span class="sig-paren">(</span><em class="sig-param">key=None</em>, <em class="sig-param">secret=None</em>, <em class="sig-param">testing=False</em>, <em class="sig-param">timeout=5.0</em><span class="sig-paren">)</span><a class="headerlink" href="#TheNounProjectAPI.core.Core" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="keys.html#TheNounProjectAPI.keys.Keys" title="TheNounProjectAPI.keys.Keys"><code class="xref py py-class docutils literal notranslate"><span class="pre">TheNounProjectAPI.keys.Keys</span></code></a></p>
+<p>Core is a class providing helper functions useful for accessing the TheNounProject API.</p>
+<p>Construct a new object for making API requests.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>key</strong> (<em>str</em>) – The API key from the TheNounProject API. (defaults to None)</p></li>
+<li><p><strong>secret</strong> (<em>str</em>) – The secret key from the TheNounProject API. (defaults to None)</p></li>
+<li><p><strong>testing</strong> (<em>bool</em>) – Whether the methods should return a PreparedRequest, 
+instead of data from the API. (defaults to False)</p></li>
+<li><p><strong>timeout</strong> (<em>Union</em><em>[</em><em>float</em><em>, </em><em>Tuple</em><em>[</em><em>float</em><em>, </em><em>float</em><em>]</em><em>, </em><em>None</em><em>]</em>) – Float timeout in seconds, 2-tuples for seperate connect and read timeouts, and None for no timeout. (defaults to 5.0)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="TheNounProjectAPI.core.Core._close_session">
+<code class="sig-name descname">_close_session</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#TheNounProjectAPI.core.Core._close_session" title="Permalink to this definition">¶</a></dt>
+<dd><p>TODO</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="TheNounProjectAPI.core.Core._id_assert">
+<code class="sig-name descname">_id_assert</code><span class="sig-paren">(</span><em class="sig-param">_id</em>, <em class="sig-param">param_name</em><span class="sig-paren">)</span><a class="headerlink" href="#TheNounProjectAPI.core.Core._id_assert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Asserts that the _id parameter is positive.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>_id</strong> (<em>int</em>) – Id of which we want to make sure it is positive.</p></li>
+<li><p><strong>param_name</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – Name of this parameter, for use in error message.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference internal" href="exceptions.html#TheNounProjectAPI.exceptions.NonPositive" title="TheNounProjectAPI.exceptions.NonPositive"><strong>NonPositive</strong></a> – Raises exception when _id is not positive.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="TheNounProjectAPI.core.Core._lop_assert">
+<code class="sig-name descname">_lop_assert</code><span class="sig-paren">(</span><em class="sig-param">limit</em>, <em class="sig-param">offset</em>, <em class="sig-param">page</em><span class="sig-paren">)</span><a class="headerlink" href="#TheNounProjectAPI.core.Core._lop_assert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Asserts that limit, offset and page parameters are all integers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>limit</strong> (<em>Any</em>) – Limit parameter to be used as a parameter in the URL request.</p></li>
+<li><p><strong>offset</strong> (<em>Any</em>) – Offset parameter to be used as a parameter in the URL request.</p></li>
+<li><p><strong>page</strong> (<em>Any</em>) – Page parameter to be used as a parameter in the URL request.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference internal" href="exceptions.html#TheNounProjectAPI.exceptions.IncorrectType" title="TheNounProjectAPI.exceptions.IncorrectType"><strong>IncorrectType</strong></a> – Raises exception when limit, offset or page are not of NoneType or integer type.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="TheNounProjectAPI.core.Core._prepare_url">
+<code class="sig-name descname">_prepare_url</code><span class="sig-paren">(</span><em class="sig-param">url</em>, <em class="sig-param">**params</em><span class="sig-paren">)</span><a class="headerlink" href="#TheNounProjectAPI.core.Core._prepare_url" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a requests.PreparedRequest object for a request self._method as method, 
+for the given URL, with the given parameters/json, with authentication.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>url</strong> (<em>str</em>) – The URL of the requested endpoint.</p></li>
+<li><p><strong>params</strong> (<em>dict</em>) – The parameters to be added onto the string.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A requests.PreparedRequest object.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>requests.PreparedRequest</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="TheNounProjectAPI.core.Core._send">
+<code class="sig-name descname">_send</code><span class="sig-paren">(</span><em class="sig-param">url</em><span class="sig-paren">)</span><a class="headerlink" href="#TheNounProjectAPI.core.Core._send" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>url</strong> (<em>requests.PreparedRequest</em>) – The PreparedRequest with the method, URL and parameters for the request.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Returns a requests.Response object generated by performing the URL request with our session.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>requests.Response</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="TheNounProjectAPI.core.Core._slug_assert">
+<code class="sig-name descname">_slug_assert</code><span class="sig-paren">(</span><em class="sig-param">slug</em>, <em class="sig-param">param_name</em><span class="sig-paren">)</span><a class="headerlink" href="#TheNounProjectAPI.core.Core._slug_assert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Asserts that slug is nonempty, ascii, and does not contain spaces.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>slug</strong> (<em>str</em>) – String slug parameter to be used as a parameter in the URL request.</p></li>
+<li><p><strong>param_name</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – Name of this parameter, for use in error message.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference internal" href="exceptions.html#TheNounProjectAPI.exceptions.IllegalSlug" title="TheNounProjectAPI.exceptions.IllegalSlug"><strong>IllegalSlug</strong></a> – Raises exception when slug is empty, contains non-ascii characters, or contains spaces.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="TheNounProjectAPI.core.Core._term_assert">
+<code class="sig-name descname">_term_assert</code><span class="sig-paren">(</span><em class="sig-param">term</em>, <em class="sig-param">param_name</em><span class="sig-paren">)</span><a class="headerlink" href="#TheNounProjectAPI.core.Core._term_assert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Asserts that term is nonempty.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>term</strong> (<em>str</em>) – String term parameter to be used as a parameter in the URL request.</p></li>
+<li><p><strong>param_name</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – Name of this parameter, for use in error message.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference internal" href="exceptions.html#TheNounProjectAPI.exceptions.IllegalTerm" title="TheNounProjectAPI.exceptions.IllegalTerm"><strong>IllegalTerm</strong></a> – Raises exception when term has a length of 0.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="TheNounProjectAPI.core.Core._type_assert">
+<code class="sig-name descname">_type_assert</code><span class="sig-paren">(</span><em class="sig-param">param</em>, <em class="sig-param">param_name</em>, <em class="sig-param">types</em><span class="sig-paren">)</span><a class="headerlink" href="#TheNounProjectAPI.core.Core._type_assert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Asserts that param is an instance of any type in types.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>param</strong> (<em>Any</em>) – Parameter to check type of.</p></li>
+<li><p><strong>param_name</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>) – Name of this parameter, for use in error message.</p></li>
+<li><p><strong>types</strong> (<em>Union</em><em>[</em><em>Type</em><em>[</em><em>Any</em><em>]</em><em>, </em><em>Tuple</em><em>[</em><em>Type</em><em>[</em><em>Any</em><em>]</em><em>, </em><em>..</em><em>]</em><em>]</em>) – Types to check param against. Either a single type or a tuple of types.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference internal" href="exceptions.html#TheNounProjectAPI.exceptions.IncorrectType" title="TheNounProjectAPI.exceptions.IncorrectType"><strong>IncorrectType</strong></a> – Raises exception if param is not an instance of any type in types.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+    <a id="sidebar-anchor"></a>
+    
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="call.html"
+                        title="previous chapter">Call</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="keys.html"
+                        title="next chapter">Keys</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/core.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="keys.html" title="Keys"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="call.html" title="Call"
+             accesskey="P">previous</a> |</li>
+      </ul>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, Tom Aarsen.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.2.
+    </div>
+  </body>
+</html>

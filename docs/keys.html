@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Keys &#8212; TheNounProjectAPI 1.0.1 documentation</title>
+    <link rel="stylesheet" href="_static/pydoctheme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/sidebar.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Core" href="core.html" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <!--<link rel="shortcut icon" type="image/png" href="_static/favicon.png" />-->
+    <meta name="viewport" content="width=device-width,initial-scale=0.8">
+    
+    
+
+  </head><body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="responsive-menu"><a href="#sidebar-anchor" title="Navigation">&#9776;</a></li>
+        <li><a href="index.html">TheNounProjectAPI 1.0.1 documentation</a> &#187;</li>
+          <li><a href="behind.html" accesskey="U">Behind the scenes</a> &#187;</li> 
+      </ul>
+    </div>
+    <!---->
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-TheNounProjectAPI.keys">
+<span id="keys"></span><h1>Keys<a class="headerlink" href="#module-TheNounProjectAPI.keys" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="TheNounProjectAPI.keys.Keys">
+<em class="property">class </em><code class="sig-prename descclassname">TheNounProjectAPI.keys.</code><code class="sig-name descname">Keys</code><a class="headerlink" href="#TheNounProjectAPI.keys.Keys" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="TheNounProjectAPI.keys.Keys._get_oauth">
+<code class="sig-name descname">_get_oauth</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#TheNounProjectAPI.keys.Keys._get_oauth" title="Permalink to this definition">¶</a></dt>
+<dd><p>Asserts that both api and secret keys have been set.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><a class="reference internal" href="exceptions.html#TheNounProjectAPI.exceptions.APIKeyNotSet" title="TheNounProjectAPI.exceptions.APIKeyNotSet"><strong>APIKeyNotSet</strong></a> – Raises exception when api or secret keys have not been set.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Returns an OAuth object using this object’s API and secret key.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>OAuth1</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="TheNounProjectAPI.keys.Keys.api_key">
+<em class="property">property </em><code class="sig-name descname">api_key</code><a class="headerlink" href="#TheNounProjectAPI.keys.Keys.api_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>Getter for api_key property.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The API key from the TheNounProject API.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="TheNounProjectAPI.keys.Keys.secret_key">
+<em class="property">property </em><code class="sig-name descname">secret_key</code><a class="headerlink" href="#TheNounProjectAPI.keys.Keys.secret_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>Getter for secret_key property.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The secret key from the TheNounProject API.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="TheNounProjectAPI.keys.Keys.set_api_key">
+<code class="sig-name descname">set_api_key</code><span class="sig-paren">(</span><em class="sig-param">key</em><span class="sig-paren">)</span><a class="headerlink" href="#TheNounProjectAPI.keys.Keys.set_api_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets API key.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>key</strong> (<em>str</em>) – The API key from the TheNounProject API.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="TheNounProjectAPI.keys.Keys.set_secret_key">
+<code class="sig-name descname">set_secret_key</code><span class="sig-paren">(</span><em class="sig-param">secret</em><span class="sig-paren">)</span><a class="headerlink" href="#TheNounProjectAPI.keys.Keys.set_secret_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets API secret.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>secret</strong> (<em>str</em>) – The secret key from the TheNounProject API</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+    <a id="sidebar-anchor"></a>
+    
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="core.html"
+                        title="previous chapter">Core</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/keys.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="core.html" title="Core"
+             accesskey="P">previous</a> |</li>
+      </ul>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, Tom Aarsen.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.2.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Usage &#8212; TheNounProjectAPI 1.0.1 documentation</title>
+    <link rel="stylesheet" href="_static/pydoctheme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/sidebar.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Enterprise" href="enterprise.html" />
+    <link rel="prev" title="Icons" href="icons.html" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <!--<link rel="shortcut icon" type="image/png" href="_static/favicon.png" />-->
+    <meta name="viewport" content="width=device-width,initial-scale=0.8">
+    
+    
+
+  </head><body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="responsive-menu"><a href="#sidebar-anchor" title="Navigation">&#9776;</a></li>
+        <li><a href="index.html">TheNounProjectAPI 1.0.1 documentation</a> &#187;</li>
+          <li><a href="behind.html" accesskey="U">Behind the scenes</a> &#187;</li> 
+      </ul>
+    </div>
+    <!---->
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-TheNounProjectAPI.usage">
+<span id="usage"></span><h1>Usage<a class="headerlink" href="#module-TheNounProjectAPI.usage" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="TheNounProjectAPI.usage.Usage">
+<em class="property">class </em><code class="sig-prename descclassname">TheNounProjectAPI.usage.</code><code class="sig-name descname">Usage</code><span class="sig-paren">(</span><em class="sig-param">key=None</em>, <em class="sig-param">secret=None</em>, <em class="sig-param">testing=False</em>, <em class="sig-param">timeout=5.0</em><span class="sig-paren">)</span><a class="headerlink" href="#TheNounProjectAPI.usage.Usage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="core.html#TheNounProjectAPI.core.Core" title="TheNounProjectAPI.core.Core"><code class="xref py py-class docutils literal notranslate"><span class="pre">TheNounProjectAPI.core.Core</span></code></a></p>
+<p>Construct a new object for making API requests.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>key</strong> (<em>str</em>) – The API key from the TheNounProject API. (defaults to None)</p></li>
+<li><p><strong>secret</strong> (<em>str</em>) – The secret key from the TheNounProject API. (defaults to None)</p></li>
+<li><p><strong>testing</strong> (<em>bool</em>) – Whether the methods should return a PreparedRequest, 
+instead of data from the API. (defaults to False)</p></li>
+<li><p><strong>timeout</strong> (<em>Union</em><em>[</em><em>float</em><em>, </em><em>Tuple</em><em>[</em><em>float</em><em>, </em><em>float</em><em>]</em><em>, </em><em>None</em><em>]</em>) – Float timeout in seconds, 2-tuples for seperate connect and read timeouts, and None for no timeout. (defaults to 5.0)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="TheNounProjectAPI.usage.Usage.get_usage">
+<code class="sig-name descname">get_usage</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#TheNounProjectAPI.usage.Usage.get_usage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fetches current oauth usage and limits.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>UsageModel object.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="models.html#TheNounProjectAPI.models.UsageModel" title="TheNounProjectAPI.models.UsageModel">UsageModel</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+    <a id="sidebar-anchor"></a>
+    
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="icons.html"
+                        title="previous chapter">Icons</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="enterprise.html"
+                        title="next chapter">Enterprise</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/usage.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="enterprise.html" title="Enterprise"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="icons.html" title="Icons"
+             accesskey="P">previous</a> |</li>
+      </ul>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, Tom Aarsen.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.2.
+    </div>
+  </body>
+</html>

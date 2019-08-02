@@ -11,7 +11,7 @@ class Core(Keys):
     Core is a class providing helper functions useful for accessing the TheNounProject API.
     """
 
-    def __init__(self, key:str = None, secret:str = None, testing:bool = False, timeout:Union[float, Tuple[float, float], None] = 5):
+    def __init__(self, key:str = None, secret:str = None, testing:bool = False, timeout:Union[float, Tuple[float, float], None] = 5.0):
         """
         Construct a new object for making API requests.
 
@@ -22,7 +22,7 @@ class Core(Keys):
         :param testing: Whether the methods should return a PreparedRequest, 
                         instead of data from the API. (defaults to False)
         :type testing: bool
-        :param timeout: Float timeout in seconds, 2-tuples for seperate connect and read timeouts, and None for no timeout. (defaults to 5)
+        :param timeout: Float timeout in seconds, 2-tuples for seperate connect and read timeouts, and None for no timeout. (defaults to 5.0)
         :type timeout: Union[float, Tuple[float, float], None]
         """
         self.api_key = key

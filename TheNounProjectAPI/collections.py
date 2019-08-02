@@ -98,7 +98,7 @@ class Collections(Core):
         :param user_id: User id.
         :type user_id: int
 
-        :raise NonNegative: Raises exception when user_id is not positive.
+        :raise NonPositive: Raises exception when user_id is not positive.
 
         :returns: List of CollectionModel objects associated with a user identified by the user_id.
         :rtype: List[CollectionModel]
@@ -117,7 +117,7 @@ class Collections(Core):
         :param slug: Collection slug.
         :type slug: str
 
-        :raise NonNegative: Raises exception when user_id is not positive.
+        :raise NonPositive: Raises exception when user_id is not positive.
         :raise IllegalSlug: Raises exception when slug is an empty string, contains non ascii characters or contains multiple words.
 
         :returns: CollectionModel object identified by the slug, from the user identified by the user_id.
