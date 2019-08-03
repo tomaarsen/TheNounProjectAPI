@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Introduction &#8212; TheNounProjectAPI 1.0.1 documentation</title>
+    <title>Getting Started &#8212; TheNounProjectAPI 1.0.1 documentation</title>
     <link rel="stylesheet" href="_static/pydoctheme.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     
@@ -41,14 +41,12 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="introduction">
-<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
-<p>&lt;Introduction&gt;</p>
-</div>
-<div class="section" id="getting-started">
+  <div class="section" id="getting-started">
 <h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
+<p>TheNounProjectAPI is a Python wrapper allowing convenient access to the <a class="reference external" href="https://thenounproject.com">Noun Project</a> API.
+It supports all endpoints and types of responses.</p>
 <div class="section" id="api-keys">
-<h2>API keys<a class="headerlink" href="#api-keys" title="Permalink to this headline">¶</a></h2>
+<span id="api-keys-label"></span><h2>API keys<a class="headerlink" href="#api-keys" title="Permalink to this headline">¶</a></h2>
 <p>Before any requests can be made, the api key and secret need to be set.
 These keys can be generated once you have made a Noun Project account.
 See <a class="reference external" href="https://api.thenounproject.com/getting_started.html#creating-an-api-key">this topic</a> on the official Noun Project documentation for more information.</p>
@@ -84,8 +82,7 @@ For each of these ways, assume that this section of code is present at the top:<
 </div>
 <div class="section" id="making-requests">
 <h2>Making requests<a class="headerlink" href="#making-requests" title="Permalink to this headline">¶</a></h2>
-<p>Now that we have an API object with the keys set properly, we can start making requests.
-Let’s take a look at some of the most useful methods:</p>
+<p>Once an API object has been set up, it can be used to make requests. Some of the most useful methods used for these requests are listed here.</p>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 71%" />
@@ -133,7 +130,7 @@ Let’s take a look at some of the most useful methods:</p>
 </tbody>
 </table>
 <p>See <a class="reference internal" href="api.html#TheNounProjectAPI.api.API" title="TheNounProjectAPI.api.API"><code class="xref py py-class docutils literal notranslate"><span class="pre">API</span></code></a> for the other methods not listed here.</p>
-<p>See <a class="reference external" href="https://api.thenounproject.com/documentation.html">the Noun Project documentation</a> for more information.</p>
+<p>See <a class="reference external" href="https://api.thenounproject.com/documentation.html">the official Noun Project documentation</a> for more information regarding what information may be fetched.</p>
 </div>
 <div class="section" id="output-handling">
 <h2>Output handling<a class="headerlink" href="#output-handling" title="Permalink to this headline">¶</a></h2>
@@ -259,6 +256,51 @@ Let’s take a look at some of the most useful methods:</p>
 </div>
 <div class="section" id="exception-handling">
 <h2>Exception handling<a class="headerlink" href="#exception-handling" title="Permalink to this headline">¶</a></h2>
+<p>This wrapper may raise any exception listed in <a class="reference internal" href="exceptions.html#module-TheNounProjectAPI.exceptions" title="TheNounProjectAPI.exceptions"><code class="xref py py-mod docutils literal notranslate"><span class="pre">exceptions</span></code></a>.
+Here’s some clarification regarding some of these exceptions:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 31%" />
+<col style="width: 69%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Exception</p></td>
+<td><p>How to handle</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="exceptions.html#TheNounProjectAPI.exceptions.APIKeyNotSet" title="TheNounProjectAPI.exceptions.APIKeyNotSet"><code class="xref py py-class docutils literal notranslate"><span class="pre">APIKeyNotSet</span></code></a></p></td>
+<td><p>One or both of the keys have not been set correctly. See <a class="reference internal" href="#api-keys-label"><span class="std std-ref">API keys</span></a> for how to resolve this exception.</p></td>
+</tr>
+<tr class="row-odd"><td><div class="line-block">
+<div class="line"><a class="reference internal" href="exceptions.html#TheNounProjectAPI.exceptions.IncorrectType" title="TheNounProjectAPI.exceptions.IncorrectType"><code class="xref py py-class docutils literal notranslate"><span class="pre">IncorrectType</span></code></a></div>
+<div class="line"><a class="reference internal" href="exceptions.html#TheNounProjectAPI.exceptions.NonPositive" title="TheNounProjectAPI.exceptions.NonPositive"><code class="xref py py-class docutils literal notranslate"><span class="pre">NonPositive</span></code></a></div>
+<div class="line"><a class="reference internal" href="exceptions.html#TheNounProjectAPI.exceptions.IllegalSlug" title="TheNounProjectAPI.exceptions.IllegalSlug"><code class="xref py py-class docutils literal notranslate"><span class="pre">IllegalSlug</span></code></a></div>
+<div class="line"><a class="reference internal" href="exceptions.html#TheNounProjectAPI.exceptions.IllegalTerm" title="TheNounProjectAPI.exceptions.IllegalTerm"><code class="xref py py-class docutils literal notranslate"><span class="pre">IllegalTerm</span></code></a></div>
+</div>
+</td>
+<td><p>One or more of the parameters passed to the method is not correct.
+See the exception class and program output for more information on how to resolve the exception.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="exceptions.html#TheNounProjectAPI.exceptions.ServerException" title="TheNounProjectAPI.exceptions.ServerException"><code class="xref py py-class docutils literal notranslate"><span class="pre">ServerException</span></code></a></p></td>
+<td><p>The Noun Project API is likely experiencing issues. There is not much you can do about this, except for waiting.</p></td>
+</tr>
+<tr class="row-odd"><td><div class="line-block">
+<div class="line"><a class="reference internal" href="exceptions.html#TheNounProjectAPI.exceptions.BadRequest" title="TheNounProjectAPI.exceptions.BadRequest"><code class="xref py py-class docutils literal notranslate"><span class="pre">BadRequest</span></code></a></div>
+<div class="line"><a class="reference internal" href="exceptions.html#TheNounProjectAPI.exceptions.NotFound" title="TheNounProjectAPI.exceptions.NotFound"><code class="xref py py-class docutils literal notranslate"><span class="pre">NotFound</span></code></a></div>
+</div>
+</td>
+<td><p>A page that does not exist has been requested. This can happen for example when asking for an icon, collection or user that does not exist.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="exceptions.html#TheNounProjectAPI.exceptions.Unauthorized" title="TheNounProjectAPI.exceptions.Unauthorized"><code class="xref py py-class docutils literal notranslate"><span class="pre">Unauthorized</span></code></a></p></td>
+<td><p>The authentication is incorrect, most likely due to the api key and/or secret being incorrect.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="exceptions.html#TheNounProjectAPI.exceptions.RateLimited" title="TheNounProjectAPI.exceptions.RateLimited"><code class="xref py py-class docutils literal notranslate"><span class="pre">RateLimited</span></code></a></p></td>
+<td><p>You may have been rate limited. You may have sent too many requests, or you’ve been timed out.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="exceptions.html#TheNounProjectAPI.exceptions.UnknownStatusCode" title="TheNounProjectAPI.exceptions.UnknownStatusCode"><code class="xref py py-class docutils literal notranslate"><span class="pre">UnknownStatusCode</span></code></a></p></td>
+<td><p>Any status code without a custom exception has been returned from the API. Please look up the status code in the error message for more information.</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 
@@ -273,8 +315,7 @@ Let’s take a look at some of the most useful methods:</p>
 
   <h3><a href="index.html">Table of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Introduction</a></li>
-<li><a class="reference internal" href="#getting-started">Getting Started</a><ul>
+<li><a class="reference internal" href="#">Getting Started</a><ul>
 <li><a class="reference internal" href="#api-keys">API keys</a></li>
 <li><a class="reference internal" href="#making-requests">Making requests</a></li>
 <li><a class="reference internal" href="#output-handling">Output handling</a><ul>

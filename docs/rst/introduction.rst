@@ -1,10 +1,11 @@
-Introduction
-=========================
-
-<Introduction>
 
 Getting Started
 ===============
+
+TheNounProjectAPI is a Python wrapper allowing convenient access to the `Noun Project <https://thenounproject.com>`_ API.
+It supports all endpoints and types of responses.
+
+.. _api-keys-label:
 
 API keys
 ^^^^^^^^
@@ -51,8 +52,7 @@ Or call the api key and secret key setters:
 Making requests
 ^^^^^^^^^^^^^^^
 
-Now that we have an API object with the keys set properly, we can start making requests. 
-Let's take a look at some of the most useful methods:
+Once an API object has been set up, it can be used to make requests. Some of the most useful methods used for these requests are listed here.
 
 ========================================================== =======================
 Methods                                                    Example output
@@ -72,7 +72,7 @@ Methods                                                    Example output
 
 See :py:class:`~TheNounProjectAPI.api.API` for the other methods not listed here.
 
-See `the Noun Project documentation <https://api.thenounproject.com/documentation.html>`_ for more information.
+See `the official Noun Project documentation <https://api.thenounproject.com/documentation.html>`_ for more information regarding what information may be fetched.
 
 Output handling
 ^^^^^^^^^^^^^^^
@@ -175,3 +175,28 @@ Let's take a look at some examples of how to parse the outputs from the aforemen
 
 Exception handling
 ^^^^^^^^^^^^^^^^^^
+
+This wrapper may raise any exception listed in :py:mod:`~TheNounProjectAPI.exceptions`. 
+Here's some clarification regarding some of these exceptions:
+
++--------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Exception                                                          | How to handle                                                                                                                                        |
++--------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------+
+| :py:class:`~TheNounProjectAPI.exceptions.APIKeyNotSet`             | One or both of the keys have not been set correctly. See :ref:`api-keys-label` for how to resolve this exception.                                    |
++--------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------+
+| | :py:class:`~TheNounProjectAPI.exceptions.IncorrectType`          | One or more of the parameters passed to the method is not correct.                                                                                   |
+| | :py:class:`~TheNounProjectAPI.exceptions.NonPositive`            | See the exception class and program output for more information on how to resolve the exception.                                                     |
+| | :py:class:`~TheNounProjectAPI.exceptions.IllegalSlug`            |                                                                                                                                                      |
+| | :py:class:`~TheNounProjectAPI.exceptions.IllegalTerm`            |                                                                                                                                                      |
++--------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------+
+| :py:class:`~TheNounProjectAPI.exceptions.ServerException`          | The Noun Project API is likely experiencing issues. There is not much you can do about this, except for waiting.                                     |
++--------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------+
+| | :py:class:`~TheNounProjectAPI.exceptions.BadRequest`             | A page that does not exist has been requested. This can happen for example when asking for an icon, collection or user that does not exist.          |
+| | :py:class:`~TheNounProjectAPI.exceptions.NotFound`               |                                                                                                                                                      |
++--------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------+
+| :py:class:`~TheNounProjectAPI.exceptions.Unauthorized`             | The authentication is incorrect, most likely due to the api key and/or secret being incorrect.                                                       |
++--------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------+
+| :py:class:`~TheNounProjectAPI.exceptions.RateLimited`              | You may have been rate limited. You may have sent too many requests, or you've been timed out.                                                       |
++--------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------+
+| :py:class:`~TheNounProjectAPI.exceptions.UnknownStatusCode`        | Any status code without a custom exception has been returned from the API. Please look up the status code in the error message for more information. |
++--------------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------+

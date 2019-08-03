@@ -50,6 +50,25 @@
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Call is a class containing methods used as decorators, each helping with making the actual requests to the TheNounProject API.</p>
 <dl class="method">
+<dt id="TheNounProjectAPI.call.Call.dispatch">
+<em class="property">static </em><code class="sig-name descname">dispatch</code><span class="sig-paren">(</span><em class="sig-param">f</em><span class="sig-paren">)</span><a class="headerlink" href="#TheNounProjectAPI.call.Call.dispatch" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method allows the use of singledispatch on methods, 
+a feature that will be implemented in functools in Python 3.8.x in the future.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>f</strong> (<em>Callable</em>) – The decorated method.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Decorator method which takes the type of the second parameter instead of the first, 
+as the first is self in a method, and passes this type on to the dispatcher.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Callable</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
 <dt id="TheNounProjectAPI.call.Call._get_endpoint">
 <em class="property">static </em><code class="sig-name descname">_get_endpoint</code><span class="sig-paren">(</span><em class="sig-param">model_class</em>, <em class="sig-param">method</em>, <em class="sig-param">f</em><span class="sig-paren">)</span><a class="headerlink" href="#TheNounProjectAPI.call.Call._get_endpoint" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns wrapper which receives a requests.PreparedRequests, 
@@ -82,30 +101,6 @@ sends this request, checks for exceptions, and returns the json parsed through t
 <dd></dd></dl>
 
 <dl class="method">
-<dt id="TheNounProjectAPI.call.Call.dispatch">
-<em class="property">static </em><code class="sig-name descname">dispatch</code><span class="sig-paren">(</span><em class="sig-param">f</em><span class="sig-paren">)</span><a class="headerlink" href="#TheNounProjectAPI.call.Call.dispatch" title="Permalink to this definition">¶</a></dt>
-<dd><p>This method allows the use of singledispatch on methods, 
-a feature that will be implemented in functools in Python 3.8.x in the future.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>f</strong> (<em>Callable</em>) – The decorated method.</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Decorator method which takes the type of the second parameter instead of the first, 
-as the first is self in a method, and passes this type on to the dispatcher.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>Callable</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="TheNounProjectAPI.call.Call.enterprise">
-<code class="sig-name descname">enterprise</code><span class="sig-paren">(</span><em class="sig-param">method='POST'</em>, <em class="sig-param">model_class=&lt;class 'TheNounProjectAPI.models.EnterpriseModel'&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#TheNounProjectAPI.call.Call.enterprise" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
 <dt id="TheNounProjectAPI.call.Call.icon">
 <code class="sig-name descname">icon</code><span class="sig-paren">(</span><em class="sig-param">method='GET'</em>, <em class="sig-param">model_class=&lt;class 'TheNounProjectAPI.models.IconModel'&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#TheNounProjectAPI.call.Call.icon" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -118,6 +113,11 @@ as the first is self in a method, and passes this type on to the dispatcher.</p>
 <dl class="method">
 <dt id="TheNounProjectAPI.call.Call.usage">
 <code class="sig-name descname">usage</code><span class="sig-paren">(</span><em class="sig-param">method='GET'</em>, <em class="sig-param">model_class=&lt;class 'TheNounProjectAPI.models.UsageModel'&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#TheNounProjectAPI.call.Call.usage" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="TheNounProjectAPI.call.Call.enterprise">
+<code class="sig-name descname">enterprise</code><span class="sig-paren">(</span><em class="sig-param">method='POST'</em>, <em class="sig-param">model_class=&lt;class 'TheNounProjectAPI.models.EnterpriseModel'&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#TheNounProjectAPI.call.Call.enterprise" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>

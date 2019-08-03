@@ -61,29 +61,6 @@ instead of data from the API. Should not be used except for testing this wrapper
 </dd>
 </dl>
 <dl class="method">
-<dt id="TheNounProjectAPI.collections.Collections.get_collection">
-<code class="sig-name descname">get_collection</code><span class="sig-paren">(</span><em class="sig-param">identifier</em><span class="sig-paren">)</span><a class="headerlink" href="#TheNounProjectAPI.collections.Collections.get_collection" title="Permalink to this definition">¶</a></dt>
-<dd><p>Fetches a single <a class="reference internal" href="sample.html#collection-label"><span class="std std-ref">Collection</span></a>, either by id or by slug.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>identifier</strong> (<em>Union</em><em>[</em><em>int</em><em>, </em><em>str</em><em>]</em>) – Collection identifier (id or slug).</p>
-</dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><ul class="simple">
-<li><p><a class="reference internal" href="exceptions.html#TheNounProjectAPI.exceptions.NonPositive" title="TheNounProjectAPI.exceptions.NonPositive"><strong>NonPositive</strong></a> – Raises exception when identifier is a nonpositive integer.</p></li>
-<li><p><a class="reference internal" href="exceptions.html#TheNounProjectAPI.exceptions.IllegalSlug" title="TheNounProjectAPI.exceptions.IllegalSlug"><strong>IllegalSlug</strong></a> – Raises exception when identifier is a string that’s empty, non-ascii or with multiple words.</p></li>
-</ul>
-</dd>
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>CollectionModel object identified by the identifier.</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference internal" href="models.html#TheNounProjectAPI.models.CollectionModel" title="TheNounProjectAPI.models.CollectionModel">CollectionModel</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
 <dt id="TheNounProjectAPI.collections.Collections.get_collection_by_id">
 <code class="sig-name descname">get_collection_by_id</code><span class="sig-paren">(</span><em class="sig-param">_id</em><span class="sig-paren">)</span><a class="headerlink" href="#TheNounProjectAPI.collections.Collections.get_collection_by_id" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fetches a single <a class="reference internal" href="sample.html#collection-label"><span class="std std-ref">Collection</span></a> by id.</p>
@@ -124,6 +101,29 @@ instead of data from the API. Should not be used except for testing this wrapper
 </dd></dl>
 
 <dl class="method">
+<dt id="TheNounProjectAPI.collections.Collections.get_collection">
+<code class="sig-name descname">get_collection</code><span class="sig-paren">(</span><em class="sig-param">identifier</em><span class="sig-paren">)</span><a class="headerlink" href="#TheNounProjectAPI.collections.Collections.get_collection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fetches a single <a class="reference internal" href="sample.html#collection-label"><span class="std std-ref">Collection</span></a>, either by id or by slug.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>identifier</strong> (<em>Union</em><em>[</em><em>int</em><em>, </em><em>str</em><em>]</em>) – Collection identifier (id or slug).</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="exceptions.html#TheNounProjectAPI.exceptions.NonPositive" title="TheNounProjectAPI.exceptions.NonPositive"><strong>NonPositive</strong></a> – Raises exception when identifier is a nonpositive integer.</p></li>
+<li><p><a class="reference internal" href="exceptions.html#TheNounProjectAPI.exceptions.IllegalSlug" title="TheNounProjectAPI.exceptions.IllegalSlug"><strong>IllegalSlug</strong></a> – Raises exception when identifier is a string that’s empty, non-ascii or with multiple words.</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>CollectionModel object identified by the identifier.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="models.html#TheNounProjectAPI.models.CollectionModel" title="TheNounProjectAPI.models.CollectionModel">CollectionModel</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
 <dt id="TheNounProjectAPI.collections.Collections.get_collections">
 <code class="sig-name descname">get_collections</code><span class="sig-paren">(</span><em class="sig-param">limit=None</em>, <em class="sig-param">offset=None</em>, <em class="sig-param">page=None</em><span class="sig-paren">)</span><a class="headerlink" href="#TheNounProjectAPI.collections.Collections.get_collections" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fetches a list of all <a class="reference internal" href="sample.html#collections-label"><span class="std std-ref">Collections</span></a>.</p>
@@ -140,6 +140,26 @@ instead of data from the API. Should not be used except for testing this wrapper
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>List[<a class="reference internal" href="models.html#TheNounProjectAPI.models.CollectionModel" title="TheNounProjectAPI.models.CollectionModel">CollectionModel</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="TheNounProjectAPI.collections.Collections.get_user_collections">
+<code class="sig-name descname">get_user_collections</code><span class="sig-paren">(</span><em class="sig-param">user_id</em><span class="sig-paren">)</span><a class="headerlink" href="#TheNounProjectAPI.collections.Collections.get_user_collections" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fetches a list of <a class="reference internal" href="sample.html#collections-label"><span class="std std-ref">Collections</span></a> associated with a user.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>user_id</strong> (<em>int</em>) – User id.</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference internal" href="exceptions.html#TheNounProjectAPI.exceptions.NonPositive" title="TheNounProjectAPI.exceptions.NonPositive"><strong>NonPositive</strong></a> – Raises exception when user_id is not positive.</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>List of CollectionModel objects associated with a user identified by the user_id.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>List[<a class="reference internal" href="models.html#TheNounProjectAPI.models.CollectionModel" title="TheNounProjectAPI.models.CollectionModel">CollectionModel</a>]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -166,26 +186,6 @@ instead of data from the API. Should not be used except for testing this wrapper
 </dd>
 <dt class="field-even">Return type</dt>
 <dd class="field-even"><p><a class="reference internal" href="models.html#TheNounProjectAPI.models.CollectionModel" title="TheNounProjectAPI.models.CollectionModel">CollectionModel</a></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
-<dt id="TheNounProjectAPI.collections.Collections.get_user_collections">
-<code class="sig-name descname">get_user_collections</code><span class="sig-paren">(</span><em class="sig-param">user_id</em><span class="sig-paren">)</span><a class="headerlink" href="#TheNounProjectAPI.collections.Collections.get_user_collections" title="Permalink to this definition">¶</a></dt>
-<dd><p>Fetches a list of <a class="reference internal" href="sample.html#collections-label"><span class="std std-ref">Collections</span></a> associated with a user.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>user_id</strong> (<em>int</em>) – User id.</p>
-</dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><p><a class="reference internal" href="exceptions.html#TheNounProjectAPI.exceptions.NonPositive" title="TheNounProjectAPI.exceptions.NonPositive"><strong>NonPositive</strong></a> – Raises exception when user_id is not positive.</p>
-</dd>
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>List of CollectionModel objects associated with a user identified by the user_id.</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>List[<a class="reference internal" href="models.html#TheNounProjectAPI.models.CollectionModel" title="TheNounProjectAPI.models.CollectionModel">CollectionModel</a>]</p>
 </dd>
 </dl>
 </dd></dl>

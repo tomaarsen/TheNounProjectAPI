@@ -40,6 +40,11 @@ class LegalReasons(APIException):
     def __init__(self, response):
         super().__init__(response, "Not available for legal reasons.")
 
+class RateLimited(APIException):
+    """ Indicate that the requestee may have been rate limited. """
+    def __init__(self, response):
+        super().__init__(response, "Timeout/Too many requests.")
+
 class UnknownStatusCode(APIException):
     """ Indicate that the encountered status code is not a code we have a proper response/exception to. """
     def __init__(self, response):
@@ -58,6 +63,8 @@ STATUS_CODE_EXCEPTIONS = {
     codes["service_unavailable"]: ServerException,
     codes["unauthorized"]: Unauthorized,
     codes["unavailable_for_legal_reasons"]: LegalReasons,
+    codes["too_many"]: RateLimited,
+    codes["timeout"]: RateLimited,
     # Cloudflare status (not named in requests)
     520: ServerException,
     522: ServerException,

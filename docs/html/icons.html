@@ -61,34 +61,6 @@ instead of data from the API. Should not be used except for testing this wrapper
 </dd>
 </dl>
 <dl class="method">
-<dt id="TheNounProjectAPI.icons.Icons.get_collection_icons">
-<code class="sig-name descname">get_collection_icons</code><span class="sig-paren">(</span><em class="sig-param">identifier</em>, <em class="sig-param">limit=None</em>, <em class="sig-param">offset=None</em>, <em class="sig-param">page=None</em><span class="sig-paren">)</span><a class="headerlink" href="#TheNounProjectAPI.icons.Icons.get_collection_icons" title="Permalink to this definition">¶</a></dt>
-<dd><p>Fetches collection <a class="reference internal" href="sample.html#icons-label"><span class="std std-ref">Icons</span></a>, either by id or by slug.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>identifier</strong> (<em>Union</em><em>[</em><em>int</em><em>, </em><em>str</em><em>]</em>) – Collection identifier (id or slug).</p></li>
-<li><p><strong>limit</strong> (<em>int</em>) – Maximum number of results. (defaults to None)</p></li>
-<li><p><strong>offset</strong> (<em>int</em>) – Number of results to displace or skip over. (defaults to None)</p></li>
-<li><p><strong>page</strong> (<em>int</em>) – Number of results of limit length to displace or skip over. (defaults to None)</p></li>
-</ul>
-</dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><ul class="simple">
-<li><p><a class="reference internal" href="exceptions.html#TheNounProjectAPI.exceptions.NonPositive" title="TheNounProjectAPI.exceptions.NonPositive"><strong>NonPositive</strong></a> – Raises exception when identifier is a nonpositive integer.</p></li>
-<li><p><a class="reference internal" href="exceptions.html#TheNounProjectAPI.exceptions.IllegalSlug" title="TheNounProjectAPI.exceptions.IllegalSlug"><strong>IllegalSlug</strong></a> – Raises exception when identifier is a string that’s empty, non-ascii or with multiple words.</p></li>
-</ul>
-</dd>
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>List of IconModel objects from the collection identified by the identifier.</p>
-</dd>
-<dt class="field-even">Return type</dt>
-<dd class="field-even"><p>List[<a class="reference internal" href="models.html#TheNounProjectAPI.models.IconModel" title="TheNounProjectAPI.models.IconModel">IconModel</a>]</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
 <dt id="TheNounProjectAPI.icons.Icons.get_collection_icons_by_id">
 <code class="sig-name descname">get_collection_icons_by_id</code><span class="sig-paren">(</span><em class="sig-param">_id</em>, <em class="sig-param">limit=None</em>, <em class="sig-param">offset=None</em>, <em class="sig-param">page=None</em><span class="sig-paren">)</span><a class="headerlink" href="#TheNounProjectAPI.icons.Icons.get_collection_icons_by_id" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fetches collection <a class="reference internal" href="sample.html#icons-label"><span class="std std-ref">Icons</span></a> by id from the API.</p>
@@ -139,24 +111,29 @@ instead of data from the API. Should not be used except for testing this wrapper
 </dd></dl>
 
 <dl class="method">
-<dt id="TheNounProjectAPI.icons.Icons.get_icon">
-<code class="sig-name descname">get_icon</code><span class="sig-paren">(</span><em class="sig-param">identifier</em><span class="sig-paren">)</span><a class="headerlink" href="#TheNounProjectAPI.icons.Icons.get_icon" title="Permalink to this definition">¶</a></dt>
-<dd><p>Fetches single <a class="reference internal" href="sample.html#icon-label"><span class="std std-ref">Icon</span></a>, either by id or by term.</p>
+<dt id="TheNounProjectAPI.icons.Icons.get_collection_icons">
+<code class="sig-name descname">get_collection_icons</code><span class="sig-paren">(</span><em class="sig-param">identifier</em>, <em class="sig-param">limit=None</em>, <em class="sig-param">offset=None</em>, <em class="sig-param">page=None</em><span class="sig-paren">)</span><a class="headerlink" href="#TheNounProjectAPI.icons.Icons.get_collection_icons" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fetches collection <a class="reference internal" href="sample.html#icons-label"><span class="std std-ref">Icons</span></a>, either by id or by slug.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>identifier</strong> (<em>Union</em><em>[</em><em>int</em><em>, </em><em>str</em><em>]</em>) – Collection identifier (id or term).</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>identifier</strong> (<em>Union</em><em>[</em><em>int</em><em>, </em><em>str</em><em>]</em>) – Collection identifier (id or slug).</p></li>
+<li><p><strong>limit</strong> (<em>int</em>) – Maximum number of results. (defaults to None)</p></li>
+<li><p><strong>offset</strong> (<em>int</em>) – Number of results to displace or skip over. (defaults to None)</p></li>
+<li><p><strong>page</strong> (<em>int</em>) – Number of results of limit length to displace or skip over. (defaults to None)</p></li>
+</ul>
 </dd>
 <dt class="field-even">Raises</dt>
 <dd class="field-even"><ul class="simple">
 <li><p><a class="reference internal" href="exceptions.html#TheNounProjectAPI.exceptions.NonPositive" title="TheNounProjectAPI.exceptions.NonPositive"><strong>NonPositive</strong></a> – Raises exception when identifier is a nonpositive integer.</p></li>
-<li><p><a class="reference internal" href="exceptions.html#TheNounProjectAPI.exceptions.IllegalTerm" title="TheNounProjectAPI.exceptions.IllegalTerm"><strong>IllegalTerm</strong></a> – Raises exception when identifier is an empty string.</p></li>
+<li><p><a class="reference internal" href="exceptions.html#TheNounProjectAPI.exceptions.IllegalSlug" title="TheNounProjectAPI.exceptions.IllegalSlug"><strong>IllegalSlug</strong></a> – Raises exception when identifier is a string that’s empty, non-ascii or with multiple words.</p></li>
 </ul>
 </dd>
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>IconModel object identified by the identifier.</p>
+<dd class="field-odd"><p>List of IconModel objects from the collection identified by the identifier.</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference internal" href="models.html#TheNounProjectAPI.models.IconModel" title="TheNounProjectAPI.models.IconModel">IconModel</a></p>
+<dd class="field-even"><p>List[<a class="reference internal" href="models.html#TheNounProjectAPI.models.IconModel" title="TheNounProjectAPI.models.IconModel">IconModel</a>]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -202,27 +179,24 @@ instead of data from the API. Should not be used except for testing this wrapper
 </dd></dl>
 
 <dl class="method">
-<dt id="TheNounProjectAPI.icons.Icons.get_icons_by_term">
-<code class="sig-name descname">get_icons_by_term</code><span class="sig-paren">(</span><em class="sig-param">term</em>, <em class="sig-param">public_domain_only=False</em>, <em class="sig-param">limit=None</em>, <em class="sig-param">offset=None</em>, <em class="sig-param">page=None</em><span class="sig-paren">)</span><a class="headerlink" href="#TheNounProjectAPI.icons.Icons.get_icons_by_term" title="Permalink to this definition">¶</a></dt>
-<dd><p>Fetches a list of <a class="reference internal" href="sample.html#icons-label"><span class="std std-ref">Icons</span></a> by term.</p>
+<dt id="TheNounProjectAPI.icons.Icons.get_icon">
+<code class="sig-name descname">get_icon</code><span class="sig-paren">(</span><em class="sig-param">identifier</em><span class="sig-paren">)</span><a class="headerlink" href="#TheNounProjectAPI.icons.Icons.get_icon" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fetches single <a class="reference internal" href="sample.html#icon-label"><span class="std std-ref">Icon</span></a>, either by id or by term.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>term</strong> (<em>str</em>) – Collection term.</p></li>
-<li><p><strong>public_domain_only</strong> (<em>Union</em><em>[</em><em>bool</em><em>, </em><em>int</em><em>]</em>) – Limit results to public domain icons only (defaults to False)</p></li>
-<li><p><strong>limit</strong> (<em>int</em>) – Maximum number of results. (defaults to None)</p></li>
-<li><p><strong>offset</strong> (<em>int</em>) – Number of results to displace or skip over. (defaults to None)</p></li>
-<li><p><strong>page</strong> (<em>int</em>) – Number of results of limit length to displace or skip over. (defaults to None)</p></li>
-</ul>
+<dd class="field-odd"><p><strong>identifier</strong> (<em>Union</em><em>[</em><em>int</em><em>, </em><em>str</em><em>]</em>) – Collection identifier (id or term).</p>
 </dd>
 <dt class="field-even">Raises</dt>
-<dd class="field-even"><p><a class="reference internal" href="exceptions.html#TheNounProjectAPI.exceptions.IllegalTerm" title="TheNounProjectAPI.exceptions.IllegalTerm"><strong>IllegalTerm</strong></a> – Raises exception when term is an empty string.</p>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="exceptions.html#TheNounProjectAPI.exceptions.NonPositive" title="TheNounProjectAPI.exceptions.NonPositive"><strong>NonPositive</strong></a> – Raises exception when identifier is a nonpositive integer.</p></li>
+<li><p><a class="reference internal" href="exceptions.html#TheNounProjectAPI.exceptions.IllegalTerm" title="TheNounProjectAPI.exceptions.IllegalTerm"><strong>IllegalTerm</strong></a> – Raises exception when identifier is an empty string.</p></li>
+</ul>
 </dd>
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>List of IconModel objects identified by the term.</p>
+<dd class="field-odd"><p>IconModel object identified by the identifier.</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p>List[<a class="reference internal" href="models.html#TheNounProjectAPI.models.IconModel" title="TheNounProjectAPI.models.IconModel">IconModel</a>]</p>
+<dd class="field-even"><p><a class="reference internal" href="models.html#TheNounProjectAPI.models.IconModel" title="TheNounProjectAPI.models.IconModel">IconModel</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -244,6 +218,32 @@ instead of data from the API. Should not be used except for testing this wrapper
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>List[<a class="reference internal" href="models.html#TheNounProjectAPI.models.IconModel" title="TheNounProjectAPI.models.IconModel">IconModel</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="TheNounProjectAPI.icons.Icons.get_icons_by_term">
+<code class="sig-name descname">get_icons_by_term</code><span class="sig-paren">(</span><em class="sig-param">term</em>, <em class="sig-param">public_domain_only=False</em>, <em class="sig-param">limit=None</em>, <em class="sig-param">offset=None</em>, <em class="sig-param">page=None</em><span class="sig-paren">)</span><a class="headerlink" href="#TheNounProjectAPI.icons.Icons.get_icons_by_term" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fetches a list of <a class="reference internal" href="sample.html#icons-label"><span class="std std-ref">Icons</span></a> by term.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>term</strong> (<em>str</em>) – Collection term.</p></li>
+<li><p><strong>public_domain_only</strong> (<em>Union</em><em>[</em><em>bool</em><em>, </em><em>int</em><em>]</em>) – Limit results to public domain icons only (defaults to False)</p></li>
+<li><p><strong>limit</strong> (<em>int</em>) – Maximum number of results. (defaults to None)</p></li>
+<li><p><strong>offset</strong> (<em>int</em>) – Number of results to displace or skip over. (defaults to None)</p></li>
+<li><p><strong>page</strong> (<em>int</em>) – Number of results of limit length to displace or skip over. (defaults to None)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference internal" href="exceptions.html#TheNounProjectAPI.exceptions.IllegalTerm" title="TheNounProjectAPI.exceptions.IllegalTerm"><strong>IllegalTerm</strong></a> – Raises exception when term is an empty string.</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>List of IconModel objects identified by the term.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>List[<a class="reference internal" href="models.html#TheNounProjectAPI.models.IconModel" title="TheNounProjectAPI.models.IconModel">IconModel</a>]</p>
 </dd>
 </dl>
 </dd></dl>
