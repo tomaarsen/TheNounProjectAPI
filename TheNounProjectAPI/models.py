@@ -195,6 +195,9 @@ class DotList(list):
         val = list.__getitem__(self, key)
         return sequence_to_dot(val)
 
+    def __iter__(self):
+        return (sequence_to_dot(item) for item in super().__iter__())
+
 def sequence_to_dot(val: Any) -> Any:
     """
     Returns DotDict of val if val is a dict.

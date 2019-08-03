@@ -17,7 +17,7 @@
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Behind the scenes" href="behind.html" />
+    <link rel="next" title="Sample outputs" href="sample.html" />
     <link rel="prev" title="Models" href="models.html" />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <!--<link rel="shortcut icon" type="image/png" href="_static/favicon.png" />-->
@@ -76,14 +76,22 @@
 <dt id="TheNounProjectAPI.exceptions.IllegalSlug">
 <em class="property">exception </em><code class="sig-prename descclassname">TheNounProjectAPI.exceptions.</code><code class="sig-name descname">IllegalSlug</code><span class="sig-paren">(</span><em class="sig-param">parameter</em><span class="sig-paren">)</span><a class="headerlink" href="#TheNounProjectAPI.exceptions.IllegalSlug" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#TheNounProjectAPI.exceptions.ParameterException" title="TheNounProjectAPI.exceptions.ParameterException"><code class="xref py py-class docutils literal notranslate"><span class="pre">TheNounProjectAPI.exceptions.ParameterException</span></code></a></p>
-<p>Indicate that the parameter does not follow the rules for a slug.</p>
+<p>Indicate that the parameter does not follow the rules for a slug:</p>
+<ul class="simple">
+<li><p>parameter must be a nonempty string.</p></li>
+<li><p>parameter must only contain ascii characters.</p></li>
+<li><p>parameter must not contain multiple words.</p></li>
+</ul>
 </dd></dl>
 
 <dl class="exception">
 <dt id="TheNounProjectAPI.exceptions.IllegalTerm">
 <em class="property">exception </em><code class="sig-prename descclassname">TheNounProjectAPI.exceptions.</code><code class="sig-name descname">IllegalTerm</code><span class="sig-paren">(</span><em class="sig-param">parameter</em><span class="sig-paren">)</span><a class="headerlink" href="#TheNounProjectAPI.exceptions.IllegalTerm" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#TheNounProjectAPI.exceptions.ParameterException" title="TheNounProjectAPI.exceptions.ParameterException"><code class="xref py py-class docutils literal notranslate"><span class="pre">TheNounProjectAPI.exceptions.ParameterException</span></code></a></p>
-<p>Indicate that the parameter does not follow the rules for a term.</p>
+<p>Indicate that the parameter does not follow the rules for a term:</p>
+<ul class="simple">
+<li><p>parameter must be a nonempty string.</p></li>
+</ul>
 </dd></dl>
 
 <dl class="exception">
@@ -164,8 +172,8 @@
   <p class="topless"><a href="models.html"
                         title="previous chapter">Models</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="behind.html"
-                        title="next chapter">Behind the scenes</a></p>
+  <p class="topless"><a href="sample.html"
+                        title="next chapter">Sample outputs</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -197,7 +205,7 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="behind.html" title="Behind the scenes"
+          <a href="sample.html" title="Sample outputs"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="models.html" title="Models"

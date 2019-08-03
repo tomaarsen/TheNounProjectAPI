@@ -54,6 +54,8 @@ Beyond this data, instances that were generated not as an element of a list will
 
 * `response` holding a requests.Response object of the request.
 
+See :ref:`Collection output handling <collection-code-label>` for a code example of accessing this model's data.
+
 .. _collections-label:
 
 Collections
@@ -93,6 +95,8 @@ A method returning :py:class:`~TheNounProjectAPI.models.CollectionsModel` in rea
 * `response` holding a requests.Response object of the request.
 
 Furthermore, each element in the list may be accessed like :py:class:`~TheNounProjectAPI.models.Model`.
+
+See :ref:`Collections output handling <collections-code-label>` for a code example of accessing this model's data.
 
 .. _icon-label:
 
@@ -160,6 +164,8 @@ Beyond this data, instances that were generated not as an element of a list will
 
 * `response` holding a requests.Response object of the request.
 
+See :ref:`Icon output handling <icon-code-label>` for a code example of accessing this model's data.
+
 .. warning::
     Some requests return slightly different values. For example, some collection icons have a `attribution_preview_url`, while some do not.
 
@@ -218,6 +224,8 @@ A method returning :py:class:`~TheNounProjectAPI.models.IconsModel` in reality r
 
 Furthermore, each element in the list may be accessed like :py:class:`~TheNounProjectAPI.models.Model`.
 
+See :ref:`Icons output handling <icons-code-label>` for a code example of accessing this model's data.
+
 .. warning::
     Some requests return slightly different values. For example, some collection icons have a `attribution_preview_url`, while some do not.
 
@@ -251,10 +259,12 @@ Usage
 
 How this data may be accessed after a request is described in :py:class:`~TheNounProjectAPI.models.Model`.
 
-Beyond this data :py:class:`~TheNounProjectAPI.models.UsageModel` instances also have the following attributes:
+Beyond this data, :py:class:`~TheNounProjectAPI.models.UsageModel` instances also have the following attributes:
 
 * `generated_at` holding a string indicating when the request was generated.
 * `response` holding a requests.Response object of the request.
+
+See :ref:`Usage output handling <usage-code-label>` for a code example of accessing this model's data.
 
 .. _enterprise-label:
 

@@ -81,12 +81,22 @@ class NonPositive(ParameterException):
         super().__init__(parameter, description=f"must be a positive integer.")
 
 class IllegalSlug(ParameterException):
-    """ Indicate that the parameter does not follow the rules for a slug. """
+    """ 
+    Indicate that the parameter does not follow the rules for a slug: 
+    
+    * parameter must be a nonempty string.
+    * parameter must only contain ascii characters.
+    * parameter must not contain multiple words.
+    """
     def __init__(self, parameter):
         super().__init__(parameter, description=f"must be a nonempty string, consisting only of ascii character, with no multiple words.")
 
 class IllegalTerm(ParameterException):
-    """ Indicate that the parameter does not follow the rules for a term. """
+    """ 
+    Indicate that the parameter does not follow the rules for a term: 
+    
+    * parameter must be a nonempty string.
+    """
     def __init__(self, parameter):
         super().__init__(parameter, description=f"must be a nonempty string.")
 
