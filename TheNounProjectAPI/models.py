@@ -36,10 +36,6 @@ class Model:
         """ Passes model['data'] to model.json['data']. """
         return self.json[name]
 
-    def __eq__(self, other: object):
-        """ Checks whether all attributes of self match with other. """
-        return self.json.__dict__ == other.json.__dict__
-
     def __repr__(self):
         """ Returns string with class name, followed by all output_keys and their values. 
             eg: <Collection: Name: Cue, Slug: cue, Id: 12> """
