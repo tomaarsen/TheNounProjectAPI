@@ -1,8 +1,6 @@
 # TheNounProjectAPI
  
-**Note that this README is still under construction. Some links may not work.** 
- 
-TheNounProjectAPI is a Python wrapper allowing convenient access to the [Noun Project](https://thenounproject.com/) API. It supports all endpoints and types of responses. Documentation for this wrapper can be found [here](), while the official documentation of the API itself may be found [here](https://api.thenounproject.com/).
+TheNounProjectAPI is a Python wrapper allowing convenient access to the [Noun Project](https://thenounproject.com/) API. It supports all endpoints and types of responses. Documentation for this wrapper can be found [here](https://cubiedev.github.io/TheNounProjectAPI/#thenounprojectapi), while the official documentation of the API itself may be found [here](https://api.thenounproject.com/).
 
 ---
 
@@ -20,7 +18,7 @@ For help with installing Python and/or pip, see "The Hitchhiker's Guide to Pytho
 ---
 
 # Getting started
-It's strongly encouraged to use the [documentation]()'s [Getting started]() section to get started, as it's tied to the rest of the documentation, allowing you to quickly find exactly what you need.
+It's strongly encouraged to use the [documentation](https://cubiedev.github.io/TheNounProjectAPI/#thenounprojectapi)'s [Getting started](https://cubiedev.github.io/TheNounProjectAPI/introduction.html#getting-started) section to get started, as it's tied to the rest of the documentation, allowing you to quickly find exactly what you need.
 
 However, I'll provide a quick sample.
 ```python
@@ -43,7 +41,12 @@ for icon in icons:
     print("Uploader's username:", icon.uploader.username)
 ```
 
-Examine the [TheNounProjectAPI documentation]() for more examples of what can be done with TheNounProjectAPI.
+Examine the [TheNounProjectAPI documentation](https://cubiedev.github.io/TheNounProjectAPI/index.html#thenounprojectapi) for more examples of what can be done with TheNounProjectAPI.
+
+---
+
+# Documentation
+Documentation can be found here: https://cubiedev.github.io/TheNounProjectAPI
 
 ---
 
