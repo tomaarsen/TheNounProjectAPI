@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Getting Started &#8212; TheNounProjectAPI 1.0.1 documentation</title>
+    <link rel="stylesheet" href="_static/pydoctheme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/sidebar.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Documentation" href="main.html" />
+    <link rel="prev" title="TheNounProjectAPI" href="index.html" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <!--<link rel="shortcut icon" type="image/png" href="_static/favicon.png" />-->
+    <meta name="viewport" content="width=device-width,initial-scale=0.8">
+    
+    
+
+  </head><body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="responsive-menu"><a href="#sidebar-anchor" title="Navigation">&#9776;</a></li>
+        <li><a href="index.html">TheNounProjectAPI 1.0.1 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <!---->
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="getting-started">
+<h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
+<p><a class="reference external" href="https://github.com/CubieDev/TheNounProjectAPI">TheNounProjectAPI</a> is a Python wrapper allowing convenient access to the <a class="reference external" href="https://thenounproject.com">Noun Project</a> API.
+It supports all endpoints and types of responses.</p>
+<div class="section" id="api-keys">
+<span id="api-keys-label"></span><h2>API keys<a class="headerlink" href="#api-keys" title="Permalink to this headline">¶</a></h2>
+<p>Before any requests can be made, the api key and secret need to be set.
+These keys can be generated once you have made a Noun Project account.
+See <a class="reference external" href="https://api.thenounproject.com/getting_started.html#creating-an-api-key">this topic</a> on the official Noun Project documentation for more information.</p>
+<p>Once you have generated these keys, they need to be set in the api wrapper. This can be done in a few ways.
+For each of these ways, assume that this section of code is present at the top:</p>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">TheNounProjectAPI</span>
+<span class="n">key</span> <span class="o">=</span> <span class="s2">&quot;&lt;sample api key&gt;&quot;</span>
+<span class="n">secret</span> <span class="o">=</span> <span class="s2">&quot;&lt;sample secret key&gt;&quot;</span>
+</pre></div>
+</td></tr></table></div>
+<p>You can pass the keys to the constructor when creating the object:</p>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">api</span> <span class="o">=</span> <span class="n">TheNounProjectAPI</span><span class="o">.</span><span class="n">API</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">,</span> <span class="n">secret</span><span class="o">=</span><span class="n">secret</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+<p>You can also set the attributes directly:</p>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">api</span> <span class="o">=</span> <span class="n">TheNounProjectAPI</span><span class="o">.</span><span class="n">API</span><span class="p">()</span>
+<span class="n">api</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="n">key</span>
+<span class="n">api</span><span class="o">.</span><span class="n">secret_key</span> <span class="o">=</span> <span class="n">secret</span>
+</pre></div>
+</td></tr></table></div>
+<p>Or call the api key and secret key setters:</p>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="n">api</span> <span class="o">=</span> <span class="n">TheNounProjectAPI</span><span class="o">.</span><span class="n">API</span><span class="p">()</span>
+<span class="n">api</span><span class="o">.</span><span class="n">set_api_key</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">set_secret_key</span><span class="p">(</span><span class="n">secret</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="making-requests">
+<h2>Making requests<a class="headerlink" href="#making-requests" title="Permalink to this headline">¶</a></h2>
+<p>Once an API object has been set up, it can be used to make requests. Some of the most useful methods used for these requests are listed here.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 71%" />
+<col style="width: 29%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Methods</p></th>
+<th class="head"><p>Example output</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="api.html#TheNounProjectAPI.api.API.get_collection" title="TheNounProjectAPI.api.API.get_collection"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_collection()</span></code></a></p></td>
+<td><p><a class="reference internal" href="sample.html#collection-label"><span class="std std-ref">Collection</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api.html#TheNounProjectAPI.api.API.get_collection_icons" title="TheNounProjectAPI.api.API.get_collection_icons"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_collection_icons()</span></code></a></p></td>
+<td><p><a class="reference internal" href="sample.html#icons-label"><span class="std std-ref">Icons</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api.html#TheNounProjectAPI.api.API.get_collections" title="TheNounProjectAPI.api.API.get_collections"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_collections()</span></code></a></p></td>
+<td><p><a class="reference internal" href="sample.html#collections-label"><span class="std std-ref">Collections</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api.html#TheNounProjectAPI.api.API.get_icon" title="TheNounProjectAPI.api.API.get_icon"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_icon()</span></code></a></p></td>
+<td><p><a class="reference internal" href="sample.html#icon-label"><span class="std std-ref">Icon</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api.html#TheNounProjectAPI.api.API.get_icons_by_term" title="TheNounProjectAPI.api.API.get_icons_by_term"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_icons_by_term()</span></code></a></p></td>
+<td><p><a class="reference internal" href="sample.html#icons-label"><span class="std std-ref">Icons</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api.html#TheNounProjectAPI.api.API.get_recent_icons" title="TheNounProjectAPI.api.API.get_recent_icons"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_recent_icons()</span></code></a></p></td>
+<td><p><a class="reference internal" href="sample.html#icons-label"><span class="std std-ref">Icons</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api.html#TheNounProjectAPI.api.API.get_usage" title="TheNounProjectAPI.api.API.get_usage"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_usage()</span></code></a></p></td>
+<td><p><a class="reference internal" href="sample.html#usage-label"><span class="std std-ref">Usage</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api.html#TheNounProjectAPI.api.API.get_user_collection" title="TheNounProjectAPI.api.API.get_user_collection"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_user_collection()</span></code></a></p></td>
+<td><p><a class="reference internal" href="sample.html#collection-label"><span class="std std-ref">Collection</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api.html#TheNounProjectAPI.api.API.get_user_collections" title="TheNounProjectAPI.api.API.get_user_collections"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_user_collections()</span></code></a></p></td>
+<td><p><a class="reference internal" href="sample.html#collections-label"><span class="std std-ref">Collections</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="api.html#TheNounProjectAPI.api.API.get_user_uploads" title="TheNounProjectAPI.api.API.get_user_uploads"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_user_uploads()</span></code></a></p></td>
+<td><p><a class="reference internal" href="sample.html#icons-label"><span class="std std-ref">Icons</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="api.html#TheNounProjectAPI.api.API.report_usage" title="TheNounProjectAPI.api.API.report_usage"><code class="xref py py-meth docutils literal notranslate"><span class="pre">report_usage()</span></code></a></p></td>
+<td><p><a class="reference internal" href="sample.html#enterprise-label"><span class="std std-ref">Enterprise</span></a></p></td>
+</tr>
+</tbody>
+</table>
+<p>See <a class="reference internal" href="api.html#TheNounProjectAPI.api.API" title="TheNounProjectAPI.api.API"><code class="xref py py-class docutils literal notranslate"><span class="pre">API</span></code></a> for the other methods not listed here.</p>
+<p>See <a class="reference external" href="https://api.thenounproject.com/documentation.html">the official Noun Project documentation</a> for more information regarding what information may be fetched.</p>
+</div>
+<div class="section" id="output-handling">
+<h2>Output handling<a class="headerlink" href="#output-handling" title="Permalink to this headline">¶</a></h2>
+<p>Let’s take a look at some examples of how to parse the outputs from the aforementioned methods.</p>
+<div class="section" id="icons">
+<span id="icons-code-label"></span><h3><a class="reference internal" href="sample.html#icons-label"><span class="std std-ref">Icons</span></a><a class="headerlink" href="#icons" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1"># See Sample outputs -&gt; Icons for more information about this:</span>
+<span class="n">icons</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">get_icons_by_term</span><span class="p">(</span><span class="s2">&quot;goat&quot;</span><span class="p">,</span> <span class="n">public_domain_only</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># &gt;&gt;&gt;icons</span>
+<span class="c1"># [&lt;IconModel: Term: Goat Feeding, Slug: goat-feeding, Id: 24014&gt;,</span>
+<span class="c1"># &lt;IconModel: Term: Herbivore teeth, Slug: herbivore-teeth, Id: 675870&gt;]</span>
+
+<span class="k">for</span> <span class="n">icon</span> <span class="ow">in</span> <span class="n">icons</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Icon&#39;s term:&quot;</span><span class="p">,</span> <span class="n">icon</span><span class="o">.</span><span class="n">term</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;This icon&#39;s tags:&quot;</span><span class="p">,</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tag</span><span class="o">.</span><span class="n">slug</span> <span class="k">for</span> <span class="n">tag</span> <span class="ow">in</span> <span class="n">icon</span><span class="o">.</span><span class="n">tags</span><span class="p">))</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Uploader&#39;s username:&quot;</span><span class="p">,</span> <span class="n">icon</span><span class="o">.</span><span class="n">uploader</span><span class="o">.</span><span class="n">username</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="icon">
+<span id="icon-code-label"></span><h3><a class="reference internal" href="sample.html#icon-label"><span class="std std-ref">Icon</span></a><a class="headerlink" href="#icon" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1"># See Sample outputs -&gt; Icon for more information about this:</span>
+<span class="n">icon</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">get_icon</span><span class="p">(</span><span class="s2">&quot;goat&quot;</span><span class="p">)</span>
+
+<span class="c1"># &gt;&gt;&gt;icon</span>
+<span class="c1"># &lt;IconModel: Term: Goat, Slug: goat, Id: 8786&gt;</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Icon&#39;s term:&quot;</span><span class="p">,</span> <span class="n">icon</span><span class="o">.</span><span class="n">term</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;This icon&#39;s tags:&quot;</span><span class="p">,</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tag</span><span class="o">.</span><span class="n">slug</span> <span class="k">for</span> <span class="n">tag</span> <span class="ow">in</span> <span class="n">icon</span><span class="o">.</span><span class="n">tags</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Uploader&#39;s username:&quot;</span><span class="p">,</span> <span class="n">icon</span><span class="o">.</span><span class="n">uploader</span><span class="o">.</span><span class="n">username</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="collections">
+<span id="collections-code-label"></span><h3><a class="reference internal" href="sample.html#collections-label"><span class="std std-ref">Collections</span></a><a class="headerlink" href="#collections" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1"># See Sample outputs -&gt; Collections for more information about this:</span>
+<span class="n">collections</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">get_collections</span><span class="p">(</span><span class="n">limit</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="c1"># &gt;&gt;&gt;collections</span>
+<span class="c1"># [&lt;CollectionModel: Name: Electric, Slug: electric, Id: 88081&gt;,</span>
+<span class="c1">#  &lt;CollectionModel: Name: Banking, Slug: banking, Id: 88080&gt;,</span>
+<span class="c1">#  &lt;CollectionModel: Name: Academy, Slug: academy, Id: 88079&gt;]</span>
+
+<span class="k">for</span> <span class="n">collection</span> <span class="ow">in</span> <span class="n">collections</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Collection&#39;s name:&quot;</span><span class="p">,</span> <span class="n">collection</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Collection&#39;s tags:&quot;</span><span class="p">,</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tag</span> <span class="k">for</span> <span class="n">tag</span> <span class="ow">in</span> <span class="n">collection</span><span class="o">.</span><span class="n">tags</span><span class="p">))</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Author&#39;s username:&quot;</span><span class="p">,</span> <span class="n">collection</span><span class="o">.</span><span class="n">author</span><span class="o">.</span><span class="n">username</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="collection">
+<span id="collection-code-label"></span><h3><a class="reference internal" href="sample.html#collection-label"><span class="std std-ref">Collection</span></a><a class="headerlink" href="#collection" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1"># See Sample outputs -&gt; Collection for more information about this:</span>
+<span class="n">collection</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">get_collection</span><span class="p">(</span><span class="s2">&quot;goat&quot;</span><span class="p">)</span>
+
+<span class="c1"># &gt;&gt;&gt;collection</span>
+<span class="c1"># &lt;CollectionModel: Name: Goat, Slug: goat, Id: 6861&gt;</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Collection&#39;s name:&quot;</span><span class="p">,</span> <span class="n">collection</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Collection&#39;s tags:&quot;</span><span class="p">,</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tag</span> <span class="k">for</span> <span class="n">tag</span> <span class="ow">in</span> <span class="n">collection</span><span class="o">.</span><span class="n">tags</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Author&#39;s username:&quot;</span><span class="p">,</span> <span class="n">collection</span><span class="o">.</span><span class="n">author</span><span class="o">.</span><span class="n">username</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="usage">
+<span id="usage-code-label"></span><h3><a class="reference internal" href="sample.html#usage-label"><span class="std std-ref">Usage</span></a><a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 7
+ 8
+ 9
+10
+11
+12
+13
+14</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="c1"># See Sample outputs -&gt; Usage for more information about this:</span>
+<span class="n">usage</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">get_usage</span><span class="p">()</span>
+
+<span class="c1"># &gt;&gt;&gt;usage</span>
+<span class="c1"># &lt;UsageModel: Hourly: 12, Daily: 12, Monthly: 226&gt;</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Monthly limit:&quot;</span><span class="p">,</span> <span class="n">usage</span><span class="o">.</span><span class="n">limits</span><span class="o">.</span><span class="n">monthly</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Today&#39;s usage:&quot;</span><span class="p">,</span> <span class="n">usage</span><span class="o">.</span><span class="n">usage</span><span class="o">.</span><span class="n">daily</span><span class="p">)</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+</div>
+<div class="section" id="exception-handling">
+<h2>Exception handling<a class="headerlink" href="#exception-handling" title="Permalink to this headline">¶</a></h2>
+<p>This wrapper may raise any exception listed in <a class="reference internal" href="exceptions.html#module-TheNounProjectAPI.exceptions" title="TheNounProjectAPI.exceptions"><code class="xref py py-mod docutils literal notranslate"><span class="pre">exceptions</span></code></a>.
+Here’s some clarification regarding some of these exceptions:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 31%" />
+<col style="width: 69%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Exception</p></td>
+<td><p>How to handle</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="exceptions.html#TheNounProjectAPI.exceptions.APIKeyNotSet" title="TheNounProjectAPI.exceptions.APIKeyNotSet"><code class="xref py py-class docutils literal notranslate"><span class="pre">APIKeyNotSet</span></code></a></p></td>
+<td><p>One or both of the keys have not been set correctly. See <a class="reference internal" href="#api-keys-label"><span class="std std-ref">API keys</span></a> for how to resolve this exception.</p></td>
+</tr>
+<tr class="row-odd"><td><div class="line-block">
+<div class="line"><a class="reference internal" href="exceptions.html#TheNounProjectAPI.exceptions.IncorrectType" title="TheNounProjectAPI.exceptions.IncorrectType"><code class="xref py py-class docutils literal notranslate"><span class="pre">IncorrectType</span></code></a></div>
+<div class="line"><a class="reference internal" href="exceptions.html#TheNounProjectAPI.exceptions.NonPositive" title="TheNounProjectAPI.exceptions.NonPositive"><code class="xref py py-class docutils literal notranslate"><span class="pre">NonPositive</span></code></a></div>
+<div class="line"><a class="reference internal" href="exceptions.html#TheNounProjectAPI.exceptions.IllegalSlug" title="TheNounProjectAPI.exceptions.IllegalSlug"><code class="xref py py-class docutils literal notranslate"><span class="pre">IllegalSlug</span></code></a></div>
+<div class="line"><a class="reference internal" href="exceptions.html#TheNounProjectAPI.exceptions.IllegalTerm" title="TheNounProjectAPI.exceptions.IllegalTerm"><code class="xref py py-class docutils literal notranslate"><span class="pre">IllegalTerm</span></code></a></div>
+</div>
+</td>
+<td><p>One or more of the parameters passed to the method is not correct.
+See the exception class and program output for more information on how to resolve the exception.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="exceptions.html#TheNounProjectAPI.exceptions.ServerException" title="TheNounProjectAPI.exceptions.ServerException"><code class="xref py py-class docutils literal notranslate"><span class="pre">ServerException</span></code></a></p></td>
+<td><p>The Noun Project API is likely experiencing issues. There is not much you can do about this, except for waiting.</p></td>
+</tr>
+<tr class="row-odd"><td><div class="line-block">
+<div class="line"><a class="reference internal" href="exceptions.html#TheNounProjectAPI.exceptions.BadRequest" title="TheNounProjectAPI.exceptions.BadRequest"><code class="xref py py-class docutils literal notranslate"><span class="pre">BadRequest</span></code></a></div>
+<div class="line"><a class="reference internal" href="exceptions.html#TheNounProjectAPI.exceptions.NotFound" title="TheNounProjectAPI.exceptions.NotFound"><code class="xref py py-class docutils literal notranslate"><span class="pre">NotFound</span></code></a></div>
+</div>
+</td>
+<td><p>A page that does not exist has been requested. This can happen for example when asking for an icon, collection or user that does not exist.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="exceptions.html#TheNounProjectAPI.exceptions.Unauthorized" title="TheNounProjectAPI.exceptions.Unauthorized"><code class="xref py py-class docutils literal notranslate"><span class="pre">Unauthorized</span></code></a></p></td>
+<td><p>The authentication is incorrect, most likely due to the api key and/or secret being incorrect.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="exceptions.html#TheNounProjectAPI.exceptions.RateLimited" title="TheNounProjectAPI.exceptions.RateLimited"><code class="xref py py-class docutils literal notranslate"><span class="pre">RateLimited</span></code></a></p></td>
+<td><p>You may have been rate limited. You may have sent too many requests, or you’ve been timed out.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="exceptions.html#TheNounProjectAPI.exceptions.UnknownStatusCode" title="TheNounProjectAPI.exceptions.UnknownStatusCode"><code class="xref py py-class docutils literal notranslate"><span class="pre">UnknownStatusCode</span></code></a></p></td>
+<td><p>Any status code without a custom exception has been returned from the API. Please look up the status code in the error message for more information.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+    <a id="sidebar-anchor"></a>
+    
+
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Getting Started</a><ul>
+<li><a class="reference internal" href="#api-keys">API keys</a></li>
+<li><a class="reference internal" href="#making-requests">Making requests</a></li>
+<li><a class="reference internal" href="#output-handling">Output handling</a><ul>
+<li><a class="reference internal" href="#icons"><span class="xref std std-ref">Icons</span></a></li>
+<li><a class="reference internal" href="#icon"><span class="xref std std-ref">Icon</span></a></li>
+<li><a class="reference internal" href="#collections"><span class="xref std std-ref">Collections</span></a></li>
+<li><a class="reference internal" href="#collection"><span class="xref std std-ref">Collection</span></a></li>
+<li><a class="reference internal" href="#usage"><span class="xref std std-ref">Usage</span></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#exception-handling">Exception handling</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">TheNounProjectAPI</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="main.html"
+                        title="next chapter">Documentation</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/introduction.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="main.html" title="Documentation"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="TheNounProjectAPI"
+             accesskey="P">previous</a> |</li>
+      </ul>
+    </div>
+
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2019, Tom Aarsen.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.1.2.
+    </div>
+  </body>
+</html>
