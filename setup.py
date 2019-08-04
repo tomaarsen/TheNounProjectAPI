@@ -19,7 +19,7 @@ DESCRIPTION = 'Python TheNounProject API Wrapper.'
 URL = 'https://github.com/CubieDev/TheNounProjectAPI'
 EMAIL = 'cubiegamedev@gmail.com'
 AUTHOR = 'Tom Aarsen'
-REQUIRES_PYTHON = '>=3.6.0'
+REQUIRES_PYTHON = '>=3.7.0'
 VERSION = None
 
 # What packages are required for this module to be executed?
@@ -116,7 +116,7 @@ setup(
         'License :: OSI Approved :: MIT License',
         'Programming Language :: Python',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: Implementation :: CPython',
         'Programming Language :: Python :: Implementation :: PyPy'
     ],
@@ -124,4 +124,5 @@ setup(
     cmdclass={
         'upload': UploadCommand,
     },
+    test_suite="run_tests"
 )

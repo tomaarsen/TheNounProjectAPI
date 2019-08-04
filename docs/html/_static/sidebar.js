@@ -29,8 +29,8 @@ $(function() {
   var jdocument = $(document);
   var bodywrapper = $('.bodywrapper');
   var sidebar = $('.sphinxsidebar');
-  bodywrapper.css('margin-left', "300px");
-  sidebar.css('width', "300px");
+  //bodywrapper.css('margin-left', "300px");
+  //sidebar.css('width', "300px");
   var sidebarwrapper = $('.sphinxsidebarwrapper');
 
   // original margin-left of the bodywrapper and width of the sidebar
