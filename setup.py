@@ -47,8 +47,7 @@ if not VERSION:
     project_slug = NAME.replace("-", "_").replace(" ", "_")
     with open(os.path.join(here, project_slug, '__version__.py')) as f:
         exec(f.read(), about)
-else:
-    about['__version__'] = VERSION
+        VERSION = about["__version__"]
 
 
 class UploadCommand(Command):
@@ -91,7 +90,7 @@ class UploadCommand(Command):
 # Where the magic happens:
 setup(
     name=NAME,
-    version=about['__version__'],
+    version=VERSION,
     description=DESCRIPTION,
     long_description=long_description,
     long_description_content_type='text/markdown',

@@ -1,7 +1,6 @@
 
 import requests
-from functools import wraps, singledispatch, update_wrapper
-from typing import Union, List, Any, Type, Tuple, Optional
+from typing import Union, Any, Type, Tuple
 
 from TheNounProjectAPI.keys import Keys
 from TheNounProjectAPI.exceptions import IncorrectType, NonPositive, IllegalSlug, IllegalTerm
