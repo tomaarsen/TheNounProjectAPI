@@ -46,7 +46,7 @@ Examine the [TheNounProjectAPI documentation]() for more examples of what can be
 ---
 
 # Tests
-Run `run_tests.py` to run all tests in one batch.
+Run `run_tests.py` or perform `python setup.py test` to run all tests in one batch.
 
 # License
 TheNounProjectAPI is licensed under MIT.
