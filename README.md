@@ -27,7 +27,7 @@ import TheNounProjectAPI
 key = "<sample key>"
 secret = "<sample secret>"
 
-api = TheNounProjectAPI(key=key, secret=secret)
+api = TheNounProjectAPI.API(key=key, secret=secret)
 
 icons = api.get_icons_by_term("goat", public_domain_only=True, limit=2)
 
