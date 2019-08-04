@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.com/CubieDev/TheNounProjectAPI.svg?branch=master)](https://travis-ci.com/CubieDev/TheNounProjectAPI)
+
+
 # TheNounProjectAPI
  
 TheNounProjectAPI is a Python wrapper allowing convenient access to the [Noun Project](https://thenounproject.com/) API. It supports all endpoints and types of responses. Documentation for this wrapper can be found [here](https://cubiedev.github.io/TheNounProjectAPI/#thenounprojectapi), while the official documentation of the API itself may be found [here](https://api.thenounproject.com/).
