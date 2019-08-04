@@ -1,8 +1,7 @@
 
 import requests
 
-from TheNounProjectAPI.exceptions import NotFound
-from typing import Any, TypeVar, Type, Union, Tuple
+from typing import Any, Union, Tuple
    
 class Model:
     """
