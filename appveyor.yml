@@ -12,3 +12,9 @@ environment:
     - PYTHON: "C:\\Python37-x64"
       PYTHON_VERSION: "3.7.x"
       PYTHON_ARCH: "64"
+
+install:
+- python setup.py install
+
+test_script:
+- python setup.py test
