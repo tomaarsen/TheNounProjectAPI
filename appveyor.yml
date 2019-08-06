@@ -35,5 +35,8 @@ install:
 
 - "python setup.py install"
 
+build_script:
+- "python setup.py build"
+
 test_script:
 - "python setup.py test"
