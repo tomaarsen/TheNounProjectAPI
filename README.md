@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.com/CubieDev/TheNounProjectAPI.svg?branch=master)](https://travis-ci.com/CubieDev/TheNounProjectAPI)
-
+[![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/CubieDev/TheNounProjectAPI.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/CubieDev/TheNounProjectAPI/context:python)
 
 # TheNounProjectAPI
  
