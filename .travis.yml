@@ -2,4 +2,4 @@ dist: xenial   # required for Python >= 3.7
 language: python
 python:
   - "3.7"
-script: python3 run_tests.py
+script: python3 setup.py nosetests
