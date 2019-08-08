@@ -123,5 +123,5 @@ setup(
     cmdclass={
         'upload': UploadCommand,
     },
-    test_suite="run_tests"
+    test_suite="runner"
 )

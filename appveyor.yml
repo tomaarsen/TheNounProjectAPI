@@ -1,3 +1,13 @@
+# branches to build
+branches:
+  # whitelist
+  only:
+    - master
+
+  # blacklist
+  except:
+    - gh-pages
+
 environment:
   matrix:
 
@@ -32,6 +42,8 @@ install:
 - "pip install --disable-pip-version-check --user --upgrade pip"
 
 - "pip install -r requirements.txt"
+- "pip install nose"
+- "pip install coverage"
 
 - "python setup.py install"
 
@@ -39,4 +51,4 @@ build_script:
 - "python setup.py build"
 
 test_script:
-- "python setup.py test"
+- "python setup.py nosetests"
