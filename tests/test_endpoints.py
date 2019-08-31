@@ -4,6 +4,7 @@ import context
 
 from TheNounProjectAPI.api import API
 from TheNounProjectAPI.models import CollectionModel
+from TheNounProjectAPI.exceptions import NotFound
 
 class Endpoints(unittest.TestCase):
 
@@ -147,6 +148,14 @@ class Endpoints(unittest.TestCase):
         self.assertTrue(set(result.json.keys()) == self.usage_attributes)
         self.assertTrue(set(result.json.limits.keys()) == self.usage_time_attributes)
         self.assertTrue(set(result.json.usage.keys()) == self.usage_time_attributes)
+
+    def test_invalid_icon(self):
+        """
+        Check if getting an icon with an invalid id produces the correct NotFound exception.
+        """
+        invalid_id = int(1e15)
+        with self.assertRaises(NotFound):
+            self.api.get_icon(invalid_id)
 
 if __name__ == "__main__":
     unittest.main() 
