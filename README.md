@@ -27,23 +27,28 @@ It's strongly encouraged to use the [documentation](https://cubiedev.github.io/T
 
 However, I'll provide a quick sample.
 ```python
-import TheNounProjectAPI
+# See the Documentation for more information: https://cubiedev.github.io/TheNounProjectAPI
+from TheNounProjectAPI.api import API
 
-key = "<sample key>"
-secret = "<sample secret>"
+if __name__ == "__main__":
+    # API Key and Secret from https://api.thenounproject.com/getting_started.html#creating-an-api-key
+    key = "<my api key>"
+    secret = "<my api secret>"
+    
+    # Create api object
+    api = API(key=key, secret=secret)
 
-api = TheNounProjectAPI.API(key=key, secret=secret)
+    # See the documentation for more endpoints
+    icons = api.get_icons_by_term("goat", public_domain_only=True, limit=2)
 
-icons = api.get_icons_by_term("goat", public_domain_only=True, limit=2)
+    # >>>icons
+    # [<IconModel: Term: Goat Feeding, Slug: goat-feeding, Id: 24014>,
+    # <IconModel: Term: Herbivore teeth, Slug: herbivore-teeth, Id: 675870>]
 
-# >>>icons
-# [<IconModel: Term: Goat Feeding, Slug: goat-feeding, Id: 24014>,
-# <IconModel: Term: Herbivore teeth, Slug: herbivore-teeth, Id: 675870>]
-
-for icon in icons:
-    print("Icon's term:", icon.term)
-    print("This icon's tags:", ", ".join(tag.slug for tag in icon.tags))
-    print("Uploader's username:", icon.uploader.username)
+    for icon in icons:
+        print("Icon's term:", icon.term)
+        print("This icon's tags:", ", ".join(tag.slug for tag in icon.tags))
+        print("Uploader's username:", icon.uploader.username)
 ```
 
 Examine the [TheNounProjectAPI documentation](https://cubiedev.github.io/TheNounProjectAPI/index.html#thenounprojectapi) for more examples of what can be done with TheNounProjectAPI.
