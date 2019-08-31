@@ -1,5 +1,6 @@
 
-from functools import wraps, singledispatch, update_wrapper
+from functools import singledispatch
+import wrapt
 from typing import Union, Callable, Type, List
 
 from TheNounProjectAPI.exceptions import STATUS_CODE_EXCEPTIONS, STATUS_CODE_SUCCESS, UnknownStatusCode
@@ -14,7 +15,7 @@ class Call:
     def dispatch(f: Callable) -> Callable:
         """
         This method allows the use of singledispatch on methods, 
-        a feature that will be implemented in functools in Python 3.8.x in the future.
+        a feature that will be implemented in functools in Python 3.8.x+ in the future.
 
         :param f: The decorated method.
         :type f: Callable
@@ -24,14 +25,15 @@ class Call:
         :rtype: Callable
         """
         dispatcher = singledispatch(f)
-        def wrapper(*args, **kwargs):
-            return dispatcher.dispatch(args[1].__class__)(*args, **kwargs)
-        wrapper.register = dispatcher.register
-        update_wrapper(wrapper, f)
-        return wrapper
+        @wrapt.decorator
+        def wrapper(wrapped, instance=None, args=(), kwargs={}):
+            return dispatcher.dispatch(args[0].__class__)(instance, *args, **kwargs)
+        out = wrapper(f)
+        out.register = dispatcher.register
+        return out
 
     @staticmethod
-    def _get_endpoint(model_class: Union[Type[Model], Type[ModelList]], method: str, f: Callable) -> Callable:
+    def _get_endpoint(model_class: Union[Type[Model], Type[ModelList]], method: str) -> Callable:
         """
         Returns wrapper which receives a requests.PreparedRequests, 
         sends this request, checks for exceptions, and returns the json parsed through the correct model.
@@ -40,26 +42,24 @@ class Call:
         :type model_class: Union[Type[Model], Type[ModelList]]
         :param method: String form of which method to use. Either "GET" or "POST".
         :type method: str
-        :param f: The decorated method. 
-        :type f: Callable
 
         :returns: Decorator function.
         :rtype: Callable
         """
-        @wraps(f)
-        def wrapper(self, *args, **kwargs) -> Union[Model, List[Model]]:
+        @wrapt.decorator
+        def wrapper(wrapped, instance=None, args=(), kwargs={}) -> Union[Model, List[Model]]:
             # Set method for API instance.
-            self._method = method
+            instance._method = method
 
             # Call the decorated function with the args and kwargs.
             # All of the decorated functions return a PreparedRequest which we will use.
-            prepared_request = f(self, *args, **kwargs)
+            prepared_request = wrapped(*args, **kwargs)
             # If testing is true, then we want to simply return this PreparedRequest. This is useful for testing only.
-            if self._testing:
+            if instance._testing:
                 return prepared_request
 
             # Send the PreparedRequest, and get the response
-            response = self._send(prepared_request)
+            response = instance._send(prepared_request)
 
             # If status_code indicates success
             if response.status_code in STATUS_CODE_SUCCESS:
@@ -81,9 +81,9 @@ class Call:
     This allows me to write @Call.collection instead of @Call._get_endpoint(method="GET", model_class=CollectionModel),
     which also requires more imports in other files.
     """
-    collection  = lambda f, method="GET", model_class=CollectionModel: Call._get_endpoint(model_class, method, f)
-    collections = lambda f, method="GET", model_class=CollectionsModel: Call._get_endpoint(model_class, method, f)
-    icon        = lambda f, method="GET", model_class=IconModel: Call._get_endpoint(model_class, method, f)
-    icons       = lambda f, method="GET", model_class=IconsModel: Call._get_endpoint(model_class, method, f)
-    usage       = lambda f, method="GET", model_class=UsageModel: Call._get_endpoint(model_class, method, f)
-    enterprise  = lambda f, method="POST", model_class=EnterpriseModel: Call._get_endpoint(model_class, method, f)
+    collection  = lambda f, method="GET", model_class=CollectionModel: Call._get_endpoint(model_class, method)(f)
+    collections = lambda f, method="GET", model_class=CollectionsModel: Call._get_endpoint(model_class, method)(f)
+    icon        = lambda f, method="GET", model_class=IconModel: Call._get_endpoint(model_class, method)(f)
+    icons       = lambda f, method="GET", model_class=IconsModel: Call._get_endpoint(model_class, method)(f)
+    usage       = lambda f, method="GET", model_class=UsageModel: Call._get_endpoint(model_class, method)(f)
+    enterprise  = lambda f, method="POST", model_class=EnterpriseModel: Call._get_endpoint(model_class, method)(f)
