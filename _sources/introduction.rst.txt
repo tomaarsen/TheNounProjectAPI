@@ -20,7 +20,7 @@ For each of these ways, assume that this section of code is present at the top:
 .. code-block :: python
     :linenos:
 
-    import TheNounProjectAPI
+    from TheNounProjectAPI import API
     key = "<sample api key>"
     secret = "<sample secret key>"
 
@@ -29,14 +29,14 @@ You can pass the keys to the constructor when creating the object:
 .. code-block :: python
     :lineno-start: 4
 
-    api = TheNounProjectAPI.API(key=key, secret=secret)
+    api = API(key=key, secret=secret)
 
 You can also set the attributes directly:
 
 .. code-block :: python
     :lineno-start: 4
 
-    api = TheNounProjectAPI.API()
+    api = API()
     api.api_key = key
     api.secret_key = secret
 
@@ -45,7 +45,7 @@ Or call the api key and secret key setters:
 .. code-block :: python
     :lineno-start: 4
 
-    api = TheNounProjectAPI.API()
+    api = API()
     api.set_api_key(key)
     api.set_secret_key(secret)
 
