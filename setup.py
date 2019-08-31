@@ -24,7 +24,7 @@ VERSION = None
 
 # What packages are required for this module to be executed?
 REQUIRED = [
-    "requests", "requests_oauthlib"
+    "requests", "requests_oauthlib", "wrapt"
 ]
 
 # What packages are optional?
