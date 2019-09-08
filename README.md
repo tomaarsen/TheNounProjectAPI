@@ -28,7 +28,7 @@ It's strongly encouraged to use the [documentation](https://cubiedev.github.io/T
 However, I'll provide a quick sample.
 ```python
 # See the Documentation for more information: https://cubiedev.github.io/TheNounProjectAPI
-from TheNounProjectAPI.api import API
+from TheNounProjectAPI import API
 
 if __name__ == "__main__":
     # API Key and Secret from https://api.thenounproject.com/getting_started.html#creating-an-api-key
