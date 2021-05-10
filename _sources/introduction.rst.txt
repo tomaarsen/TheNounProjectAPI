@@ -2,7 +2,7 @@
 Getting Started
 ===============
 
-`TheNounProjectAPI <https://github.com/CubieDev/TheNounProjectAPI>`_ is a Python wrapper allowing convenient access to the `Noun Project <https://thenounproject.com>`_ API.
+`TheNounProjectAPI <https://github.com/tomaarsen/TheNounProjectAPI>`_ is a Python wrapper allowing convenient access to the `Noun Project <https://thenounproject.com>`_ API.
 It supports all endpoints and types of responses.
 
 .. _api-keys-label:
