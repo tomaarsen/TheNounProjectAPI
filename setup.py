@@ -16,7 +16,7 @@ from setuptools import find_packages, setup, Command
 # Package meta-data.
 NAME = 'TheNounProjectAPI'
 DESCRIPTION = 'Python The Noun Project API Wrapper.'
-URL = 'https://github.com/CubieDev/TheNounProjectAPI'
+URL = 'https://github.com/tomaarsen/TheNounProjectAPI'
 EMAIL = 'cubiegamedev@gmail.com'
 AUTHOR = 'Tom Aarsen'
 REQUIRES_PYTHON = '>=3.7.0'
