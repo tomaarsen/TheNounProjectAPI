@@ -63,8 +63,12 @@ Documentation can be found here: https://tomaarsen.github.io/TheNounProjectAPI
 # Tests
 Run `python runner.py`, `nosetests`, `python setup.py nosetests` or `python setup.py test` to run all tests in one batch.
 
+---
+
 # License
 TheNounProjectAPI is licensed under MIT.
+
+---
 
 # Contributions
 Contributions are welcome.
