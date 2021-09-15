@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.com/tomaarsen/TheNounProjectAPI.svg?branch=master)](https://travis-ci.com/tomaarsen/TheNounProjectAPI)
 [![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/tomaarsen/TheNounProjectAPI.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/tomaarsen/TheNounProjectAPI/context:python)
-[![codecov](https://codecov.io/gh/tomaarsen/TheNounProjectAPI/branch/master/graph/badge.svg)](https://codecov.io/gh/tomaarsen/TheNounProjectAPI)
+[![codecov](https://codecov.io/gh/cubiedev/TheNounProjectAPI/branch/master/graph/badge.svg)](https://codecov.io/gh/cubiedev/TheNounProjectAPI)
 [![license](https://img.shields.io/github/license/tomaarsen/TheNounProjectAPI)](https://github.com/tomaarsen/TheNounProjectAPI/blob/master/LICENSE)
 
 # TheNounProjectAPI
